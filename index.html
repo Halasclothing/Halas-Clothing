@@ -15,8 +15,8 @@
     :root{--ink:#243f4b;--muted:#756f68;--paper:#fffaf2;--line:#e8dccd;--white:#fff;--accent:#c58a45}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif}
     a{text-decoration:none;color:inherit}button,input{font:inherit}button{cursor:pointer}
-    .bar{font-size:12px;letter-spacing:.08em;text-align:center;overflow:hidden;white-space:nowrap;padding:0;background:#315666;color:#fff;position:relative}
-    .bar.secondary{background:#f3dfbd;color:#243f4b}
+    .bar{font-size:12px;letter-spacing:.08em;text-align:center;overflow:hidden;white-space:nowrap;padding:0;background:#000;color:#fff;position:relative}
+    .bar.secondary{background:#c6a15b;color:#111}
     .marquee-track{display:flex;width:max-content;min-width:100%;will-change:transform;animation:marquee 18s linear infinite}
     .bar.secondary .marquee-track{animation-duration:16s}
     .marquee-item{display:inline-flex;align-items:center;gap:24px;padding:9px 28px;flex:none}
@@ -614,7 +614,41 @@ section:first-of-type::before{display:none}
     /* Preserve the existing palette while giving the page a cleaner, sharper finish. */
     main,header,footer{filter:saturate(1.035) contrast(1.025)}
     .ai,.ai-panel{filter:none}
+
+    /* Requested top announcement bar colors — no other styling changed. */
+    #channelBar.bar{background:#000000 !important;color:#ffffff !important;border-bottom:1px solid #000000 !important}
+    #promoBar.bar.secondary{background:#C6A15B !important;color:#111111 !important;border-bottom:1px solid #C6A15B !important}
 </style>
+
+<style id="channel-popup-only">
+  .channel-popup-overlay{
+    position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;
+    padding:20px;background:rgba(20,19,18,.58);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);
+    opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease;
+  }
+  .channel-popup-overlay.is-open{opacity:1;visibility:visible}
+  .channel-popup{
+    position:relative;width:min(440px,92vw);overflow:hidden;border-radius:18px;
+    background:#faf8f4;border:1px solid #d8c19a;box-shadow:0 28px 80px rgba(0,0,0,.28);
+    transform:translateY(14px) scale(.98);transition:transform .28s ease;
+  }
+  .channel-popup-overlay.is-open .channel-popup{transform:translateY(0) scale(1)}
+  .channel-popup-top{height:7px;background:#000}
+  .channel-popup-content{padding:34px 34px 30px;text-align:center}
+  .channel-popup-kicker{margin:0 0 10px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#9b7650;font-weight:700}
+  .channel-popup h3{margin:0 0 12px;color:#292725;font-family:Georgia,'Times New Roman',serif;font-size:30px;line-height:1.15;font-weight:500}
+  .channel-popup p{margin:0 auto 23px;max-width:350px;color:#746f69;font-size:14px;line-height:1.7}
+  .channel-popup-actions{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+  .channel-popup-join,.channel-popup-close{min-height:44px;padding:0 22px;border-radius:999px;font:600 11px/1 inherit;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:.2s ease}
+  .channel-popup-join{border:1px solid #9b7650;background:#9b7650;color:#fff;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+  .channel-popup-join:hover{background:#825f42;border-color:#825f42;transform:translateY(-1px)}
+  .channel-popup-close{border:1px solid #ddd7cf;background:#fff;color:#5d5046}
+  .channel-popup-close:hover{background:#f0ece6}
+  .channel-popup-x{position:absolute;top:14px;right:14px;width:34px;height:34px;border:0;border-radius:50%;background:rgba(255,255,255,.8);color:#292725;font-size:20px;line-height:1;cursor:pointer}
+  .channel-popup-x:hover{background:#eeeae4}
+  @media(max-width:520px){.channel-popup-content{padding:30px 22px 25px}.channel-popup h3{font-size:26px}.channel-popup p{font-size:13px}}
+</style>
+
 </head>
 <body>
   <div id="channelBar" class="bar" aria-label="Hala.S channel announcement"></div>
@@ -1459,7 +1493,58 @@ document.addEventListener("keydown",e=>{
   if(e.key==="ArrowLeft") lightboxPrev();
 });
 init();
+setTimeout(openChannelPopup,650);
+
+
+function openChannelPopup(){
+  const popup=document.getElementById("channelPopup");
+  if(!popup) return;
+  const join=document.getElementById("channelPopupJoin");
+  const url=(typeof CONFIG!=="undefined" && CONFIG.channel && CONFIG.channel.url) ? CONFIG.channel.url.trim() : "";
+  if(join){
+    if(url){ join.href=url; join.removeAttribute("aria-disabled"); join.style.opacity=""; join.style.pointerEvents=""; }
+    else { join.href="#"; join.setAttribute("aria-disabled","true"); }
+  }
+  popup.classList.add("is-open");
+  popup.setAttribute("aria-hidden","false");
+  document.body.style.overflow="hidden";
+}
+function closeChannelPopup(){
+  const popup=document.getElementById("channelPopup");
+  if(!popup) return;
+  popup.classList.remove("is-open");
+  popup.setAttribute("aria-hidden","true");
+  document.body.style.overflow="";
+}
+function handleChannelPopupJoin(e){
+  const url=(typeof CONFIG!=="undefined" && CONFIG.channel && CONFIG.channel.url) ? CONFIG.channel.url.trim() : "";
+  if(!url){
+    e.preventDefault();
+    closeChannelPopup();
+    if(typeof toast === "function") toast("Channel link will be available here soon.");
+  }
+}
+document.addEventListener("keydown",e=>{if(e.key==="Escape") closeChannelPopup()});
+document.addEventListener("click",e=>{const popup=document.getElementById("channelPopup");if(popup && e.target===popup) closeChannelPopup()});
+
 </script>
+
+  <div id="channelPopup" class="channel-popup-overlay" role="dialog" aria-modal="true" aria-labelledby="channelPopupTitle" aria-hidden="true">
+    <div class="channel-popup" role="document">
+      <div class="channel-popup-top"></div>
+      <button class="channel-popup-x" type="button" aria-label="Close" onclick="closeChannelPopup()">×</button>
+      <div class="channel-popup-content">
+        <p class="channel-popup-kicker">Hala.S Clothing</p>
+        <h3 id="channelPopupTitle">Join Our Channel</h3>
+        <p>Be the first to discover new arrivals, exclusive updates, special offers and the latest from Hala.S.</p>
+        <div class="channel-popup-actions">
+          <a id="channelPopupJoin" class="channel-popup-join" href="#" target="_blank" rel="noopener" onclick="handleChannelPopupJoin(event)">Join Our Channel</a>
+          <button class="channel-popup-close" type="button" onclick="closeChannelPopup()">Maybe Later</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
 
