@@ -638,6 +638,12 @@ section:first-of-type::before{display:none}
   .channel-popup-kicker{margin:0 0 10px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#9b7650;font-weight:700}
   .channel-popup h3{margin:0 0 12px;color:#292725;font-family:Georgia,'Times New Roman',serif;font-size:30px;line-height:1.15;font-weight:500}
   .channel-popup p{margin:0 auto 23px;max-width:350px;color:#746f69;font-size:14px;line-height:1.7}
+
+  .channel-popup-form{display:flex;flex-direction:column;gap:10px;align-items:stretch}
+  .channel-popup-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#5d5046;font-weight:600;text-align:left}
+  .channel-popup-input{width:100%;height:46px;padding:0 15px;border:1px solid #d8d0c6;border-radius:10px;background:#fff;color:#292725;font:400 14px/1.2 inherit;outline:none;box-sizing:border-box}
+  .channel-popup-input::placeholder{color:#9a938b}
+  .channel-popup-input:focus{border-color:#9b7650;box-shadow:0 0 0 3px rgba(155,118,80,.12)}
   .channel-popup-actions{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
   .channel-popup-join,.channel-popup-close{min-height:44px;padding:0 22px;border-radius:999px;font:600 11px/1 inherit;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:.2s ease}
   .channel-popup-join{border:1px solid #9b7650;background:#9b7650;color:#fff;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
@@ -1517,12 +1523,21 @@ function closeChannelPopup(){
   document.body.style.overflow="";
 }
 function handleChannelPopupJoin(e){
-  const url=(typeof CONFIG!=="undefined" && CONFIG.channel && CONFIG.channel.url) ? CONFIG.channel.url.trim() : "";
-  if(!url){
-    e.preventDefault();
-    closeChannelPopup();
-    if(typeof toast === "function") toast("Channel link will be available here soon.");
+  e.preventDefault();
+  const field=document.getElementById("channelContact");
+  const value=field ? field.value.trim() : "";
+  if(!value){
+    if(field){ field.focus(); field.setCustomValidity("Please enter your email or phone number."); field.reportValidity(); }
+    return;
   }
+  if(field) field.setCustomValidity("");
+  const contacts=JSON.parse(localStorage.getItem("halas_channel_contacts")||"[]");
+  if(!contacts.includes(value)) contacts.push(value);
+  localStorage.setItem("halas_channel_contacts",JSON.stringify(contacts));
+  const url=(typeof CONFIG!=="undefined" && CONFIG.channel && CONFIG.channel.url) ? CONFIG.channel.url.trim() : "";
+  if(url){ window.open(url,"_blank","noopener"); }
+  closeChannelPopup();
+  if(typeof toast === "function") toast("Thank you. You’re on the Hala.S channel list.");
 }
 document.addEventListener("keydown",e=>{if(e.key==="Escape") closeChannelPopup()});
 document.addEventListener("click",e=>{const popup=document.getElementById("channelPopup");if(popup && e.target===popup) closeChannelPopup()});
@@ -1537,10 +1552,14 @@ document.addEventListener("click",e=>{const popup=document.getElementById("chann
         <p class="channel-popup-kicker">Hala.S Clothing</p>
         <h3 id="channelPopupTitle">Join Our Channel</h3>
         <p>Be the first to discover new arrivals, exclusive updates, special offers and the latest from Hala.S.</p>
-        <div class="channel-popup-actions">
-          <a id="channelPopupJoin" class="channel-popup-join" href="#" target="_blank" rel="noopener" onclick="handleChannelPopupJoin(event)">Join Our Channel</a>
-          <button class="channel-popup-close" type="button" onclick="closeChannelPopup()">Maybe Later</button>
-        </div>
+        <form class="channel-popup-form" onsubmit="handleChannelPopupJoin(event)">
+          <label class="channel-popup-label" for="channelContact">Submit your email or phone number</label>
+          <input id="channelContact" class="channel-popup-input" type="text" inputmode="email" autocomplete="email tel" placeholder="Email or phone number" aria-label="Email or phone number" required>
+          <div class="channel-popup-actions">
+            <button id="channelPopupJoin" class="channel-popup-join" type="submit">Join Our Channel</button>
+            <button class="channel-popup-close" type="button" onclick="closeChannelPopup()">Maybe Later</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
