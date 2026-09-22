@@ -655,441 +655,6 @@ section:first-of-type::before{display:none}
   @media(max-width:520px){.channel-popup-content{padding:30px 22px 25px}.channel-popup h3{font-size:26px}.channel-popup p{font-size:13px}}
 </style>
 
-<style>
-
-/* =========================================================
-   HALA.S — MOBILE-ONLY PROFESSIONAL RESPONSIVE FIX
-   Desktop/tablet styling and functionality are unchanged.
-   ========================================================= */
-@media (max-width: 768px){
-
-  html, body{
-    width:100%;
-    max-width:100%;
-    overflow-x:hidden !important;
-  }
-
-  *{
-    box-sizing:border-box;
-    max-width:100%;
-  }
-
-  /* Top announcement sliders */
-  .bar{
-    min-height:34px;
-    padding:8px 14px;
-    font-size:10px;
-    line-height:1.35;
-    white-space:nowrap;
-    overflow:hidden;
-  }
-
-  /* Main navigation */
-  header{
-    width:100%;
-  }
-
-  .nav{
-    min-height:64px;
-    padding:10px 14px !important;
-    gap:10px;
-  }
-
-  .logo{
-    font-size:22px !important;
-    line-height:1;
-    white-space:nowrap;
-  }
-
-  .links{
-    gap:9px !important;
-    overflow-x:auto;
-    overflow-y:hidden;
-    scrollbar-width:none;
-    -webkit-overflow-scrolling:touch;
-    white-space:nowrap;
-    padding-bottom:2px;
-  }
-
-  .links::-webkit-scrollbar{display:none}
-
-  .links a{
-    font-size:9px !important;
-    flex:0 0 auto;
-    white-space:nowrap;
-  }
-
-  .nav-actions{
-    gap:7px !important;
-    flex:0 0 auto;
-  }
-
-  .iconbtn{
-    width:34px !important;
-    height:34px !important;
-    padding:7px !important;
-  }
-
-  /* Hero */
-  .hero{
-    width:100%;
-    min-height:620px !important;
-    overflow:hidden;
-  }
-
-  .hero-slide{
-    min-height:620px !important;
-  }
-
-  .hero-copy{
-    width:100% !important;
-    max-width:100% !important;
-    margin:0 !important;
-    padding:90px 20px 105px !important;
-  }
-
-  .hero h1{
-    font-size:clamp(38px,12vw,58px) !important;
-    line-height:.98 !important;
-    max-width:95% !important;
-    word-break:normal;
-  }
-
-  .hero p{
-    max-width:330px !important;
-    font-size:14px !important;
-    line-height:1.6 !important;
-  }
-
-  .hero-actions{
-    display:flex !important;
-    flex-wrap:wrap;
-    gap:9px !important;
-  }
-
-  .hero-actions .btn{
-    min-height:44px;
-    padding:12px 17px !important;
-    font-size:11px !important;
-  }
-
-  .hero-arrow{
-    width:38px !important;
-    height:38px !important;
-    top:auto !important;
-    bottom:22px !important;
-  }
-
-  .hero-arrow.prev{left:16px !important}
-  .hero-arrow.next{right:16px !important}
-
-  .hero-dots{
-    bottom:27px !important;
-  }
-
-  /* General sections */
-  section{
-    width:100%;
-    padding:58px 16px !important;
-    overflow:hidden;
-  }
-
-  .section-head{
-    display:flex !important;
-    flex-direction:column;
-    align-items:flex-start !important;
-    gap:12px;
-    margin-bottom:26px !important;
-  }
-
-  .section-head h2{
-    font-size:29px !important;
-    line-height:1.05 !important;
-  }
-
-  .section-head p{
-    font-size:13px !important;
-    line-height:1.55;
-  }
-
-  /* Product grids */
-  .product-grid,
-  .products-grid,
-  .grid{
-    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-    gap:18px 10px !important;
-  }
-
-  .product{
-    min-width:0 !important;
-  }
-
-  .product-img{
-    width:100% !important;
-    aspect-ratio:3/4 !important;
-    overflow:hidden;
-  }
-
-  .product-img img{
-    width:100% !important;
-    height:100% !important;
-    object-fit:cover !important;
-  }
-
-  .product-title{
-    font-size:12px !important;
-    line-height:1.35 !important;
-    margin-top:9px !important;
-  }
-
-  .price{
-    font-size:12px !important;
-  }
-
-  /* Category / collection cards */
-  .categories,
-  .category-grid,
-  .category-gallery{
-    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-    gap:10px !important;
-  }
-
-  .cat,
-  .category-gallery-card{
-    min-width:0 !important;
-    min-height:220px !important;
-  }
-
-  .cat h3{
-    font-size:18px !important;
-  }
-
-  /* Editorial / story blocks */
-  .editorial,
-  .story,
-  .about-final{
-    width:100%;
-  }
-
-  .editorial{
-    grid-template-columns:1fr !important;
-  }
-
-  .editorial-copy{
-    padding:28px 20px !important;
-  }
-
-  .editorial-copy h2,
-  .story h2,
-  .about-final h2{
-    font-size:29px !important;
-    line-height:1.08 !important;
-  }
-
-  .editorial-image,
-  .story-image{
-    min-height:300px !important;
-  }
-
-  /* Newsletter */
-  .newsletter{
-    padding:48px 18px !important;
-  }
-
-  .newsletter form{
-    display:flex !important;
-    flex-direction:column !important;
-    width:100% !important;
-    gap:9px !important;
-  }
-
-  .newsletter input,
-  .newsletter button{
-    width:100% !important;
-    min-height:46px !important;
-  }
-
-  /* Search */
-  .search-hero{
-    padding:42px 16px !important;
-  }
-
-  .search-hero h1{
-    font-size:36px !important;
-  }
-
-  .search-form{
-    width:100% !important;
-    display:flex !important;
-  }
-
-  .search-form input{
-    min-width:0 !important;
-    width:100% !important;
-  }
-
-  .search-controls{
-    display:flex !important;
-    flex-wrap:wrap;
-    gap:8px !important;
-  }
-
-  /* Drawers / cart */
-  .drawer{
-    width:min(100%,420px) !important;
-    max-width:100% !important;
-  }
-
-  .drawer-head{
-    padding:18px !important;
-  }
-
-  .cart-item{
-    grid-template-columns:64px minmax(0,1fr) auto !important;
-    gap:10px !important;
-  }
-
-  .cart-item img{
-    width:64px !important;
-    height:80px !important;
-    object-fit:cover !important;
-  }
-
-  /* AI bot: layout only; functionality/content untouched */
-  .ai{
-    right:14px !important;
-    bottom:14px !important;
-    width:54px !important;
-    height:54px !important;
-  }
-
-  .ai-panel{
-    position:fixed !important;
-    left:12px !important;
-    right:12px !important;
-    bottom:12px !important;
-    width:auto !important;
-    max-width:none !important;
-    height:min(72vh,560px) !important;
-    max-height:calc(100vh - 24px) !important;
-    border-radius:18px !important;
-  }
-
-  .ai-messages{
-    min-height:0 !important;
-    overflow-y:auto !important;
-    -webkit-overflow-scrolling:touch;
-  }
-
-  .ai-form{
-    flex-shrink:0 !important;
-  }
-
-  .ai-form input{
-    min-width:0 !important;
-    width:100% !important;
-  }
-
-  /* Join-channel popup: professional phone layout */
-  .channel-overlay{
-    padding:14px !important;
-    align-items:center !important;
-  }
-
-  .channel-popup{
-    width:min(100%,390px) !important;
-    max-width:390px !important;
-    max-height:calc(100vh - 28px) !important;
-    overflow-y:auto !important;
-    border-radius:18px !important;
-  }
-
-  .channel-popup-inner{
-    padding:25px 19px !important;
-  }
-
-  .channel-popup h2{
-    font-size:27px !important;
-    line-height:1.08 !important;
-  }
-
-  .channel-popup p{
-    font-size:13px !important;
-    line-height:1.55 !important;
-  }
-
-  .channel-popup input,
-  .channel-popup button{
-    width:100% !important;
-    min-height:46px !important;
-    font-size:13px !important;
-  }
-
-  /* Footer */
-  footer{
-    padding:45px 17px 25px !important;
-  }
-
-  .footer-grid{
-    grid-template-columns:1fr 1fr !important;
-    gap:28px 18px !important;
-  }
-
-  .footer-brand{
-    grid-column:1 / -1;
-  }
-
-  .copyright{
-    font-size:10px !important;
-    line-height:1.5;
-    text-align:center;
-  }
-}
-
-/* Small phones */
-@media (max-width:420px){
-  .links a{
-    font-size:8.5px !important;
-  }
-
-  .product-grid,
-  .products-grid,
-  .grid{
-    gap:16px 8px !important;
-  }
-
-  .product-title{
-    font-size:11px !important;
-  }
-
-  .cat,
-  .category-gallery-card{
-    min-height:190px !important;
-  }
-
-  .hero{
-    min-height:570px !important;
-  }
-
-  .hero-slide{
-    min-height:570px !important;
-  }
-
-  .hero-copy{
-    padding-top:75px !important;
-    padding-bottom:95px !important;
-  }
-
-  .hero h1{
-    font-size:42px !important;
-  }
-
-  .footer-grid{
-    grid-template-columns:1fr !important;
-  }
-}
-
-</style>
 </head>
 <body>
   <div id="channelBar" class="bar" aria-label="Hala.S channel announcement"></div>
@@ -2000,6 +1565,26 @@ document.addEventListener("click",e=>{const popup=document.getElementById("chann
   </div>
 
 </body>
+
+<style>
+/* MOBILE-ONLY PRECISION FIX — header/logo/icons + Hala.S AI label. Nothing else changed. */
+@media (max-width:560px){
+  .nav{display:flex!important;align-items:center!important;gap:8px!important;padding:0 12px!important;min-width:0!important}
+  .logo{flex:0 0 auto!important;width:auto!important;min-width:0!important;max-width:none!important;font-size:23px!important;line-height:1!important;white-space:nowrap!important;display:block!important}
+  .logo small{display:block!important;font-size:7px!important;letter-spacing:.20em!important;line-height:1!important;margin-top:1px!important;white-space:nowrap!important}
+  .icons{margin-left:auto!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:2px!important;flex:0 0 auto!important;min-width:max-content!important}
+  .iconbtn{width:36px!important;height:36px!important;min-width:36px!important;padding:7px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 36px!important}
+  .mobile-menu-btn{display:inline-flex!important}
+  .ai{white-space:nowrap!important;word-break:keep-all!important;overflow:hidden!important;text-overflow:clip!important;display:flex!important;align-items:center!important;justify-content:center!important;min-width:112px!important;width:auto!important;padding:13px 16px!important;font-size:12px!important;line-height:1!important;letter-spacing:0!important}
+}
+@media (max-width:390px){
+  .logo{font-size:21px!important}
+  .logo small{font-size:6.5px!important}
+  .icons{gap:0!important}
+  .iconbtn{width:34px!important;height:34px!important;min-width:34px!important;flex-basis:34px!important;padding:6px!important}
+  .ai{min-width:108px!important;font-size:11px!important;padding:12px 14px!important}
+}
+</style>
 </html>
 
 <style>
@@ -2117,4 +1702,26 @@ footer{background:#292725 !important;border-top:1px solid #403c38 !important}
 .review-form input,.review-form textarea,.review-form select{border-color:#ddd7cf !important;background:#fff !important}
 .mobile-nav{background:rgba(250,248,244,.98) !important;border-bottom-color:#e4dfd8 !important}
 .links a::after{background:#292725 !important}
+</style>
+
+<style id="mobile-header-only-fix">
+@media (max-width:768px){
+  header .nav{display:flex!important;align-items:center!important;width:100%!important;flex-wrap:nowrap!important;gap:8px!important;overflow:visible!important;}
+  header .logo{flex:0 0 auto!important;width:auto!important;min-width:max-content!important;max-width:none!important;white-space:nowrap!important;display:inline-flex!important;align-items:baseline!important;}
+  header .logo small{white-space:nowrap!important;margin-left:3px!important;}
+  header .links{display:none!important;}
+  header .icons{margin-left:auto!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:6px!important;flex:0 0 auto!important;width:auto!important;min-width:max-content!important;}
+  header .mobile-menu-btn{display:flex!important;flex:0 0 34px!important;align-items:center!important;justify-content:center!important;}
+  header .icons .iconbtn{flex:0 0 34px!important;width:34px!important;height:34px!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:6px!important;}
+  .ai{display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;line-height:1!important;white-space:nowrap!important;overflow:visible!important;}
+  .ai *{white-space:nowrap!important;}
+}
+@media(max-width:420px){
+  header .nav{gap:5px!important;padding-left:10px!important;padding-right:10px!important;}
+  header .logo{font-size:20px!important;}
+  header .logo small{font-size:7px!important;letter-spacing:.12em!important;}
+  header .icons{gap:4px!important;}
+  header .icons .iconbtn{width:32px!important;height:32px!important;flex-basis:32px!important;padding:5px!important;}
+  header .mobile-menu-btn{flex-basis:32px!important;}
+}
 </style>
