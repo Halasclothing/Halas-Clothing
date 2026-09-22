@@ -12,18 +12,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{--ink:#181614;--muted:#77706a;--paper:#f8f5f0;--line:#e6e0d8;--white:#fff;--accent:#8c6b5a}
+    :root{--ink:#243f4b;--muted:#756f68;--paper:#fffaf2;--line:#e8dccd;--white:#fff;--accent:#c58a45}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif}
     a{text-decoration:none;color:inherit}button,input{font:inherit}button{cursor:pointer}
-    .bar{font-size:12px;letter-spacing:.08em;text-align:center;overflow:hidden;white-space:nowrap;padding:0;background:#1d1b19;color:#fff;position:relative}
-    .bar.secondary{background:#eee8df;color:#1d1b19}
+    .bar{font-size:12px;letter-spacing:.08em;text-align:center;overflow:hidden;white-space:nowrap;padding:0;background:#315666;color:#fff;position:relative}
+    .bar.secondary{background:#f3dfbd;color:#243f4b}
     .marquee-track{display:flex;width:max-content;min-width:100%;will-change:transform;animation:marquee 18s linear infinite}
     .bar.secondary .marquee-track{animation-duration:16s}
     .marquee-item{display:inline-flex;align-items:center;gap:24px;padding:9px 28px;flex:none}
     .marquee-item::after{content:"✦";opacity:.55}
     @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-    header{position:sticky;top:0;z-index:30;background:rgba(248,245,240,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    header{position:sticky;top:0;z-index:30;background:rgba(255,250,242,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
     .nav{height:76px;max-width:1400px;margin:auto;display:flex;align-items:center;gap:28px;padding:0 24px}
     .logo{font-family:"Playfair Display",serif;font-size:27px;letter-spacing:.02em;white-space:nowrap}.logo small{font-family:"DM Sans";font-size:9px;letter-spacing:.22em;display:block;text-align:center;margin-top:-5px}
     .links{display:flex;gap:21px;align-items:center;flex:1;font-size:12px;letter-spacing:.08em}.links a:hover{text-decoration:underline}
@@ -401,6 +401,219 @@ section:first-of-type::before{display:none}
   section{padding-left:17px;padding-right:17px}
 }
 
+
+/* =========================================================
+   HALA.S — BRIGHT COLORFUL SUFI ART THEME
+   Same desktop + mobile layout, brighter and more colorful.
+   ========================================================= */
+:root{
+  --ink:#17242a;
+  --muted:#665e59;
+  --paper:#fffdf7;
+  --line:#d9c9a5;
+  --white:#ffffff;
+  --accent:#e85d3f;
+  --navy:#123f58;
+  --teal:#08a6a0;
+  --cyan:#19c4c0;
+  --gold:#f2b84b;
+  --yellow:#ffd166;
+  --rust:#e4573d;
+  --pink:#e85aa5;
+  --purple:#7057c8;
+  --blue:#287fc4;
+  --green:#42a96a;
+  --cream:#fffdf7;
+  --deep:#10364a;
+}
+
+html{background:#fffdf7}
+body{
+  background:
+    radial-gradient(circle at 4% 8%, rgba(25,196,192,.18), transparent 22%),
+    radial-gradient(circle at 96% 12%, rgba(232,90,165,.14), transparent 24%),
+    radial-gradient(circle at 82% 72%, rgba(242,184,75,.16), transparent 25%),
+    radial-gradient(circle at 12% 82%, rgba(112,87,200,.10), transparent 23%),
+    linear-gradient(135deg,#fffdf7 0%,#fff8ed 48%,#f7fbf8 100%);
+  color:var(--ink);
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  opacity:.12;
+  background-image:
+    radial-gradient(circle at 20% 30%, var(--teal) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 70% 70%, var(--pink) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 50% 50%, var(--gold) 0 1px, transparent 1.6px);
+  background-size:42px 42px,58px 58px,73px 73px;
+}
+
+.bar{
+  background:linear-gradient(90deg,#087f86,#0aa6a0,#1593bd,#7057c8,#e85aa5,#e4573d,#f2b84b,#0aa6a0) !important;
+  background-size:300% 100% !important;
+  color:#fff !important;
+  border-bottom:1px solid rgba(255,255,255,.35);
+}
+.bar.secondary{
+  background:linear-gradient(90deg,#e4573d,#f2b84b,#e85aa5,#7057c8,#19c4c0,#e4573d) !important;
+  background-size:300% 100% !important;
+  color:#fff !important;
+}
+
+header{
+  background:rgba(255,253,247,.96) !important;
+  border-bottom:2px solid rgba(8,166,160,.22) !important;
+  box-shadow:0 5px 28px rgba(18,63,88,.09);
+}
+.logo{color:var(--navy);text-shadow:0 1px 0 rgba(242,184,75,.28)}
+.logo small{color:var(--pink)}
+.links a{color:#23404b}
+.links a:hover{color:var(--rust);text-decoration:none}
+.iconbtn{color:var(--navy)}
+.iconbtn:hover{color:var(--pink)}
+
+.hero{background:#123f58 !important}
+.hero-slide{background:#123f58 !important}
+.hero-slide::after{
+  background:
+    linear-gradient(90deg,rgba(7,48,65,.72),rgba(8,166,160,.18) 35%,rgba(232,90,165,.14) 70%,rgba(228,87,61,.22)),
+    linear-gradient(0deg,rgba(9,31,43,.28),transparent 55%) !important;
+}
+.hero h1{color:#fff; text-shadow:0 3px 24px rgba(0,0,0,.25)}
+.hero p{color:#fff8ef}
+.eyebrow{color:#ffd166}
+.hero .btn{
+  background:linear-gradient(90deg,#e4573d,#e85aa5);
+  border-color:transparent;
+  box-shadow:0 10px 30px rgba(228,87,61,.25);
+}
+.hero .btn:hover{background:linear-gradient(90deg,#7057c8,#08a6a0)}
+.hero .btn.light{background:#fffdf7;color:var(--navy);border-color:#fffdf7}
+.hero-dot{background:rgba(255,255,255,.5)}
+.hero-dot.active{background:#ffd166}
+.hero-arrow{border-color:rgba(255,209,102,.75);background:rgba(18,63,88,.3)}
+.hero-arrow:hover{background:rgba(232,90,165,.8)}
+
+.section-head h2,.categories-intro h2,.about-final h2,.story h2,.search-hero h1{color:var(--navy)}
+.section-head p,.categories-intro p,.about-final p,.story p{color:#665e59}
+
+.product-img{
+  background:linear-gradient(135deg,#f5fffd,#fff6e8,#fff0f7);
+  border:1px solid rgba(8,166,160,.20);
+}
+.product-img::after{background:linear-gradient(90deg,#08a6a0,#f2b84b,#e85aa5)}
+.product:hover .product-img{box-shadow:0 18px 42px rgba(18,63,88,.14)}
+.product-title{color:#173846}
+.price{color:#df4934}
+.old{color:#8a817b}
+.badge{
+  background:linear-gradient(90deg,#e4573d,#e85aa5);
+  color:#fff;
+  border-radius:999px;
+}
+.wish{background:rgba(255,255,255,.94);color:#b63263;border:1px solid rgba(232,90,165,.28)}
+.wish:hover{background:#b63263;color:#fff}
+
+.cat{background:linear-gradient(135deg,#087f86,#08a6a0 55%,#7057c8);border:1px solid rgba(255,209,102,.55)}
+.cat:after{background:linear-gradient(180deg,rgba(8,127,134,.02) 20%,rgba(8,40,57,.68) 100%)}
+.cat h3{color:#fff}
+.cat small,.cat .image-hint{color:#ffd166}
+.category-gallery-card:hover{box-shadow:0 22px 55px rgba(18,63,88,.20)}
+
+.editorial{
+  background:
+    radial-gradient(circle at 10% 20%,rgba(242,184,75,.25),transparent 28%),
+    radial-gradient(circle at 90% 80%,rgba(232,90,165,.22),transparent 30%),
+    linear-gradient(135deg,#0e5267,#087f86 45%,#7057c8) !important;
+  color:#fff;
+  border-top:1px solid rgba(255,209,102,.45);
+  border-bottom:1px solid rgba(255,209,102,.45);
+}
+.editorial-copy h2{color:#fff}
+.editorial-copy p{color:#f8f4ef}
+.editorial-copy .btn{background:#ffd166;border-color:#ffd166;color:#123f58}
+.editorial-copy .btn:hover{background:#fff;color:#123f58}
+
+.story-rule{background:linear-gradient(90deg,#08a6a0,#f2b84b,#e85aa5,#7057c8) !important}
+.newsletter{
+  background:
+    radial-gradient(circle at 12% 15%,rgba(8,166,160,.16),transparent 26%),
+    radial-gradient(circle at 88% 15%,rgba(232,90,165,.16),transparent 26%),
+    linear-gradient(135deg,#fff2d6,#fff8ef 48%,#eefcfb) !important;
+}
+.newsletter input{background:#fff;border-color:#cdbd9c}
+.newsletter button{background:linear-gradient(90deg,#123f58,#08a6a0);color:#fff}
+
+footer{
+  background:
+    radial-gradient(circle at 12% 20%,rgba(8,166,160,.35),transparent 28%),
+    radial-gradient(circle at 88% 70%,rgba(232,90,165,.30),transparent 28%),
+    linear-gradient(135deg,#092d40,#123f58 50%,#4c276d) !important;
+  border-top:3px solid #f2b84b;
+}
+.footer-grid a:hover{color:#ffd166}
+.footer-brand{color:#fff}
+.copyright{border-color:rgba(255,209,102,.28)}
+
+.drawer{background:#fffdf7;border-left:3px solid #08a6a0}
+.drawer-head{color:var(--navy)}
+.cart-item{border-color:#e4d7bf}
+.cart-total{color:var(--navy)}
+
+.btn{background:linear-gradient(90deg,#123f58,#08a6a0);border-color:transparent}
+.btn:hover{background:linear-gradient(90deg,#e4573d,#e85aa5);border-color:transparent}
+
+.ai{
+  background:linear-gradient(135deg,#123f58,#08a6a0 55%,#7057c8);
+  border:1px solid rgba(255,209,102,.55);
+}
+.ai-panel{background:#fffdf7;border:1px solid rgba(8,166,160,.25)}
+.ai-head{background:linear-gradient(90deg,#123f58,#087f86);color:#fff;border-bottom-color:#5db9b7}
+.msg.user{background:linear-gradient(90deg,#e4573d,#e85aa5)}
+.msg.bot{background:#eaf8f6}
+.ai-form{border-top-color:#ded0b5}
+.ai-form button{background:linear-gradient(90deg,#7057c8,#e85aa5)}
+
+.search-form{border-color:#123f58;background:#fff}
+.search-form button{background:linear-gradient(90deg,#123f58,#08a6a0)}
+.search-controls{border-color:#ddd0b7}
+.filter-chip{border-color:#d0c19e;color:#123f58}
+.filter-chip:hover,.filter-chip.active{background:#08a6a0;border-color:#08a6a0;color:#fff}
+.sort-select{background:#fff !important;border-color:#d0c19e !important}
+
+.toast{background:linear-gradient(90deg,#123f58,#087f86);border:1px solid #ffd166;color:#fff}
+.empty{color:#665e59;background:rgba(255,255,255,.65);border:1px dashed #d0c19e}
+
+section:not(.newsletter):not(.about-final)::before{
+  content:"✦";
+  display:block;
+  text-align:center;
+  color:#f2b84b;
+  font-size:13px;
+  margin:-38px auto 24px;
+  opacity:.95;
+}
+section:first-of-type::before{display:none}
+
+/* Keep the same compact/mobile composition */
+@media (max-width:700px){
+  .nav{padding:0 15px}
+  .logo{font-size:23px}
+  .links{gap:12px;font-size:10px}
+  .hero-copy{margin-left:0;padding:80px 22px 110px}
+  .hero h1{font-size:clamp(42px,13vw,66px)}
+  section{padding-left:17px;padding-right:17px}
+  .bar{background-size:450% 100% !important}
+}
+
+    .journal .blog-grid{grid-template-columns:repeat(3,1fr)}
+    @media(max-width:800px){.journal .blog-grid{grid-template-columns:1fr}.blog-modal-card{padding:28px}.blog-modal-card h2{font-size:34px}}
+    /* Preserve the existing palette while giving the page a cleaner, sharper finish. */
+    main,header,footer{filter:saturate(1.035) contrast(1.025)}
+    .ai,.ai-panel{filter:none}
 </style>
 </head>
 <body>
@@ -411,7 +624,7 @@ section:first-of-type::before{display:none}
     <nav class="nav">
       <a class="logo" href="#home">Hala.S<small>CLOTHING</small></a>
       <div class="links" id="desktopLinks">
-        <a href="#shop">NEW IN</a><a href="#shop">SHOP ALL</a><a href="#categories">COLLECTIONS</a>
+        <a href="#collection/new-in">NEW IN</a><a href="#shop-all">SHOP ALL</a><a href="#collections">COLLECTIONS</a>
         <a href="#collection/dresses">DRESSES</a><a href="#collection/ready-to-wear">READY TO WEAR</a><a href="#collection/unstitched">UNSTITCHED</a>
         <a href="#collection/sale">SALE</a><a href="#blogs">BLOG</a><a href="#about">ABOUT</a>
       </div>
@@ -421,9 +634,9 @@ section:first-of-type::before{display:none}
         <button class="iconbtn" onclick="openCart()" aria-label="Cart">🛍</button>
       </div>
       <div id="mobileNav" class="mobile-nav" aria-label="Mobile navigation">
-        <a href="#shop">NEW IN</a>
-        <a href="#shop">SHOP ALL</a>
-        <a href="#categories">COLLECTIONS</a>
+        <a href="#collection/new-in">NEW IN</a>
+        <a href="#shop-all">SHOP ALL</a>
+        <a href="#collections">COLLECTIONS</a>
         <a href="#collection/dresses">DRESSES</a>
         <a href="#collection/ready-to-wear">READY TO WEAR</a>
         <a href="#collection/unstitched">UNSTITCHED</a>
@@ -477,7 +690,7 @@ section:first-of-type::before{display:none}
         <div class="eyebrow" id="heroEyebrow">Hala.S Clothing</div>
         <h1 id="heroTitle">The New Edit</h1>
         <p id="heroText">Discover refined silhouettes, modern expression and effortless Pakistani fashion designed for your wardrobe.</p>
-        <a class="btn light" href="#new">Shop New Arrivals</a>
+        <a class="btn light" href="#collection/new-in">Shop New Arrivals</a>
       </div>
       <div id="heroDots" class="hero-dots" aria-label="Featured slides"></div>
     </section>
@@ -485,7 +698,7 @@ section:first-of-type::before{display:none}
     <section id="new">
       <div class="section-head">
         <div><h2>New Arrivals</h2><p>Fresh silhouettes. Just landed.</p></div>
-        <a href="#shop">View All →</a>
+        <a href="#shop-all">View All →</a>
       </div>
       <div id="productGrid" class="grid"><div class="empty">Loading Hala.S collection…</div></div>
     </section>
@@ -505,6 +718,18 @@ section:first-of-type::before{display:none}
       </div>
     </section>
 
+
+    <section id="journal" class="journal" style="padding:80px 5%;background:var(--paper);">
+      <div class="section-head">
+        <div><div class="eyebrow">The Hala.S Journal</div><h2>Stories, Styling & Inspiration</h2><p>Fashion notes, styling ideas and thoughtful care guides from Hala.S.</p></div>
+        <a href="#blogs">View Journal →</a>
+      </div>
+      <div class="blog-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;">
+        <article class="blog-card" onclick="openBlog(0)"><div class="product-img" style="height:330px;overflow:hidden"><img loading="lazy" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=85" alt="How To Build A Signature Hala.S Wardrobe" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:18px 2px"><div class="eyebrow">Styling</div><h3 style="font:600 25px 'Playfair Display';margin:8px 0">How To Build A Signature Hala.S Wardrobe</h3><span style="font-size:11px;letter-spacing:.12em;text-transform:uppercase">Read More →</span></div></article>
+        <article class="blog-card" onclick="openBlog(1)"><div class="product-img" style="height:330px;overflow:hidden"><img loading="lazy" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=85" alt="The Art Of Effortless Pakistani Dressing" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:18px 2px"><div class="eyebrow">Fashion Tips</div><h3 style="font:600 25px 'Playfair Display';margin:8px 0">The Art Of Effortless Pakistani Dressing</h3><span style="font-size:11px;letter-spacing:.12em;text-transform:uppercase">Read More →</span></div></article>
+        <article class="blog-card" onclick="openBlog(2)"><div class="product-img" style="height:330px;overflow:hidden"><img loading="lazy" src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1200&q=85" alt="Caring For Your Favourite Pieces" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:18px 2px"><div class="eyebrow">Care Guide</div><h3 style="font:600 25px 'Playfair Display';margin:8px 0">Caring For Your Favourite Pieces</h3><span style="font-size:11px;letter-spacing:.12em;text-transform:uppercase">Read More →</span></div></article>
+      </div>
+    </section>
     <section id="about" class="about-final story">
       <div class="story-inner">
         <div class="story-rule"></div>
@@ -557,7 +782,7 @@ section:first-of-type::before{display:none}
   <footer>
     <div class="footer-grid">
       <div><div class="footer-brand">Hala.S</div><p style="color:#aaa;max-width:330px;line-height:1.7">Premium Pakistani women's fashion with a modern, refined point of view.</p></div>
-      <div><h4>SHOP</h4><a href="#shop">New Arrivals</a><a href="#collection/ready-to-wear">Ready To Wear</a><a href="#collection/unstitched">Unstitched</a><a href="#collection/dresses">Dresses</a><a href="#collection/sale">Sale</a></div>
+      <div><h4>SHOP</h4><a href="#collection/new-in">New Arrivals</a><a href="#collection/ready-to-wear">Ready To Wear</a><a href="#collection/unstitched">Unstitched</a><a href="#collection/dresses">Dresses</a><a href="#collection/sale">Sale</a></div>
       <div><h4>HELP</h4><a href="#about">Size Guide</a><a href="#about">Shipping Policy</a><a href="#about">Returns & Exchange</a><a href="#about">FAQ</a><a href="#about">Track Order</a></div>
       <div><h4>CONTACT</h4><a id="footerEmail"></a><a id="footerPhone"></a><a id="footerWhatsApp"></a><a id="footerInstagram"></a></div>
     </div>
@@ -640,6 +865,12 @@ const HERO_SLIDES = [
   {title:"Made For The Moment", text:"Fresh fashion, refined details and effortless dressing — discover the latest Hala.S edit."}
 ];
 
+const BLOGS = [
+  {category:"Styling",title:"How To Build A Signature Hala.S Wardrobe",body:"A thoughtful wardrobe begins with versatile silhouettes, considered colour stories and pieces that can move effortlessly from everyday moments to special occasions. Explore proportions, layering and finishing details to create looks that feel distinctly yours."},
+  {category:"Fashion Tips",title:"The Art Of Effortless Pakistani Dressing",body:"Refined dressing is often about balance: one expressive detail, an elegant silhouette and styling that lets the fabric speak. Discover simple ways to build polished looks without overcomplicating your wardrobe."},
+  {category:"Care Guide",title:"Caring For Your Favourite Pieces",body:"Good care helps your favourite garments stay beautiful for longer. Follow the care instructions on each Hala.S piece, use suitable storage, avoid unnecessary heat and give delicate details the attention they deserve."}
+];
+
 const $ = id => document.getElementById(id);
 function money(p){ if(!p) return ""; return `${p.currencyCode === "PKR" ? "Rs. " : p.currencyCode + " "}${Number(p.amount).toLocaleString("en-PK")}`; }
 function toast(s){ $("toast").textContent=s; $("toast").style.display="block"; setTimeout(()=>$("toast").style.display="none",2400); }
@@ -667,40 +898,57 @@ function setPageIntro(title, text){
   intro.innerHTML=`<div class="eyebrow">Hala.S Clothing</div><h1>${escapeHtml(title)}</h1><p>${escapeHtml(text)}</p>`;
 }
 
-async function loadShopPage(){
-  setPageIntro("New In", "Explore the latest Hala.S arrivals and discover the newest expressions of modern women's fashion.");
+async function loadShopPage(showAll=false){
+  setPageIntro(showAll ? "Shop All" : "New In", showAll ? "Explore the complete Hala.S wardrobe, from everyday essentials to statement edits." : "Explore the latest Hala.S arrivals and discover the newest expressions of modern women's fashion.");
   const heading=document.querySelector("#new h2");
   const sub=document.querySelector("#new .section-head p");
-  if(heading) heading.textContent="Latest Arrivals";
-  if(sub) sub.textContent="The newest pieces, just landed.";
+  if(heading) heading.textContent=showAll ? "Shop All" : "Latest Arrivals";
+  if(sub) sub.textContent=showAll ? "Explore every available Hala.S piece." : "The newest pieces, just landed.";
   window.scrollTo({top:0,behavior:"smooth"});
-  await loadProducts();
+  if(!CATALOG_PRODUCTS.length) await loadProducts();
+  PRODUCTS=showAll ? CATALOG_PRODUCTS.slice() : filterCollectionProducts("new-in");
+  $("productGrid").innerHTML=PRODUCTS.length?renderProductMarkup(PRODUCTS):'<div class="empty">No products found.</div>';
+  attachProductHoverImages();
 }
 
+function showOnlySections(ids){
+  document.querySelectorAll("main > section").forEach(el=>{
+    el.style.display = ids.includes(el.id) ? "" : "none";
+  });
+}
+function clearPageIntro(){ const intro=$("pageIntro"); if(intro) intro.remove(); }
 function handleRoute(){
   const raw=(window.location.hash||"#home").slice(1);
   const [route,qstr=""] = raw.split("?");
   closeMobileNav();
-  document.querySelectorAll("main > section").forEach(el=>el.style.display="");
   const searchPage=$("searchPage");
   if(searchPage) searchPage.classList.remove("active");
   if(route==="search"){
-    document.querySelectorAll("main > section:not(#searchPage)").forEach(el=>el.style.display="none");
-    searchPage.classList.add("active");
-    const params=new URLSearchParams(qstr); SEARCH_QUERY=params.get("q")||"";
-    runSearchPage(); return;
+    clearPageIntro(); showOnlySections(["searchPage"]); searchPage.classList.add("active");
+    const params=new URLSearchParams(qstr); SEARCH_QUERY=params.get("q")||""; runSearchPage(); return;
   }
-  if(route==="shop"){loadShopPage();return;}
-  if(route.startsWith("collection/")){loadCollection(route.split("/")[1]);return;}
-  if(route.startsWith("product/")){showProduct(decodeURIComponent(route.split("/")[1]));return;}
+  if(route==="shop" || route==="shop-all"){
+    clearPageIntro(); showOnlySections(["new"]); loadShopPage(true); return;
+  }
+  if(route==="collections"){
+    clearPageIntro(); showOnlySections(["categories"]); window.scrollTo({top:0,behavior:"smooth"}); return;
+  }
+  if(route.startsWith("collection/")){
+    clearPageIntro(); showOnlySections(["new"]); loadCollection(route.split("/")[1]); return;
+  }
+  if(route.startsWith("product/")){
+    clearPageIntro(); showOnlySections(["new"]); showProduct(decodeURIComponent(route.split("/")[1])); return;
+  }
   if(route==="blogs"){
-    setPageIntro("Journal","Fashion notes, styling ideas, care guides and seasonal inspiration from Hala.S.");
-    document.getElementById("journal")?.scrollIntoView({behavior:"smooth"}); return;
+    clearPageIntro(); showOnlySections(["journal"]); window.scrollTo({top:0,behavior:"smooth"}); return;
   }
   if(route==="reviews"){
-    document.getElementById("reviews")?.scrollIntoView({behavior:"smooth"}); return;
+    clearPageIntro(); showOnlySections(["reviews"]); window.scrollTo({top:0,behavior:"smooth"}); return;
   }
-  if(route==="home" || !route){window.scrollTo({top:0,behavior:"smooth"});}
+  if(route==="about"){
+    clearPageIntro(); showOnlySections(["about"]); window.scrollTo({top:0,behavior:"smooth"}); return;
+  }
+  clearPageIntro(); document.querySelectorAll("main > section").forEach(el=>el.style.display=""); window.scrollTo({top:0,behavior:"smooth"});
 }
 
 async function init(){
@@ -794,7 +1042,8 @@ query Products($first:Int!, $after:String) {
   products(first:$first, after:$after) {
     pageInfo { hasNextPage endCursor }
     nodes {
-      id handle title description productType tags availableForSale
+      id handle title description productType tags availableForSale createdAt
+      collections(first:20){nodes{handle title}}
       featuredImage { url altText }
       images(first:20) { nodes { url altText } }
       priceRange { minVariantPrice { amount currencyCode } maxVariantPrice { amount currencyCode } }
@@ -1150,17 +1399,35 @@ function openBlog(i){
 }
 function closeBlog(){$("blogModal").classList.remove("open")}
 
-async function loadCollection(handle){
-  const label=handle.replace(/-/g," ").replace(/\b\w/g,m=>m.toUpperCase());
-  const descriptions={dresses:"Fluid silhouettes, refined details and statement dresses for every occasion.","ready-to-wear":"Polished everyday pieces designed for effortless, contemporary dressing.",unstitched:"Elevated fabrics and design details ready for your own expression.","co-ord-sets":"Modern coordinated looks designed to make dressing effortless.",sale:"Selected Hala.S pieces at special prices while stocks last.","new-in":"The latest Hala.S arrivals — fresh silhouettes and new season pieces."};
-  setPageIntro(label,descriptions[handle]||"Explore the Hala.S collection.");
-  const heading=$("new").querySelector("h2"),sub=$("new").querySelector(".section-head p"); if(heading)heading.textContent=label;if(sub)sub.textContent="Browse the Hala.S collection.";
-  const mapping={dresses:p=>p.tags.includes("dresses"),"ready-to-wear":p=>p.tags.includes("ready-to-wear"),unstitched:p=>p.tags.includes("unstitched"),"co-ord-sets":p=>p.tags.includes("co-ord-sets"),sale:p=>p.tags.includes("sale"),"new-in":p=>p.tags.includes("new-in")};
-  PRODUCTS=(mapping[handle]?CATALOG_PRODUCTS.filter(mapping[handle]):CATALOG_PRODUCTS).slice();
-  $("productGrid").innerHTML=PRODUCTS.length?renderProductMarkup(PRODUCTS):'<div class="empty">No products in this collection yet.</div>';
-  attachProductHoverImages(); $("new").scrollIntoView({behavior:"smooth"});
+function normalizeText(value){return String(value||"").toLowerCase().replace(/&/g,"and").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");}
+function productMatchesHandle(p,handle){
+  const h=normalizeText(handle);
+  const fields=[normalizeText(p.productType),normalizeText(p.title),...(p.tags||[]).map(normalizeText),...(p.collections?.nodes||[]).flatMap(c=>[normalizeText(c.handle),normalizeText(c.title)])].filter(Boolean);
+  const text=fields.join(" ");
+  const price=Number(p.priceRange?.minVariantPrice?.amount||0), compare=Number(p.compareAtPriceRange?.minVariantPrice?.amount||0);
+  if(h==="sale") return compare>price || fields.includes("sale") || text.includes(" sale");
+  if(h==="new-in") return fields.some(x=>["new","new-in","new-arrival","new-arrivals","latest","latest-arrivals"].includes(x));
+  const aliases={"ready-to-wear":["ready-to-wear","ready-to-wear-collection","ready-to-wear-clothing","pret","pret-wear"],"unstitched":["unstitched","unstitched-collection","unstitched-fabric"],"dresses":["dresses","dress"],"co-ord-sets":["co-ord-sets","co-ords","coord-sets","co-ord-set","coordinates"]};
+  return (aliases[h]||[h]).some(n=>fields.includes(n)||text.includes(n));
 }
-
+function getNewInProducts(){
+  const tagged=CATALOG_PRODUCTS.filter(p=>productMatchesHandle(p,"new-in"));
+  if(tagged.length) return tagged;
+  return [...CATALOG_PRODUCTS].sort((a,b)=>String(b.createdAt||"").localeCompare(String(a.createdAt||""))).slice(0,12);
+}
+function filterCollectionProducts(handle){ return handle==="new-in" ? getNewInProducts() : CATALOG_PRODUCTS.filter(p=>productMatchesHandle(p,handle)); }
+async function loadCollection(handle){
+  const labels={"new-in":"New In",dresses:"Dresses","ready-to-wear":"Ready To Wear",unstitched:"Unstitched","co-ord-sets":"Co-Ord Sets",sale:"Sale"};
+  const descriptions={"new-in":"The latest Hala.S arrivals — fresh silhouettes and new season pieces.",dresses:"Fluid silhouettes, refined details and statement dresses for every occasion.","ready-to-wear":"Polished everyday pieces designed for effortless, contemporary dressing.",unstitched:"Elevated fabrics and design details ready for your own expression.","co-ord-sets":"Modern coordinated looks designed to make dressing effortless.",sale:"Selected Hala.S pieces at special prices while stocks last."};
+  const label=labels[handle]||handle.replace(/-/g," ").replace(/\b\w/g,m=>m.toUpperCase());
+  setPageIntro(label,descriptions[handle]||"Explore the Hala.S collection.");
+  const heading=$("new").querySelector("h2"),sub=$("new").querySelector(".section-head p");
+  if(heading)heading.textContent=label;if(sub)sub.textContent="Browse the Hala.S collection.";
+  PRODUCTS=filterCollectionProducts(handle);
+  $("productGrid").innerHTML=PRODUCTS.length?renderProductMarkup(PRODUCTS):'<div class="empty">No products in this collection yet. Check the Shopify collection tags/handles.</div>';
+  attachProductHoverImages();
+  $("new").scrollIntoView({behavior:"smooth"});
+}
 function renderProductMarkup(list){
   return list.map(p=>{
     const images=(p.images?.nodes||[]).map(x=>x?.url).filter(Boolean);
@@ -1195,3 +1462,120 @@ init();
 </script>
 </body>
 </html>
+
+<style>
+/* =========================================================
+   HALA.S — PROFESSIONAL NEUTRAL COLOR PASS ONLY
+   Layout, links, Shopify, cart, AI and functionality untouched.
+   ========================================================= */
+:root{
+  --ink:#292725;
+  --muted:#746f69;
+  --paper:#faf8f4;
+  --line:#e4dfd8;
+  --white:#ffffff;
+  --accent:#9b7650;
+  --navy:#292725;
+  --teal:#5f6b65;
+  --gold:#9b7650;
+  --rust:#8b6748;
+  --burgundy:#5d5046;
+  --cream:#faf8f4;
+  --deep:#292725;
+}
+html{background:#faf8f4}
+body{
+  background:#faf8f4 !important;
+  color:#292725 !important;
+}
+body:before{opacity:0 !important}
+.bar{
+  background:#292725 !important;
+  color:#fff !important;
+  border-bottom:1px solid #292725 !important;
+}
+.bar.secondary{
+  background:#eee9e2 !important;
+  color:#4a4641 !important;
+  border-bottom:1px solid #e4dfd8 !important;
+}
+header{
+  background:rgba(250,248,244,.97) !important;
+  border-bottom:1px solid #e4dfd8 !important;
+  box-shadow:0 4px 20px rgba(41,39,37,.05) !important;
+}
+.logo,.section-head h2,.categories-intro h2,.about-final h2,.story h2,.search-hero h1{color:#292725 !important}
+.logo small{color:#8b6748 !important}
+.links a{color:#3b3835 !important}
+.links a:hover{color:#8b6748 !important}
+.iconbtn{color:#292725 !important}
+.iconbtn:hover{color:#8b6748 !important;background:#f0ece6 !important}
+.hero,.hero-slide{background:#292725 !important}
+.hero-slide::after{
+  background:linear-gradient(90deg,rgba(20,19,18,.70),rgba(20,19,18,.18) 65%,rgba(20,19,18,.28)) !important;
+}
+.hero h1{color:#fff !important;text-shadow:0 3px 22px rgba(0,0,0,.24) !important}
+.hero p{color:#f3f0eb !important}
+.eyebrow{color:#d4b28d !important}
+.hero .btn{background:#9b7650 !important;border-color:#9b7650 !important;box-shadow:0 10px 25px rgba(41,39,37,.16) !important}
+.hero .btn:hover{background:#825f42 !important;border-color:#825f42 !important}
+.hero .btn.light{background:#fff !important;color:#292725 !important;border-color:#fff !important}
+.hero-dot{background:rgba(255,255,255,.42) !important}
+.hero-dot.active{background:#fff !important}
+.hero-arrow{border-color:rgba(255,255,255,.55) !important;background:rgba(41,39,37,.20) !important}
+.hero-arrow:hover{background:rgba(41,39,37,.65) !important}
+.section-head p,.categories-intro p,.about-final p,.story p,.editorial-copy p,.sort-wrap,.search-meta{color:#746f69 !important}
+.product-img{background:#eeeae4 !important;border-color:#e4dfd8 !important}
+.product-img::after{background:#9b7650 !important}
+.product:hover .product-img{box-shadow:0 18px 40px rgba(41,39,37,.09) !important}
+.product-title{color:#292725 !important}
+.price{color:#76583d !important}
+.old{color:#96908a !important}
+.badge{background:#292725 !important;color:#fff !important}
+.wish{background:rgba(255,255,255,.94) !important;color:#5d5046 !important;border-color:#e4dfd8 !important}
+.wish:hover{background:#292725 !important;color:#fff !important}
+.cat{background:#6d756f !important;border-color:rgba(255,255,255,.18) !important}
+.cat:after{background:linear-gradient(180deg,rgba(20,19,18,.03) 20%,rgba(20,19,18,.70) 100%) !important}
+.cat h3{color:#fff !important}.cat small,.cat .image-hint{color:#eee7df !important}
+.category-gallery-card:hover{box-shadow:0 22px 55px rgba(41,39,37,.14) !important}
+.editorial{background:#eeeae4 !important;color:#292725 !important;border-top:1px solid #e4dfd8 !important;border-bottom:1px solid #e4dfd8 !important}
+.editorial-copy h2{color:#292725 !important}.editorial-copy p{color:#746f69 !important}
+.editorial-copy .btn{background:#292725 !important;border-color:#292725 !important;color:#fff !important}
+.editorial-copy .btn:hover{background:#8b6748 !important;border-color:#8b6748 !important}
+.story-rule,.about-final .story-rule{background:#9b7650 !important}
+.newsletter{background:#f0ece6 !important}
+.newsletter input{background:#fff !important;border-color:#e0dbd4 !important}
+.newsletter button{background:#292725 !important;color:#fff !important}
+footer{background:#292725 !important;border-top:1px solid #403c38 !important}
+.footer-grid a{color:#c3beb7 !important}.footer-grid a:hover{color:#d4b28d !important}
+.footer-brand{color:#fff !important}.copyright{border-color:#45413d !important;color:#99938d !important}
+.drawer{background:#fff !important;border-left:1px solid #e4dfd8 !important}
+.drawer-head,.cart-total{color:#292725 !important}.cart-item{border-color:#e4dfd8 !important}
+.btn{background:#292725 !important;border-color:#292725 !important;color:#fff !important}
+.btn:hover{background:#8b6748 !important;border-color:#8b6748 !important}
+.ai{background:#292725 !important;border:1px solid #4a4641 !important}
+.ai-panel{background:#fff !important;border-color:#e4dfd8 !important}
+.ai-head{background:#292725 !important;color:#fff !important;border-bottom-color:#45413d !important}
+.msg.user{background:#5d5046 !important}.msg.bot{background:#eeeae4 !important}
+.ai-form{border-top-color:#e4dfd8 !important}.ai-form button{background:#292725 !important}
+.search-form{border-color:#292725 !important;background:#fff !important}
+.search-form button{background:#292725 !important}
+.search-controls{border-color:#e4dfd8 !important}
+.filter-chip{border-color:#ddd7cf !important;color:#3b3835 !important}
+.filter-chip:hover,.filter-chip.active{background:#292725 !important;border-color:#292725 !important;color:#fff !important}
+.sort-select{background:#fff !important;border-color:#ddd7cf !important}
+.toast{background:#292725 !important;border-color:#4a4641 !important;color:#fff !important}
+.empty{color:#746f69 !important;background:#f7f4ef !important;border-color:#ddd7cf !important}
+.collection-active{background:#eeeae4 !important}
+.filter-btn{border-color:#ddd7cf !important;background:#fff !important}.filter-btn.active{background:#292725 !important;color:#fff !important}
+.product-modal,.blog-modal{background:rgba(20,19,18,.68) !important}
+.product-modal-card,.blog-modal-card{background:#faf8f4 !important}
+.product-details p,.blog-modal-card p{color:#746f69 !important}
+.product-thumb{border-color:#e4dfd8 !important;background:#fff !important}
+.variant-select{border-color:#ddd7cf !important;background:#fff !important}
+.reviews{background:#f0ece6 !important}.review-card{background:#fff !important;border-color:#e4dfd8 !important}
+.review-note,.review-status{color:#746f69 !important}
+.review-form input,.review-form textarea,.review-form select{border-color:#ddd7cf !important;background:#fff !important}
+.mobile-nav{background:rgba(250,248,244,.98) !important;border-bottom-color:#e4dfd8 !important}
+.links a::after{background:#292725 !important}
+</style>
