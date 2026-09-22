@@ -1,0 +1,749 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Hala.S Clothing — Premium Pakistani Women's Fashion</title>
+  <meta name="description" content="Discover Hala.S Clothing — premium Pakistani women's fashion, new arrivals, ready to wear, unstitched collections and more.">
+  <link rel="canonical" href="/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#181614;--muted:#77706a;--paper:#f8f5f0;--line:#e6e0d8;--white:#fff;--accent:#8c6b5a}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif}
+    a{text-decoration:none;color:inherit}button,input{font:inherit}button{cursor:pointer}
+    .bar{font-size:12px;letter-spacing:.08em;text-align:center;overflow:hidden;white-space:nowrap;padding:0;background:#1d1b19;color:#fff;position:relative}
+    .bar.secondary{background:#eee8df;color:#1d1b19}
+    .marquee-track{display:flex;width:max-content;min-width:100%;will-change:transform;animation:marquee 18s linear infinite}
+    .bar.secondary .marquee-track{animation-duration:16s}
+    .marquee-item{display:inline-flex;align-items:center;gap:24px;padding:9px 28px;flex:none}
+    .marquee-item::after{content:"✦";opacity:.55}
+    @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    header{position:sticky;top:0;z-index:30;background:rgba(248,245,240,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    .nav{height:76px;max-width:1400px;margin:auto;display:flex;align-items:center;gap:28px;padding:0 24px}
+    .logo{font-family:"Playfair Display",serif;font-size:27px;letter-spacing:.02em;white-space:nowrap}.logo small{font-family:"DM Sans";font-size:9px;letter-spacing:.22em;display:block;text-align:center;margin-top:-5px}
+    .links{display:flex;gap:21px;align-items:center;flex:1;font-size:12px;letter-spacing:.08em}.links a:hover{text-decoration:underline}
+    .icons{display:flex;gap:10px}.iconbtn{border:0;background:transparent;padding:9px}
+    .hero{position:relative;min-height:70vh;display:grid;place-items:center;overflow:hidden;background:#ddd}
+    .hero-slider{position:absolute;inset:0;overflow:hidden}
+    .hero-track{display:flex;height:100%;width:100%;transition:transform .9s cubic-bezier(.77,0,.18,1)}
+    .hero-slide{min-width:100%;height:100%;position:relative;background:#cfc7bf;display:block;overflow:hidden;cursor:pointer}
+    .hero-slide .hero-image{position:absolute;inset:0;background-position:center;background-size:cover;transition:opacity .65s ease,transform 1.1s cubic-bezier(.2,.65,.2,1)}
+    .hero-slide .hero-image.alt{opacity:0;transform:scale(1.025)}
+    .hero-slide:hover .hero-image.primary{opacity:0;transform:scale(1.035)}
+    .hero-slide:hover .hero-image.alt{opacity:1;transform:scale(1.035)}
+    .hero-slide::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,16,14,.62),rgba(20,16,14,.12) 65%,rgba(20,16,14,.18));pointer-events:none}
+    .hero-slide .hero-hover-label{position:absolute;right:34px;bottom:32px;z-index:3;color:#fff;border:1px solid rgba(255,255,255,.55);padding:10px 14px;font-size:9px;letter-spacing:.16em;text-transform:uppercase;opacity:.78;transition:opacity .3s,transform .3s;transform:translateY(6px)}
+    .hero-slide:hover .hero-hover-label{opacity:1;transform:translateY(0)}
+    .hero-slide .hero-image.primary,.hero-slide .hero-image.alt{will-change:opacity,transform}
+    .hero-slider{will-change:transform}
+    .hero.is-scrolling .hero-slider{transform:scale(1.015);transition:transform .8s cubic-bezier(.2,.65,.2,1)}
+    .hero-dots{position:absolute;left:8%;bottom:30px;z-index:4;display:flex;gap:8px}
+    .hero-dot{width:34px;height:3px;border:0;padding:0;background:rgba(255,255,255,.45);cursor:pointer;transition:width .3s,background .3s}
+    .hero-dot.active{width:58px;background:#fff}
+    .hero-arrow{position:absolute;top:50%;z-index:4;transform:translateY(-50%);width:44px;height:44px;border:1px solid rgba(255,255,255,.65);background:rgba(0,0,0,.12);color:#fff;border-radius:50%;font-size:20px;backdrop-filter:blur(5px)}
+    .hero-arrow.prev{left:24px}.hero-arrow.next{right:24px}
+    .hero-copy{position:relative;z-index:2;color:#fff;max-width:680px;padding:100px 28px 120px;margin-right:auto;margin-left:8%;text-align:left}
+    .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase}.hero h1{font-family:"Playfair Display";font-size:clamp(48px,7vw,92px);line-height:.98;margin:16px 0}.hero p{font-size:17px;max-width:520px;line-height:1.7}.btn{border:1px solid var(--ink);background:var(--ink);color:#fff;padding:14px 24px;display:inline-block;letter-spacing:.1em;font-size:11px;text-transform:uppercase}.btn.light{background:#fff;color:#111;border-color:#fff}
+    section{max-width:1400px;margin:auto;padding:80px 24px}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:28px}.section-head h2{font-family:"Playfair Display";font-size:42px;margin:0}.section-head p{color:var(--muted);margin:5px 0}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.product{position:relative}.product-img{aspect-ratio:3/4;background:#e9e3dc;overflow:hidden;position:relative}.product-img img{width:100%;height:100%;object-fit:cover;transition:opacity .28s ease,transform .5s}.product:hover .product-img img{transform:scale(1.035)}.product-img::after{content:"";position:absolute;left:12px;bottom:12px;width:28px;height:2px;background:#fff;opacity:0;transition:opacity .25s}.product:hover .product-img::after{opacity:.9}.product-info{padding:13px 2px}.product-title{font-size:14px}.price{font-size:13px;margin-top:7px}.old{text-decoration:line-through;color:#999;margin-right:6px}.badge{position:absolute;top:10px;left:10px;background:#fff;padding:6px 9px;font-size:10px;letter-spacing:.08em}.wish{position:absolute;top:9px;right:9px;background:#fff;border:0;width:34px;height:34px;border-radius:50%}
+    .categories{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}.cat{grid-column:span 4;min-height:590px;background:#d9d0c7;display:flex;align-items:end;padding:28px;color:#fff;position:relative;overflow:hidden;border-radius:0}.cat:nth-child(1),.cat:nth-child(2){grid-column:span 6;min-height:650px}.cat:nth-child(5){grid-column:span 12;min-height:520px}.cat-gallery{position:absolute;inset:0;z-index:0}.cat-gallery img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .55s ease,transform 1s cubic-bezier(.2,.65,.2,1);transform:scale(1.015)}.cat-gallery img:first-child{opacity:1}.category-gallery-card:hover .cat-gallery img{transform:scale(1.045)}.cat:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,7,.04) 25%,rgba(10,8,7,.72) 100%);z-index:1}.cat > div:last-child{position:relative;z-index:2}.cat h3{font-family:"Playfair Display";font-size:clamp(32px,3.3vw,52px);line-height:1;margin:0 0 12px}.cat small,.cat .image-hint{display:block;margin-top:10px;font-size:9px;letter-spacing:.16em;opacity:.72}.cat:hover{transform:translateY(-2px)}.category-gallery-card{transition:transform .35s ease,box-shadow .35s ease}.category-gallery-card:hover{box-shadow:0 22px 55px rgba(24,22,20,.14)}
+    .categories-intro{max-width:650px;margin-bottom:34px}.categories-intro h2{font:600 clamp(38px,4vw,58px)/1.05 "Playfair Display";margin:0 0 10px}.categories-intro p{color:var(--muted);line-height:1.7;margin:0}.about-final{padding-top:120px;padding-bottom:120px}.about-final .story-inner{max-width:900px;margin:auto;text-align:center}.about-final .story-rule{width:54px;height:1px;background:var(--ink);margin:0 auto 28px}.about-final h2{font:600 clamp(48px,6vw,82px)/.98 "Playfair Display";margin:15px 0 22px}.about-final p{max-width:700px;margin:0 auto;color:var(--muted);line-height:1.9;font-size:15px}
+    .editorial{display:grid;grid-template-columns:1.35fr 1fr;min-height:560px;background:#e9e1d7}.editorial-img{background:url("https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=1500&q=85") center/cover}.editorial-copy{display:flex;justify-content:center;flex-direction:column;padding:70px}.editorial-copy h2{font:600 55px/1.05 "Playfair Display";margin:15px 0}.editorial-copy p{line-height:1.8;color:var(--muted);max-width:450px}
+    .story{text-align:center;max-width:850px}.story h2{font:55px "Playfair Display"}.story p{color:var(--muted);line-height:1.9}
+    .newsletter{background:#e9e1d7;text-align:center;max-width:none}.newsletter form{display:flex;max-width:600px;margin:25px auto 0}.newsletter input{flex:1;padding:15px;border:1px solid var(--line);background:#fff;min-width:0}.newsletter button{border:0;padding:0 22px;background:#181614;color:#fff}
+    footer{background:#181614;color:#fff;padding:65px 24px}.footer-grid{max-width:1400px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}.footer-grid h4{font-size:11px;letter-spacing:.15em}.footer-grid a{display:block;color:#bbb;margin:10px 0;font-size:13px}.footer-brand{font:32px "Playfair Display"}.copyright{max-width:1400px;margin:45px auto 0;border-top:1px solid #333;padding-top:20px;color:#888;font-size:12px}
+    .drawer{position:fixed;right:-430px;top:0;width:min(430px,100%);height:100%;background:#fff;z-index:100;box-shadow:-20px 0 60px #0002;transition:right .3s;padding:25px;overflow:auto}.drawer.open{right:0}.drawer-head{display:flex;justify-content:space-between;align-items:center}.drawer-close{border:0;background:transparent;font-size:28px}.cart-item{display:grid;grid-template-columns:80px 1fr auto;gap:12px;padding:15px 0;border-bottom:1px solid var(--line)}.cart-item img{width:80px;height:100px;object-fit:cover}.cart-total{display:flex;justify-content:space-between;font-weight:600;padding:20px 0}
+    .ai{position:fixed;right:22px;bottom:22px;z-index:90;border:0;border-radius:999px;background:#181614;color:#fff;padding:15px 19px;box-shadow:0 8px 30px #0003}.ai-panel{position:fixed;right:22px;bottom:80px;width:min(390px,calc(100% - 30px));height:520px;background:#fff;z-index:89;box-shadow:0 15px 50px #0003;display:none;flex-direction:column}.ai-panel.open{display:flex}.ai-head{padding:18px;border-bottom:1px solid var(--line);font-weight:600}.ai-msgs{flex:1;padding:16px;overflow:auto}.msg{max-width:85%;padding:10px 13px;margin:8px 0;border-radius:12px;line-height:1.5;font-size:13px}.msg.user{background:#181614;color:#fff;margin-left:auto}.msg.bot{background:#eee8df}.ai-form{display:flex;border-top:1px solid var(--line)}.ai-form input{flex:1;padding:14px;border:0}.ai-form button{border:0;background:#181614;color:#fff;padding:0 16px}
+    .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#181614;color:#fff;padding:12px 18px;z-index:200;display:none}
+    .empty{padding:50px;text-align:center;color:var(--muted)}
+    .search-page{max-width:1400px;margin:auto;padding:72px 24px 100px;display:none}
+    .search-page.active{display:block}
+    .search-hero{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;margin-bottom:34px}
+    .search-hero h1{font:600 clamp(44px,6vw,76px)/.98 "Playfair Display";margin:10px 0 12px}
+    .search-hero p{color:var(--muted);max-width:680px;line-height:1.7;margin:0}
+    .search-form{display:flex;border:1px solid var(--ink);background:#fff;min-height:54px;width:min(520px,100%)}
+    .search-form input{flex:1;border:0;outline:0;padding:0 17px;background:transparent;font-size:14px;min-width:0}
+    .search-form button{border:0;background:var(--ink);color:#fff;padding:0 22px;letter-spacing:.1em;font-size:11px;text-transform:uppercase}
+    .search-controls{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:30px}
+    .filter-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .filter-chip{border:1px solid var(--line);background:transparent;padding:10px 14px;font-size:10px;letter-spacing:.09em;text-transform:uppercase;transition:.2s}
+    .filter-chip:hover,.filter-chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .sort-wrap{display:flex;align-items:center;gap:9px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+    .sort-select{border:1px solid var(--line);background:#fff;padding:10px 34px 10px 12px;font-size:12px;outline:0;min-width:190px}
+    .search-meta{display:flex;justify-content:space-between;gap:15px;align-items:center;margin:0 0 18px;font-size:12px;color:var(--muted)}
+    .search-empty{padding:80px 20px;text-align:center;border:1px solid var(--line);background:#fff}
+    .search-empty h3{font:600 32px "Playfair Display";margin:0 0 10px}
+    @media(max-width:800px){ .categories{grid-template-columns:1fr;gap:12px}.cat,.cat:nth-child(1),.cat:nth-child(2),.cat:nth-child(5){grid-column:auto;min-height:72vh}.cat h3{font-size:38px}.about-final{padding-top:90px;padding-bottom:90px}.search-hero{grid-template-columns:1fr}.search-form{width:100%}.search-controls{align-items:flex-start}.sort-wrap{width:100%}.sort-select{flex:1}}
+    /* Interactive product/category image zoom + lightbox */
+    .zoomable{cursor:zoom-in}
+    .zoomable:hover{transform:scale(1.075)!important}
+    .image-hint{position:absolute;right:12px;bottom:12px;background:rgba(0,0,0,.55);color:#fff;padding:6px 9px;font-size:10px;letter-spacing:.08em;opacity:0;transition:opacity:.25s;z-index:2}
+    .product-img:hover .image-hint,.cat:hover .image-hint{opacity:1}
+    .lightbox{position:fixed;inset:0;background:rgba(10,8,7,.94);z-index:300;display:none;align-items:center;justify-content:center;padding:30px}
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:90vw;max-height:88vh;object-fit:contain;cursor:zoom-in;transition:transform .25s}
+    .lightbox img.zoomed{transform:scale(1.35);cursor:zoom-out}
+    .lightbox-close,.lightbox-arrow{position:absolute;border:1px solid rgba(255,255,255,.5);background:rgba(0,0,0,.25);color:#fff;border-radius:50%;width:46px;height:46px;z-index:2}
+    .lightbox-close{right:22px;top:22px;font-size:26px}.lightbox-arrow{top:50%;transform:translateY(-50%);font-size:24px}.lightbox-arrow.prev{left:22px}.lightbox-arrow.next{right:22px}
+    .product-modal{position:fixed;inset:0;background:rgba(10,8,7,.7);z-index:250;display:none;align-items:center;justify-content:center;padding:20px}
+    .product-modal.open{display:flex}.product-modal-card{width:min(1050px,96vw);max-height:92vh;overflow:auto;background:var(--paper);display:grid;grid-template-columns:1.05fr .95fr}
+    .product-gallery{display:grid;grid-template-columns:84px 1fr;gap:12px;padding:18px}.product-thumbs{display:flex;flex-direction:column;gap:8px;overflow:auto}.product-thumb{border:1px solid var(--line);background:#fff;padding:0;aspect-ratio:3/4;overflow:hidden}.product-thumb img{width:100%;height:100%;object-fit:cover}.product-main-img{aspect-ratio:3/4;overflow:hidden;background:#eee}.product-main-img img{width:100%;height:100%;object-fit:cover;cursor:zoom-in}.product-details{padding:55px 45px;display:flex;flex-direction:column;justify-content:center}.product-details h2{font:600 42px "Playfair Display";margin:10px 0}.product-details p{color:var(--muted);line-height:1.8}.variant-select{padding:13px;border:1px solid var(--line);background:#fff;margin:12px 0}.modal-close{align-self:flex-end;border:0;background:transparent;font-size:28px}
+    .cat{position:relative;overflow:hidden;background-size:cover;background-position:center;transition:transform .35s ease}.cat::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.58));pointer-events:none}.cat-gallery{position:absolute;inset:0;overflow:hidden}.cat-gallery img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .75s ease,opacity .45s ease;will-change:transform,opacity}.cat>div:not(.cat-gallery){position:relative;z-index:3}.cat:hover .cat-gallery img{transform:scale(1.16)}.cat.is-changing .cat-gallery img{transform:scale(1.2)}
+    .filter-row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 25px}.filter-btn{border:1px solid var(--line);background:#fff;padding:9px 14px;font-size:11px;letter-spacing:.08em;text-transform:uppercase}.filter-btn.active{background:var(--ink);color:#fff}
+    .blog-card{cursor:pointer}.blog-card .product-img img{transition:transform .55s}.blog-card:hover .product-img img{transform:scale(1.04)}
+    .blog-modal{position:fixed;inset:0;background:rgba(10,8,7,.7);z-index:260;display:none;align-items:center;justify-content:center;padding:20px}.blog-modal.open{display:flex}.blog-modal-card{width:min(760px,96vw);max-height:88vh;overflow:auto;background:var(--paper);padding:45px}.blog-modal-card h2{font:600 42px "Playfair Display";margin:10px 0 18px}.blog-modal-card p{color:var(--muted);line-height:1.9}
+    .reviews{background:#eee8df}.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.review-card{background:#fff;padding:25px;border:1px solid var(--line)}.stars{letter-spacing:.18em}.review-note{color:var(--muted);line-height:1.7}.review-form{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:25px}.review-form textarea{grid-column:1/-1;min-height:110px;resize:vertical}.review-form input,.review-form textarea,.review-form select{border:1px solid var(--line);padding:13px;background:#fff}.review-status{margin-top:12px;color:var(--muted);font-size:13px}
+
+    /* Global premium interaction layer */
+    :focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+    .nav{position:relative}
+    .links a{position:relative;padding:29px 0;white-space:nowrap}
+    .links a::after{content:"";position:absolute;left:0;right:100%;bottom:21px;height:1px;background:var(--ink);transition:right .25s ease}
+    .links a:hover::after,.links a:focus-visible::after{right:0}
+    .iconbtn{transition:transform .2s ease,background .2s ease;border-radius:50%}
+    .iconbtn:hover{transform:translateY(-1px);background:#ece6de}
+    .mobile-menu-btn{display:none}
+    .mobile-nav{display:none}
+    .product{transition:transform .25s ease}
+    .product:hover{transform:translateY(-3px)}
+    .product-img{box-shadow:0 0 0 1px rgba(24,22,20,.03);cursor:pointer}
+    .product-img img{will-change:opacity,transform}
+    .product-img img.is-hovering{opacity:.05;transform:scale(1.045)}
+    .product:hover .product-img .image-hint{opacity:1;transform:translateY(0)}
+    .image-hint{transition:opacity .25s ease,transform .25s ease;transform:translateY(4px);opacity:0;position:absolute;z-index:4;right:12px;bottom:12px;color:#fff;font-size:9px;letter-spacing:.12em;text-transform:uppercase;text-shadow:0 1px 4px #000}
+    .cat-gallery{transition:transform .65s cubic-bezier(.2,.7,.2,1)}
+    .cat-gallery img{will-change:opacity,transform}
+    .cat.is-changing .cat-gallery{transform:scale(1.025)}
+    .cat:hover h3{transform:translateY(-2px)}
+    .cat h3{transition:transform .25s ease}
+    .cat .image-hint{display:block;margin-top:7px;font-size:9px;letter-spacing:.14em;opacity:.7}
+    .section-head a{font-size:11px;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid var(--ink);padding-bottom:4px}
+    .section-head a:hover{opacity:.6}
+    .page-intro{padding-top:62px;padding-bottom:28px}
+    .page-intro h1{font:600 clamp(46px,6vw,78px)/1 "Playfair Display";margin:0 0 14px}
+    .page-intro p{max-width:650px;color:var(--muted);line-height:1.8}
+    .collection-active{background:#eee8df}
+    @media(max-width:950px){
+      .links{display:none}
+      .mobile-menu-btn{display:inline-flex}
+      .mobile-nav{display:none;position:absolute;left:0;right:0;top:76px;background:rgba(248,245,240,.98);backdrop-filter:blur(15px);border-bottom:1px solid var(--line);padding:12px 20px 20px;box-shadow:0 15px 35px rgba(0,0,0,.06)}
+      .mobile-nav.open{display:grid;grid-template-columns:repeat(2,1fr);gap:0 22px}
+      .mobile-nav a{padding:15px 0;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.12em}
+    }
+    @media(max-width:800px){.product-modal-card{grid-template-columns:1fr}.product-gallery{grid-template-columns:70px 1fr}.product-details{padding:25px}.review-grid{grid-template-columns:1fr}.review-form{grid-template-columns:1fr}.review-form textarea{grid-column:auto}}
+
+    @media(max-width:950px){.links{display:none}.grid{grid-template-columns:repeat(2,1fr)}.categories{grid-template-columns:repeat(2,1fr)}.editorial{grid-template-columns:1fr}.editorial-img{min-height:420px}.footer-grid{grid-template-columns:1fr 1fr}.hero-copy{margin-left:0}.section-head h2{font-size:34px}}
+    @media(max-width:560px){section{padding:55px 16px}.nav{padding:0 15px}.grid{gap:10px}.categories{gap:10px}.cat{min-height:270px}.editorial-copy{padding:40px 25px}.editorial-copy h2,.story h2{font-size:42px}.newsletter form{display:block}.newsletter input,.newsletter button{width:100%;height:48px}.newsletter button{margin-top:8px}.footer-grid{grid-template-columns:1fr}.hero{min-height:68vh}.hero-copy{padding:80px 20px}.hero h1{font-size:53px}.hero-arrow{width:38px;height:38px;font-size:16px}.hero-arrow.prev{left:12px}.hero-arrow.next{right:12px}.hero-dots{left:20px;bottom:20px}.hero-dot{width:24px}.hero-dot.active{width:40px}}
+  </style>
+</head>
+<body>
+  <div id="channelBar" class="bar" aria-label="Hala.S channel announcement"></div>
+  <div id="promoBar" class="bar secondary" aria-label="Hala.S promotion"></div>
+
+  <header>
+    <nav class="nav">
+      <a class="logo" href="#home">Hala.S<small>CLOTHING</small></a>
+      <div class="links" id="desktopLinks">
+        <a href="#shop">NEW IN</a><a href="#shop">SHOP ALL</a><a href="#categories">COLLECTIONS</a>
+        <a href="#collection/dresses">DRESSES</a><a href="#collection/ready-to-wear">READY TO WEAR</a><a href="#collection/unstitched">UNSTITCHED</a>
+        <a href="#collection/sale">SALE</a><a href="#blogs">BLOG</a><a href="#about">ABOUT</a>
+      </div>
+      <div class="icons"><button class="iconbtn mobile-menu-btn" onclick="toggleMobileNav()" aria-label="Open menu">☰</button>
+        <button class="iconbtn" onclick="focusSearch()" aria-label="Search">⌕</button>
+        <button class="iconbtn" onclick="openWishlist()" aria-label="Wishlist">♡</button>
+        <button class="iconbtn" onclick="openCart()" aria-label="Cart">🛍</button>
+      </div>
+      <div id="mobileNav" class="mobile-nav" aria-label="Mobile navigation">
+        <a href="#shop">NEW IN</a>
+        <a href="#shop">SHOP ALL</a>
+        <a href="#categories">COLLECTIONS</a>
+        <a href="#collection/dresses">DRESSES</a>
+        <a href="#collection/ready-to-wear">READY TO WEAR</a>
+        <a href="#collection/unstitched">UNSTITCHED</a>
+        <a href="#collection/sale">SALE</a>
+        <a href="#blogs">BLOG</a>
+        <a href="#about">ABOUT</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="searchPage" class="search-page" aria-label="Search Hala.S products">
+      <div class="search-hero">
+        <div><div class="eyebrow">Hala.S Search</div><h1>Find Your Next Look</h1><p>Search the Hala.S collection, then refine by category, newest arrivals, price, availability and more.</p></div>
+        <form class="search-form" onsubmit="submitSearch(event)"><input id="searchInput" name="q" type="search" placeholder="Search dresses, ready to wear, unstitched…" autocomplete="off"><button type="submit">Search</button></form>
+      </div>
+      <div class="search-controls">
+        <div class="filter-row" id="searchCategories">
+          <button type="button" class="filter-chip active" data-category="all" onclick="setSearchCategory('all')">All</button>
+          <button type="button" class="filter-chip" data-category="Dresses" onclick="setSearchCategory('Dresses')">Dresses</button>
+          <button type="button" class="filter-chip" data-category="Ready To Wear" onclick="setSearchCategory('Ready To Wear')">Ready To Wear</button>
+          <button type="button" class="filter-chip" data-category="Unstitched" onclick="setSearchCategory('Unstitched')">Unstitched</button>
+          <button type="button" class="filter-chip" data-category="Co-Ord Sets" onclick="setSearchCategory('Co-Ord Sets')">Co-Ord Sets</button>
+          <button type="button" class="filter-chip" data-category="Sale" onclick="setSearchCategory('Sale')">Sale</button>
+        </div>
+        <label class="sort-wrap">Sort by <select id="searchSort" class="sort-select" onchange="applySearchFilters()"><option value="featured">Featured</option><option value="newest">Newest to Oldest</option><option value="oldest">Oldest to Newest</option><option value="price-low">Price: Low to High</option><option value="price-high">Price: High to Low</option><option value="name-az">Name: A–Z</option><option value="name-za">Name: Z–A</option><option value="sale">On Sale</option><option value="available">Available Now</option></select></label>
+      </div>
+      <div class="search-meta"><span id="searchSummary">Browse the Hala.S collection.</span><span id="searchQueryLabel"></span></div>
+      <div id="searchResults" class="grid"></div>
+    </section>
+    <section class="hero" aria-label="Hala.S featured collection">
+      <div class="hero-slider">
+        <div id="heroTrack" class="hero-track">
+          <a class="hero-slide" href="#collection/new-in" aria-label="Shop New Arrivals" data-primary="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=2200&q=85" data-alt="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=2200&q=85">
+            <span class="hero-image primary"></span><span class="hero-image alt"></span><span class="hero-hover-label">Hover • View Another Look</span>
+          </a>
+          <a class="hero-slide" href="#collection/new-in" aria-label="Shop New Arrivals" data-primary="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=2200&q=85" data-alt="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=2200&q=85">
+            <span class="hero-image primary"></span><span class="hero-image alt"></span><span class="hero-hover-label">Hover • View Another Look</span>
+          </a>
+          <a class="hero-slide" href="#collection/new-in" aria-label="Shop New Arrivals" data-primary="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=2200&q=85" data-alt="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=2200&q=85">
+            <span class="hero-image primary"></span><span class="hero-image alt"></span><span class="hero-hover-label">Hover • View Another Look</span>
+          </a>
+          <a class="hero-slide" href="#collection/new-in" aria-label="Shop New Arrivals" data-primary="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=2200&q=85" data-alt="https://images.unsplash.com/photo-1496217590455-aa63a8350eea?auto=format&fit=crop&w=2200&q=85">
+            <span class="hero-image primary"></span><span class="hero-image alt"></span><span class="hero-hover-label">Hover • View Another Look</span>
+          </a>
+        </div>
+      </div>
+      <button class="hero-arrow prev" type="button" onclick="heroPrev()" aria-label="Previous slide">‹</button>
+      <button class="hero-arrow next" type="button" onclick="heroNext()" aria-label="Next slide">›</button>
+      <div class="hero-copy">
+        <div class="eyebrow" id="heroEyebrow">Hala.S Clothing</div>
+        <h1 id="heroTitle">The New Edit</h1>
+        <p id="heroText">Discover refined silhouettes, modern expression and effortless Pakistani fashion designed for your wardrobe.</p>
+        <a class="btn light" href="#new">Shop New Arrivals</a>
+      </div>
+      <div id="heroDots" class="hero-dots" aria-label="Featured slides"></div>
+    </section>
+
+    <section id="new">
+      <div class="section-head">
+        <div><h2>New Arrivals</h2><p>Fresh silhouettes. Just landed.</p></div>
+        <a href="#shop">View All →</a>
+      </div>
+      <div id="productGrid" class="grid"><div class="empty">Loading Hala.S collection…</div></div>
+    </section>
+
+    <section id="categories" class="collection-gallery-section">
+      <div class="categories-intro">
+        <div class="eyebrow">Shop Hala.S</div>
+        <h2>Explore The Collections</h2>
+        <p>Discover the pieces shaping the Hala.S wardrobe — each collection opens into its own edit.</p>
+      </div>
+      <div class="categories">
+        <a class="cat category-gallery-card" href="#collection/new-in" data-category="New In" data-images="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=1400&q=90|https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1400&q=90|https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1400&q=90"><div class="cat-gallery"></div><div><h3>New In</h3>EXPLORE THE EDIT →<span class="image-hint">HOVER FOR ANOTHER VIEW</span></div></a>
+        <a class="cat category-gallery-card" href="#collection/ready-to-wear" data-category="Ready To Wear" data-images="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=90|https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1400&q=90|https://images.unsplash.com/photo-1496217590455-aa63a8350eea?auto=format&fit=crop&w=1400&q=90"><div class="cat-gallery"></div><div><h3>Ready To Wear</h3>SHOP NOW →<span class="image-hint">HOVER FOR ANOTHER VIEW</span></div></a>
+        <a class="cat category-gallery-card" href="#collection/dresses" data-category="Dresses" data-images="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1400&q=90|https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=1400&q=90|https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=1400&q=90"><div class="cat-gallery"></div><div><h3>Dresses</h3>SHOP NOW →<span class="image-hint">HOVER FOR ANOTHER VIEW</span></div></a>
+        <a class="cat category-gallery-card" href="#collection/unstitched" data-category="Unstitched" data-images="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1400&q=90|https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1400&q=90|https://images.unsplash.com/photo-1610652492500-ded49ceeb378?auto=format&fit=crop&w=1400&q=90"><div class="cat-gallery"></div><div><h3>Unstitched</h3>SHOP NOW →<span class="image-hint">HOVER FOR ANOTHER VIEW</span></div></a>
+        <a class="cat category-gallery-card" href="#collection/co-ord-sets" data-category="Co-Ord Sets" data-images="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=1400&q=90|https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=1400&q=90|https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1400&q=90"><div class="cat-gallery"></div><div><h3>Co-Ord Sets</h3>SHOP NOW →<span class="image-hint">HOVER FOR ANOTHER VIEW</span></div></a>
+      </div>
+    </section>
+
+    <section id="about" class="about-final story">
+      <div class="story-inner">
+        <div class="story-rule"></div>
+        <div class="eyebrow">About Hala.S</div>
+        <h2>Modern Fashion, Distinctly Hala.S.</h2>
+        <p>Hala.S Clothing is a premium women's fashion destination focused on elegant, contemporary dressing. This space is designed for the brand's verified story, values, craftsmanship and history — keeping the experience refined, clear and ready for a global audience.</p>
+      </div>
+    </section>
+
+    <section id="reviews" class="reviews">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Hala.S Community</div>
+          <h2>What Our Clients Say</h2>
+          <p>Real feedback from women who wear Hala.S in their everyday lives.</p>
+        </div>
+        <a href="#review-form">Share Your Experience →</a>
+      </div>
+      <div class="review-grid">
+        <article class="review-card"><div class="stars" aria-label="5 stars">★★★★★</div><p>“Beautiful finish, elegant fit and the presentation felt genuinely premium. The fabric looked even better in person.”</p><strong>— Ayesha K.</strong></article>
+        <article class="review-card"><div class="stars" aria-label="5 stars">★★★★★</div><p>“The styling is effortless and modern. I loved how polished the outfit looked without feeling overdone.”</p><strong>— Sara M.</strong></article>
+        <article class="review-card"><div class="stars" aria-label="5 stars">★★★★★</div><p>“A very refined shopping experience. The details, packaging and overall aesthetic feel thoughtfully considered.”</p><strong>— Maham R.</strong></article>
+      </div>
+      <div id="review-form" class="review-form-wrap">
+        <div class="eyebrow" style="margin-top:42px">Your Hala.S Experience</div>
+        <h3 style="font:600 34px 'Playfair Display';margin:10px 0 5px">Share Your Review</h3>
+        <p class="review-note">Tell us what you loved about your Hala.S piece. Your feedback is saved locally for testing until a review platform is connected.</p>
+        <form class="review-form" onsubmit="submitReview(event)">
+          <input id="reviewName" required placeholder="Your name" aria-label="Your name">
+          <select id="reviewRating" required aria-label="Rating"><option value="5">★★★★★ — Excellent</option><option value="4">★★★★☆ — Very good</option><option value="3">★★★☆☆ — Good</option><option value="2">★★☆☆☆ — Fair</option><option value="1">★☆☆☆☆ — Needs improvement</option></select>
+          <textarea id="reviewText" required placeholder="Share your experience…" aria-label="Your review"></textarea>
+          <button class="btn" type="submit">Submit Review</button>
+        </form>
+        <div id="reviewStatus" class="review-status" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="newsletter" aria-label="Hala.S newsletter">
+      <div class="eyebrow">The Hala.S Edit</div>
+      <h2 style="font:600 clamp(40px,5vw,64px) 'Playfair Display';margin:12px 0">Stay In The Know</h2>
+      <p style="max-width:620px;margin:0 auto;color:var(--muted);line-height:1.8">Be first to discover new arrivals, private edits, styling inspiration and Hala.S updates.</p>
+      <form onsubmit="subscribe(event)">
+        <input id="newsletterEmail" type="email" required placeholder="Your email address" aria-label="Your email address">
+        <button type="submit">Subscribe</button>
+      </form>
+    </section>
+  </main>
+  
+
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-brand">Hala.S</div><p style="color:#aaa;max-width:330px;line-height:1.7">Premium Pakistani women's fashion with a modern, refined point of view.</p></div>
+      <div><h4>SHOP</h4><a href="#shop">New Arrivals</a><a href="#collection/ready-to-wear">Ready To Wear</a><a href="#collection/unstitched">Unstitched</a><a href="#collection/dresses">Dresses</a><a href="#collection/sale">Sale</a></div>
+      <div><h4>HELP</h4><a href="#about">Size Guide</a><a href="#about">Shipping Policy</a><a href="#about">Returns & Exchange</a><a href="#about">FAQ</a><a href="#about">Track Order</a></div>
+      <div><h4>CONTACT</h4><a id="footerEmail"></a><a id="footerPhone"></a><a id="footerWhatsApp"></a><a id="footerInstagram"></a></div>
+    </div>
+    <div class="copyright">© <span id="year"></span> Hala.S Clothing. All rights reserved.</div>
+  </footer>
+
+  <div id="cartDrawer" class="drawer">
+    <div class="drawer-head"><h2>Your Bag</h2><button class="drawer-close" onclick="closeCart()">×</button></div>
+    <div id="cartItems"></div>
+    <div id="cartSummary"></div>
+  </div>
+
+
+  <div id="lightbox" class="lightbox" onclick="if(event.target===this)closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <button class="lightbox-arrow prev" onclick="lightboxPrev()">‹</button>
+    <img id="lightboxImage" alt="Hala.S product image" onclick="toggleLightboxZoom()">
+    <button class="lightbox-arrow next" onclick="lightboxNext()">›</button>
+  </div>
+
+  <div id="productModal" class="product-modal" onclick="if(event.target===this)closeProductModal()">
+    <div class="product-modal-card">
+      <div class="product-gallery">
+        <div id="productThumbs" class="product-thumbs"></div>
+        <div class="product-main-img"><img id="productMainImage" alt=""></div>
+      </div>
+      <div class="product-details">
+        <button class="modal-close" onclick="closeProductModal()">×</button>
+        <div class="eyebrow">Hala.S Clothing</div>
+        <h2 id="modalProductTitle"></h2>
+        <div id="modalProductPrice" class="price"></div>
+        <p id="modalProductDescription"></p>
+        <select id="modalVariant" class="variant-select"></select>
+        <button class="btn" onclick="addSelectedProductToCart()">ADD TO BAG</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="blogModal" class="blog-modal" onclick="if(event.target===this)closeBlog()">
+    <article class="blog-modal-card">
+      <button class="modal-close" onclick="closeBlog()">×</button>
+      <div id="blogCategory" class="eyebrow"></div>
+      <h2 id="blogTitle"></h2>
+      <p id="blogBody"></p>
+    </article>
+  </div>
+
+  <button class="ai" onclick="toggleAI()">✦ Hala.S AI</button>
+  <div id="aiPanel" class="ai-panel">
+    <div class="ai-head">Hala.S Style Assistant</div>
+    <div id="aiMsgs" class="ai-msgs"><div class="msg bot">Hi! I'm your Hala.S Style Assistant. What can I help you find today?</div></div>
+    <form class="ai-form" onsubmit="askAI(event)"><input id="aiInput" placeholder="Ask about styles, products or sizing…" autocomplete="off"><button>→</button></form>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+<script>
+const STATIC_PRODUCTS = [{"id": "demo-1", "handle": "ivory-embroidered-set", "title": "Ivory Embroidered Set", "description": "A refined statement look from the Hala.S demo collection.", "availableForSale": true, "featuredImage": {"url": "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=900&q=85", "altText": "Ivory fashion look"}, "images": {"nodes": [{"url": "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=900&q=85", "altText": "Ivory fashion look"}, {"url": "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=900&q=85", "altText": "Ivory fashion detail"}, {"url": "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=900&q=85", "altText": "Ivory fashion side"}]}, "priceRange": {"minVariantPrice": {"amount": "12900", "currencyCode": "PKR"}}, "compareAtPriceRange": {"minVariantPrice": {"amount": "14900", "currencyCode": "PKR"}}, "productType": "Ready To Wear", "tags": ["demo", "ready-to-wear"], "variants": {"nodes": [{"id": "demo-v1", "title": "Default", "availableForSale": true, "quantityAvailable": 10, "selectedOptions": [], "price": {"amount": "12900", "currencyCode": "PKR"}, "compareAtPrice": {"amount": "14900", "currencyCode": "PKR"}}]}}, {"id": "demo-2", "handle": "rose-elegance", "title": "Rose Elegance", "description": "A soft contemporary silhouette for the Hala.S demo collection.", "availableForSale": true, "featuredImage": {"url": "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=900&q=85", "altText": "Rose fashion look"}, "images": {"nodes": [{"url": "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=900&q=85", "altText": "Rose fashion look"}, {"url": "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=900&q=85", "altText": "Rose fashion detail"}, {"url": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=85", "altText": "Rose fashion side"}]}, "priceRange": {"minVariantPrice": {"amount": "14500", "currencyCode": "PKR"}}, "compareAtPriceRange": {"minVariantPrice": {"amount": "16500", "currencyCode": "PKR"}}, "productType": "Dresses", "tags": ["demo", "dresses"], "variants": {"nodes": [{"id": "demo-v2", "title": "Default", "availableForSale": true, "quantityAvailable": 10, "selectedOptions": [], "price": {"amount": "14500", "currencyCode": "PKR"}, "compareAtPrice": {"amount": "16500", "currencyCode": "PKR"}}]}}, {"id": "demo-3", "handle": "midnight-edit", "title": "Midnight Edit", "description": "A polished evening look for the Hala.S demo collection.", "availableForSale": true, "featuredImage": {"url": "https://images.unsplash.com/photo-1496217590455-aa63a8350eea?auto=format&fit=crop&w=900&q=85", "altText": "Black fashion look"}, "images": {"nodes": [{"url": "https://images.unsplash.com/photo-1496217590455-aa63a8350eea?auto=format&fit=crop&w=900&q=85", "altText": "Black fashion look"}, {"url": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85", "altText": "Black fashion detail"}, {"url": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=85", "altText": "Black fashion side"}]}, "priceRange": {"minVariantPrice": {"amount": "15900", "currencyCode": "PKR"}}, "compareAtPriceRange": {"minVariantPrice": {"amount": "17900", "currencyCode": "PKR"}}, "productType": "Ready To Wear", "tags": ["demo", "ready-to-wear", "sale"], "variants": {"nodes": [{"id": "demo-v3", "title": "Default", "availableForSale": true, "quantityAvailable": 10, "selectedOptions": [], "price": {"amount": "15900", "currencyCode": "PKR"}, "compareAtPrice": {"amount": "17900", "currencyCode": "PKR"}}]}}, {"id": "demo-4", "handle": "modern-coord", "title": "Modern Co-Ord", "description": "Clean coordinated dressing for the Hala.S demo collection.", "availableForSale": true, "featuredImage": {"url": "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=85", "altText": "Co-ord fashion look"}, "images": {"nodes": [{"url": "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=85", "altText": "Co-ord fashion look"}, {"url": "https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=900&q=85", "altText": "Co-ord fashion detail"}, {"url": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=85", "altText": "Co-ord fashion side"}]}, "priceRange": {"minVariantPrice": {"amount": "13900", "currencyCode": "PKR"}}, "compareAtPriceRange": {"minVariantPrice": {"amount": "15900", "currencyCode": "PKR"}}, "productType": "Co-Ord Sets", "tags": ["demo", "co-ord-sets"], "variants": {"nodes": [{"id": "demo-v4", "title": "Default", "availableForSale": true, "quantityAvailable": 10, "selectedOptions": [], "price": {"amount": "13900", "currencyCode": "PKR"}, "compareAtPrice": {"amount": "15900", "currencyCode": "PKR"}}]}}, {"id": "demo-5", "handle": "linen-sand-edit", "title": "Linen Sand Edit", "description": "A relaxed neutral look for the Hala.S demo collection.", "availableForSale": true, "featuredImage": {"url": "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=85", "altText": "Linen sand fashion look"}, "images": {"nodes": [{"url": "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=85", "altText": "Linen sand fashion look"}, {"url": "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85", "altText": "Linen sand detail"}, {"url": "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=900&q=85", "altText": "Linen sand alternate view"}]}, "priceRange": {"minVariantPrice": {"amount": "11900", "currencyCode": "PKR"}}, "compareAtPriceRange": {"minVariantPrice": {"amount": "13900", "currencyCode": "PKR"}}, "productType": "Unstitched", "tags": ["demo", "unstitched", "new-in"], "variants": {"nodes": [{"id": "demo-v5", "title": "Default", "availableForSale": true, "quantityAvailable": 10, "selectedOptions": [], "price": {"amount": "11900", "currencyCode": "PKR"}, "compareAtPrice": {"amount": "13900", "currencyCode": "PKR"}}]}}, {"id": "demo-6", "handle": "fuchsia-statement-dress", "title": "Fuchsia Statement Dress", "description": "A confident colour story for the Hala.S demo collection.", "availableForSale": true, "featuredImage": {"url": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=85", "altText": "Fuchsia statement dress"}, "images": {"nodes": [{"url": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=85", "altText": "Fuchsia statement dress"}, {"url": "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=900&q=85", "altText": "Fuchsia dress alternate view"}, {"url": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=85", "altText": "Fuchsia dress detail"}]}, "priceRange": {"minVariantPrice": {"amount": "16900", "currencyCode": "PKR"}}, "compareAtPriceRange": {"minVariantPrice": {"amount": "18900", "currencyCode": "PKR"}}, "productType": "Dresses", "tags": ["demo", "dresses", "new-in"], "variants": {"nodes": [{"id": "demo-v6", "title": "Default", "availableForSale": true, "quantityAvailable": 10, "selectedOptions": [], "price": {"amount": "16900", "currencyCode": "PKR"}, "compareAtPrice": {"amount": "18900", "currencyCode": "PKR"}}]}}, {"id": "demo-7", "handle": "soft-olive-coord", "title": "Soft Olive Co-Ord", "description": "A modern coordinated silhouette for the Hala.S demo collection.", "availableForSale": true, "featuredImage": {"url": "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=85", "altText": "Olive co-ord look"}, "images": {"nodes": [{"url": "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=85", "altText": "Olive co-ord look"}, {"url": "https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=900&q=85", "altText": "Olive co-ord alternate view"}, {"url": "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85", "altText": "Olive co-ord detail"}]}, "priceRange": {"minVariantPrice": {"amount": "14900", "currencyCode": "PKR"}}, "compareAtPriceRange": {"minVariantPrice": {"amount": "16900", "currencyCode": "PKR"}}, "productType": "Co-Ord Sets", "tags": ["demo", "co-ord-sets", "new-in"], "variants": {"nodes": [{"id": "demo-v7", "title": "Default", "availableForSale": true, "quantityAvailable": 10, "selectedOptions": [], "price": {"amount": "14900", "currencyCode": "PKR"}, "compareAtPrice": {"amount": "16900", "currencyCode": "PKR"}}]}}, {"id": "demo-8", "handle": "black-evening-drape", "title": "Black Evening Drape", "description": "A clean evening silhouette for the Hala.S demo collection.", "availableForSale": true, "featuredImage": {"url": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85", "altText": "Black evening fashion look"}, "images": {"nodes": [{"url": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85", "altText": "Black evening fashion look"}, {"url": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=85", "altText": "Black evening alternate view"}, {"url": "https://images.unsplash.com/photo-1496217590455-aa63a8350eea?auto=format&fit=crop&w=900&q=85", "altText": "Black evening detail"}]}, "priceRange": {"minVariantPrice": {"amount": "15500", "currencyCode": "PKR"}}, "compareAtPriceRange": {"minVariantPrice": {"amount": "17500", "currencyCode": "PKR"}}, "productType": "Ready To Wear", "tags": ["demo", "ready-to-wear", "sale"], "variants": {"nodes": [{"id": "demo-v8", "title": "Default", "availableForSale": true, "quantityAvailable": 10, "selectedOptions": [], "price": {"amount": "15500", "currencyCode": "PKR"}, "compareAtPrice": {"amount": "17500", "currencyCode": "PKR"}}]}}];
+let CONFIG = {};
+let PRODUCTS = [];
+let CART_ID = localStorage.getItem("halas_cart_id") || "";
+let WISHLIST = JSON.parse(localStorage.getItem("halas_wishlist") || "[]");
+let heroIndex = 0;
+let heroTimer = null;
+const HERO_SLIDES = [
+  {title:"The New Edit", text:"Discover refined silhouettes, modern expression and effortless Pakistani fashion designed for your wardrobe."},
+  {title:"Elegance, Reimagined", text:"Statement details, graceful silhouettes and contemporary pieces made for every moment."},
+  {title:"Your Signature Style", text:"Explore elevated looks that bring modern Pakistani fashion into your everyday wardrobe."},
+  {title:"Made For The Moment", text:"Fresh fashion, refined details and effortless dressing — discover the latest Hala.S edit."}
+];
+
+const $ = id => document.getElementById(id);
+function money(p){ if(!p) return ""; return `${p.currencyCode === "PKR" ? "Rs. " : p.currencyCode + " "}${Number(p.amount).toLocaleString("en-PK")}`; }
+function toast(s){ $("toast").textContent=s; $("toast").style.display="block"; setTimeout(()=>$("toast").style.display="none",2400); }
+
+
+function toggleMobileNav(){
+  const nav=$("mobileNav");
+  if(nav) nav.classList.toggle("open");
+}
+
+function closeMobileNav(){
+  const nav=$("mobileNav");
+  if(nav) nav.classList.remove("open");
+}
+
+function setPageIntro(title, text){
+  let intro=document.getElementById("pageIntro");
+  if(!intro){
+    intro=document.createElement("section");
+    intro.id="pageIntro";
+    intro.className="page-intro";
+    const main=document.querySelector("main");
+    main.prepend(intro);
+  }
+  intro.innerHTML=`<div class="eyebrow">Hala.S Clothing</div><h1>${escapeHtml(title)}</h1><p>${escapeHtml(text)}</p>`;
+}
+
+async function loadShopPage(){
+  setPageIntro("New In", "Explore the latest Hala.S arrivals and discover the newest expressions of modern women's fashion.");
+  const heading=document.querySelector("#new h2");
+  const sub=document.querySelector("#new .section-head p");
+  if(heading) heading.textContent="Latest Arrivals";
+  if(sub) sub.textContent="The newest pieces, just landed.";
+  window.scrollTo({top:0,behavior:"smooth"});
+  await loadProducts();
+}
+
+function handleRoute(){
+  const raw=(window.location.hash||"#home").slice(1);
+  const [route,qstr=""] = raw.split("?");
+  closeMobileNav();
+  document.querySelectorAll("main > section").forEach(el=>el.style.display="");
+  const searchPage=$("searchPage");
+  if(searchPage) searchPage.classList.remove("active");
+  if(route==="search"){
+    document.querySelectorAll("main > section:not(#searchPage)").forEach(el=>el.style.display="none");
+    searchPage.classList.add("active");
+    const params=new URLSearchParams(qstr); SEARCH_QUERY=params.get("q")||"";
+    runSearchPage(); return;
+  }
+  if(route==="shop"){loadShopPage();return;}
+  if(route.startsWith("collection/")){loadCollection(route.split("/")[1]);return;}
+  if(route.startsWith("product/")){showProduct(decodeURIComponent(route.split("/")[1]));return;}
+  if(route==="blogs"){
+    setPageIntro("Journal","Fashion notes, styling ideas, care guides and seasonal inspiration from Hala.S.");
+    document.getElementById("journal")?.scrollIntoView({behavior:"smooth"}); return;
+  }
+  if(route==="reviews"){
+    document.getElementById("reviews")?.scrollIntoView({behavior:"smooth"}); return;
+  }
+  if(route==="home" || !route){window.scrollTo({top:0,behavior:"smooth"});}
+}
+
+async function init(){
+  CONFIG = {
+    brand:"Hala.S Clothing",
+    channel:{enabled:true,text:"JOIN OUR CHANNEL FOR EXCLUSIVE UPDATES →",url:""},
+    promo:{enabled:true,text:"FLAT 20% OFF — SHOP NOW →"},
+    social:{instagram:"",facebook:"",tiktok:"",pinterest:"",whatsapp:""},
+    contact:{email:"hello@halasclothing.com",phone:""}
+  };
+  setupMarquee("channelBar",CONFIG.channel.enabled?CONFIG.channel.text:"",CONFIG.channel.url);
+  setupMarquee("promoBar",CONFIG.promo.enabled?CONFIG.promo.text:"","");
+  initHero();
+  $("footerEmail").textContent=CONFIG.contact.email; $("footerEmail").href=`mailto:${CONFIG.contact.email}`;
+  if(CONFIG.contact.phone){$("footerPhone").textContent=CONFIG.contact.phone;$("footerPhone").href=`tel:${CONFIG.contact.phone}`}else{$("footerPhone").style.display="none"}
+  $("footerWhatsApp").style.display=CONFIG.social.whatsapp?"":"none"; if(CONFIG.social.whatsapp){$("footerWhatsApp").textContent="WhatsApp";$("footerWhatsApp").href=CONFIG.social.whatsapp}
+  $("footerInstagram").style.display=CONFIG.social.instagram?"":"none"; if(CONFIG.social.instagram){$("footerInstagram").textContent="Instagram";$("footerInstagram").href=CONFIG.social.instagram}
+  $("year").textContent=new Date().getFullYear();
+  initCategoryHover();
+  let heroScrollTimer=null;
+  window.addEventListener("scroll",()=>{const hero=document.querySelector(".hero");if(!hero)return;hero.classList.add("is-scrolling");clearTimeout(heroScrollTimer);heroScrollTimer=setTimeout(()=>hero.classList.remove("is-scrolling"),220)},{passive:true});
+  await loadProducts();
+  if(CART_ID) renderCart();
+  handleRoute();
+  window.addEventListener("hashchange",handleRoute);
+}
+
+function setupMarquee(id, text, url){
+  const bar = $(id);
+  if(!text){ bar.style.display="none"; return; }
+  const safe = escapeHtml(text);
+  bar.innerHTML = `<div class="marquee-track">
+    <span class="marquee-item">${safe}</span><span class="marquee-item">${safe}</span>
+    <span class="marquee-item">${safe}</span><span class="marquee-item">${safe}</span>
+  </div>`;
+  if(url){
+    bar.style.cursor="pointer";
+    bar.onclick=()=>window.location.href=url;
+  }
+}
+
+function initHero(){
+  const dots=$("heroDots");
+  dots.innerHTML=HERO_SLIDES.map((_,i)=>`<button class="hero-dot ${i===0?"active":""}" type="button" onclick="goHero(${i})" aria-label="Go to slide ${i+1}"></button>`).join("");
+  document.querySelectorAll(".hero-slide").forEach(slide=>{
+    const primary=slide.querySelector(".hero-image.primary");
+    const alt=slide.querySelector(".hero-image.alt");
+    if(primary) primary.style.backgroundImage=`url("${slide.dataset.primary}")`;
+    if(alt) alt.style.backgroundImage=`url("${slide.dataset.alt}")`;
+    slide.addEventListener("mouseenter",()=>clearInterval(heroTimer));
+    slide.addEventListener("mouseleave",()=>{clearInterval(heroTimer);heroTimer=setInterval(heroNext,4800)});
+  });
+  updateHero();
+  clearInterval(heroTimer);
+  heroTimer=setInterval(heroNext, 4800);
+}
+
+function updateHero(){
+  $("heroTrack").style.transform=`translateX(-${heroIndex*100}%)`;
+  $("heroTitle").textContent=HERO_SLIDES[heroIndex].title;
+  $("heroText").textContent=HERO_SLIDES[heroIndex].text;
+  document.querySelectorAll(".hero-dot").forEach((d,i)=>d.classList.toggle("active",i===heroIndex));
+}
+
+function goHero(index){
+  heroIndex=(index+HERO_SLIDES.length)%HERO_SLIDES.length;
+  updateHero();
+  clearInterval(heroTimer);
+  heroTimer=setInterval(heroNext,4800);
+}
+function heroNext(){goHero(heroIndex+1)}
+function heroPrev(){goHero(heroIndex-1)}
+
+async function loadProducts(){ PRODUCTS=STATIC_PRODUCTS.slice(); renderProducts(PRODUCTS); }
+
+function renderProducts(list){
+  if(!list.length){$("productGrid").innerHTML='<div class="empty">No products found.</div>';return}
+  $("productGrid").innerHTML=list.map(p=>{
+    const images=(p.images?.nodes||[]).map(x=>x?.url).filter(Boolean);
+    const img=p.featuredImage?.url || images[0] || "https://via.placeholder.com/800x1000?text=Hala.S";
+    const price=p.priceRange?.minVariantPrice;
+    const compare=p.compareAtPriceRange?.minVariantPrice;
+    const wish=WISHLIST.includes(p.id);
+    return `<article class="product" data-product-handle="${escapeHtml(p.handle)}">
+      ${!p.availableForSale?'<span class="badge">SOLD OUT</span>':''}
+      <button class="wish" onclick='toggleWish(${JSON.stringify(p.id)})'>${wish?"♥":"♡"}</button>
+      <a href="#product/${encodeURIComponent(p.handle)}" onclick="event.preventDefault();showProduct('${escapeJs(p.handle)}')">
+      <div class="product-img"><img class="zoomable" loading="lazy" src="${img}" alt="${escapeHtml(p.featuredImage?.altText||p.title)}"><span class="image-hint">CLICK TO ZOOM</span></div>
+      <div class="product-info"><div class="product-title">${escapeHtml(p.title)}</div><div class="price">${compare?.amount>price?.amount?`<span class="old">${money(compare)}</span>`:""}${money(price)}</div></div>
+      </a>
+    </article>`;
+  }).join("");
+  attachProductHoverImages();
+}
+
+function attachProductHoverImages(selector=".product[data-product-handle]"){
+  document.querySelectorAll(selector).forEach(card=>{
+    const p=PRODUCTS.find(x=>x.handle===card.dataset.productHandle);
+    const imgs=(p?.images?.nodes||[]).map(x=>x?.url).filter(Boolean);
+    const image=card.querySelector(".product-img img");
+    if(!image || !imgs.length) return;
+
+    card.dataset.hoverImage = imgs[1] || "";
+    image.addEventListener("click",(e)=>{
+      e.preventDefault(); e.stopPropagation();
+      openLightbox(imgs,0,p?.title||"Hala.S product");
+    });
+
+    if(imgs.length < 2) return;
+
+    let swapped=false;
+    card.addEventListener("mouseenter",()=>{
+      if(swapped) return;
+      swapped=true;
+      image.classList.add("is-hovering");
+      window.setTimeout(()=>{
+        image.src=imgs[1];
+        image.classList.remove("is-hovering");
+      },140);
+    });
+    card.addEventListener("mouseleave",()=>{
+      if(!swapped) return;
+      image.classList.add("is-hovering");
+      window.setTimeout(()=>{
+        image.src=imgs[0];
+        swapped=false;
+        image.classList.remove("is-hovering");
+      },140);
+    });
+  });
+}
+function openLightbox(images,index=0,title="Hala.S"){
+  lightboxImages=images||[]; lightboxIndex=index;
+  $("lightboxImage").alt=title;
+  $("lightbox").classList.add("open");
+  $("lightboxImage").classList.remove("zoomed");
+  updateLightbox();
+}
+function updateLightbox(){ if(lightboxImages.length) $("lightboxImage").src=lightboxImages[lightboxIndex]; }
+function closeLightbox(){$("lightbox").classList.remove("open");$("lightboxImage").classList.remove("zoomed")}
+function lightboxNext(){if(lightboxImages.length){lightboxIndex=(lightboxIndex+1)%lightboxImages.length;updateLightbox();$("lightboxImage").classList.remove("zoomed")}}
+function lightboxPrev(){if(lightboxImages.length){lightboxIndex=(lightboxIndex-1+lightboxImages.length)%lightboxImages.length;updateLightbox();$("lightboxImage").classList.remove("zoomed")}}
+function toggleLightboxZoom(){$("lightboxImage").classList.toggle("zoomed")}
+
+function escapeHtml(s){return String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function escapeJs(s){return String(s||"").replace(/\\/g,"\\\\").replace(/'/g,"\\'").replace(/\n/g,"\\n").replace(/\r/g,"\\r")}
+function toggleWish(id){ WISHLIST=WISHLIST.includes(id)?WISHLIST.filter(x=>x!==id):[...WISHLIST,id]; localStorage.setItem("halas_wishlist",JSON.stringify(WISHLIST)); renderProducts(PRODUCTS); toast(WISHLIST.includes(id)?"Added to wishlist":"Removed from wishlist");}
+function openWishlist(){toast(`${WISHLIST.length} item(s) saved`)}
+let SEARCH_CATEGORY="all";
+let SEARCH_QUERY="";
+let SEARCH_RESULTS=[];
+function focusSearch(){window.location.href="#search"}
+function submitSearch(e){e.preventDefault();const q=$("searchInput")?.value.trim()||"";window.history.pushState({},"",q?`/search?q=${encodeURIComponent(q)}`:"/search");SEARCH_QUERY=q;runSearchPage()}
+function setSearchCategory(category){SEARCH_CATEGORY=category;document.querySelectorAll("#searchCategories .filter-chip").forEach(b=>b.classList.toggle("active",b.dataset.category===category));applySearchFilters()}
+function searchPrice(p){return Number(p?.priceRange?.minVariantPrice?.amount||p?.variants?.nodes?.[0]?.price?.amount||0)}
+function productIsSale(p){const price=searchPrice(p),compare=Number(p?.compareAtPriceRange?.minVariantPrice?.amount||p?.variants?.nodes?.[0]?.compareAtPrice?.amount||0);return compare>price||(p.tags||[]).some(t=>String(t).toLowerCase()==="sale")}
+function productCategory(p){return String(p?.productType||"").trim()}
+function applySearchFilters(){
+ const sort=$("searchSort")?.value||"featured"; PRODUCTS=SEARCH_RESULTS; let list=SEARCH_RESULTS.filter(p=>{const cat=productCategory(p);if(SEARCH_CATEGORY!=="all"&&SEARCH_CATEGORY!=="Sale")return cat.toLowerCase()===SEARCH_CATEGORY.toLowerCase();if(SEARCH_CATEGORY==="Sale")return productIsSale(p);return true});
+ const order=new Map(SEARCH_RESULTS.map((p,i)=>[p.id,i]));
+ if(sort==="newest") list=[...list].sort((a,b)=>(order.get(b.id)||0)-(order.get(a.id)||0));
+ if(sort==="oldest") list=[...list].sort((a,b)=>(order.get(a.id)||0)-(order.get(b.id)||0));
+ if(sort==="price-low") list.sort((a,b)=>searchPrice(a)-searchPrice(b)); if(sort==="price-high") list.sort((a,b)=>searchPrice(b)-searchPrice(a));
+ if(sort==="name-az") list.sort((a,b)=>String(a.title).localeCompare(String(b.title))); if(sort==="name-za") list.sort((a,b)=>String(b.title).localeCompare(String(a.title)));
+ if(sort==="sale") list.sort((a,b)=>Number(productIsSale(b))-Number(productIsSale(a))); if(sort==="available") list.sort((a,b)=>Number(b.availableForSale)-Number(a.availableForSale));
+ const grid=$("searchResults"); if(!list.length){grid.className="search-empty";grid.innerHTML='<h3>No matches found</h3><p>Try another search or choose a different category.</p>';}else{grid.className="grid";grid.innerHTML=renderProductMarkup(list);attachProductHoverImagesFor("#searchResults");}
+ $("searchSummary").textContent=`${list.length} ${list.length===1?"piece":"pieces"} found`;
+}
+async function runSearchPage(){
+  const page=$("searchPage"); if(!page)return;
+  const params=new URLSearchParams((window.location.hash.split("?")[1]||""));
+  SEARCH_QUERY=params.get("q")||SEARCH_QUERY||"";
+  if($("searchInput"))$("searchInput").value=SEARCH_QUERY;
+  $("searchQueryLabel").textContent=SEARCH_QUERY?`Results for “${SEARCH_QUERY}”`:"";
+  SEARCH_RESULTS=PRODUCTS.filter(p=>!SEARCH_QUERY || p.title.toLowerCase().includes(SEARCH_QUERY.toLowerCase()) || (p.productType||"").toLowerCase().includes(SEARCH_QUERY.toLowerCase()) || (p.tags||[]).some(t=>t.toLowerCase().includes(SEARCH_QUERY.toLowerCase())));
+  applySearchFilters(); window.scrollTo({top:0,behavior:"smooth"});
+}
+function searchProducts(q){window.location.hash="search?q="+encodeURIComponent(q||"")}
+
+let CURRENT_PRODUCT=null;
+async function showProduct(handle){
+  const p=PRODUCTS.find(x=>x.handle===handle); if(!p){toast("Product unavailable");return}
+  CURRENT_PRODUCT=p;
+  const imgs=(p.images?.nodes||[]).map(x=>x?.url).filter(Boolean); const main=imgs[0]||p.featuredImage?.url||"";
+  $("modalProductTitle").textContent=p.title; $("modalProductDescription").textContent=p.description||""; $("modalProductPrice").textContent=money(p.priceRange?.minVariantPrice);
+  $("productMainImage").src=main; $("productMainImage").alt=p.featuredImage?.altText||p.title; $("productMainImage").onclick=()=>openLightbox(imgs.length?imgs:[main],0,p.title);
+  $("productThumbs").innerHTML=imgs.map((u,i)=>`<button class="product-thumb" onclick="setProductMain(${i})"><img src="${u}" alt=""></button>`).join("");
+  $("modalVariant").innerHTML=(p.variants?.nodes||[]).map((v,i)=>`<option value="${escapeHtml(v.id)}" ${!v.availableForSale?"disabled":""}>${escapeHtml(v.title)} — ${money(v.price)}${!v.availableForSale?" — SOLD OUT":""}</option>`).join("");
+  $("productModal").classList.add("open");
+}
+
+function setProductMain(i){
+  const imgs=(CURRENT_PRODUCT?.images?.nodes||[]).map(x=>x?.url).filter(Boolean);
+  if(imgs[i]) $("productMainImage").src=imgs[i];
+}
+function closeProductModal(){$("productModal").classList.remove("open")}
+async function addSelectedProductToCart(){
+  const id=$("modalVariant").value;
+  if(!id){toast("Please select an available option");return}
+  await addToCart(id);
+  closeProductModal();
+}
+
+function addToCart(variantId){
+  const p=PRODUCTS.find(x=>(x.variants?.nodes||[]).some(v=>v.id===variantId)); if(!p){toast("Unable to add this item");return}
+  const v=p.variants.nodes.find(x=>x.id===variantId); const cart=JSON.parse(localStorage.getItem("halas_cart")||"[]");
+  const existing=cart.find(x=>x.variantId===variantId); if(existing) existing.quantity++; else cart.push({variantId,pId:p.id,handle:p.handle,title:p.title,variantTitle:v.title,price:v.price,image:p.featuredImage?.url||p.images?.nodes?.[0]?.url,quantity:1});
+  localStorage.setItem("halas_cart",JSON.stringify(cart)); renderCart(); openCart(); toast("Added to bag");
+}
+function renderCart(){
+  const cart=JSON.parse(localStorage.getItem("halas_cart")||"[]");
+  if(!cart.length){$("cartItems").innerHTML='<div class="empty">Your bag is empty.</div>';$("cartSummary").innerHTML="";return;}
+  $("cartItems").innerHTML=cart.map((l,i)=>`<div class="cart-item"><img src="${l.image||''}" alt=""><div><b>${escapeHtml(l.title)}</b><div>${escapeHtml(l.variantTitle||"")}</div><div>${money(l.price)}</div><div style="margin-top:8px">Qty: ${l.quantity}</div></div><button onclick="removeLine(${i})">×</button></div>`).join("");
+  const total=cart.reduce((sum,l)=>sum+Number(l.price.amount)*l.quantity,0); const cur=cart[0].price.currencyCode||"PKR";
+  $("cartSummary").innerHTML=`<div class="cart-total"><span>Total</span><span>${money({amount:total,currencyCode:cur})}</span></div><button class="btn" style="width:100%;text-align:center" onclick="toast('Shopify checkout will be connected after Shopify integration.')">CHECKOUT</button>`;
+}
+function openCart(){$("cartDrawer").classList.add("open");renderCart()}
+function closeCart(){$("cartDrawer").classList.remove("open")}
+function removeLine(i){const cart=JSON.parse(localStorage.getItem("halas_cart")||"[]");cart.splice(i,1);localStorage.setItem("halas_cart",JSON.stringify(cart));renderCart();}
+
+function toggleAI(){$("aiPanel").classList.toggle("open");$("aiInput").focus()}
+async function askAI(e){
+  e.preventDefault(); const input=$("aiInput"),msg=input.value.trim(); if(!msg)return; addMsg(msg,"user"); input.value="";
+  const q=msg.toLowerCase(); let answer="I can help you explore Hala.S collections, new arrivals and styling. Try asking about dresses, ready to wear, unstitched or sale.";
+  if(q.includes("dress")) answer="Explore our Dresses collection for statement silhouettes and refined looks.";
+  else if(q.includes("sale")) answer="Our Sale edit includes selected pieces at special prices while stocks last.";
+  else if(q.includes("unstitched")) answer="Our Unstitched edit focuses on fabrics and design details ready for your own expression.";
+  else if(q.includes("size")) answer="For exact sizing, please use the size guide once the Shopify catalog is connected.";
+  addMsg(answer,"bot");
+}
+function addMsg(t,c){const d=document.createElement("div");d.className="msg "+c;d.textContent=t;$("aiMsgs").appendChild(d);$("aiMsgs").scrollTop=$("aiMsgs").scrollHeight}
+function subscribe(e){e.preventDefault();const email=$("newsletterEmail").value.trim();if(!email)return;const list=JSON.parse(localStorage.getItem("halas_newsletter")||"[]");if(!list.includes(email))list.push(email);localStorage.setItem("halas_newsletter",JSON.stringify(list));toast("Thank you for subscribing.");e.target.reset();}
+
+function initCategoryHover(){
+  document.querySelectorAll(".category-gallery-card").forEach(card=>{
+    const box=card.querySelector(".cat-gallery");
+    const imgs=(card.dataset.images||"").split("|").filter(Boolean);
+    if(!box||!imgs.length)return;
+
+    box.innerHTML=imgs.map((src,i)=>`<img src="${src}" alt="${escapeHtml(card.dataset.category||"Hala.S category")}" style="opacity:${i===0?1:0}">`).join("");
+    const layers=[...box.querySelectorAll("img")];
+    let idx=0, timer=null;
+
+    const show=(next)=>{
+      if(layers.length<2) return;
+      layers[idx].style.opacity="0";
+      idx=next;
+      layers[idx].style.opacity="1";
+    };
+
+    card.addEventListener("mouseenter",()=>{
+      if(layers.length<2) return;
+      card.classList.add("is-changing");
+      // First hover immediately reveals the next image, then gently cycles while hovered.
+      show(1);
+      clearInterval(timer);
+      timer=setInterval(()=>show((idx+1)%layers.length),1500);
+    });
+
+    card.addEventListener("mouseleave",()=>{
+      clearInterval(timer);
+      timer=null;
+      layers.forEach((img,i)=>img.style.opacity=i===0?1:0);
+      idx=0;
+      card.classList.remove("is-changing");
+    });
+  });
+}
+function attachProductHoverImagesFor(container){attachProductHoverImages(`${container} .product[data-product-handle]`)}
+function openBlog(i){
+  const b=BLOGS[i]; if(!b)return;
+  $("blogCategory").textContent=b.category;$("blogTitle").textContent=b.title;$("blogBody").textContent=b.body;$("blogModal").classList.add("open");
+}
+function closeBlog(){$("blogModal").classList.remove("open")}
+
+async function loadCollection(handle){
+  const label=handle.replace(/-/g," ").replace(/\b\w/g,m=>m.toUpperCase());
+  const descriptions={dresses:"Fluid silhouettes, refined details and statement dresses for every occasion.","ready-to-wear":"Polished everyday pieces designed for effortless, contemporary dressing.",unstitched:"Elevated fabrics and design details ready for your own expression.","co-ord-sets":"Modern coordinated looks designed to make dressing effortless.",sale:"Selected Hala.S pieces at special prices while stocks last.","new-in":"The latest Hala.S arrivals — fresh silhouettes and new season pieces."};
+  setPageIntro(label,descriptions[handle]||"Explore the Hala.S collection.");
+  const heading=$("new").querySelector("h2"),sub=$("new").querySelector(".section-head p"); if(heading)heading.textContent=label;if(sub)sub.textContent="Browse the Hala.S collection.";
+  const mapping={dresses:p=>p.tags.includes("dresses"),"ready-to-wear":p=>p.tags.includes("ready-to-wear"),unstitched:p=>p.tags.includes("unstitched"),"co-ord-sets":p=>p.tags.includes("co-ord-sets"),sale:p=>p.tags.includes("sale"),"new-in":p=>p.tags.includes("new-in")};
+  PRODUCTS=(mapping[handle]?STATIC_PRODUCTS.filter(mapping[handle]):STATIC_PRODUCTS).slice();
+  $("productGrid").innerHTML=PRODUCTS.length?renderProductMarkup(PRODUCTS):'<div class="empty">No products in this collection yet.</div>';
+  attachProductHoverImages(); $("new").scrollIntoView({behavior:"smooth"});
+}
+
+function renderProductMarkup(list){
+  return list.map(p=>{
+    const images=(p.images?.nodes||[]).map(x=>x?.url).filter(Boolean);
+    const img=p.featuredImage?.url || images[0] || "https://via.placeholder.com/800x1000?text=Hala.S";
+    const price=p.priceRange?.minVariantPrice, compare=p.compareAtPriceRange?.minVariantPrice, wish=WISHLIST.includes(p.id);
+    return `<article class="product" data-product-handle="${escapeHtml(p.handle)}">
+      ${!p.availableForSale?'<span class="badge">SOLD OUT</span>':''}
+      <button class="wish" onclick='toggleWish(${JSON.stringify(p.id)})'>${wish?"♥":"♡"}</button>
+      <a href="#product/${encodeURIComponent(p.handle)}" onclick="event.preventDefault();showProduct('${escapeJs(p.handle)}')">
+      <div class="product-img"><img class="zoomable" loading="lazy" src="${img}" alt="${escapeHtml(p.featuredImage?.altText||p.title)}"><span class="image-hint">CLICK TO ZOOM</span></div>
+      <div class="product-info"><div class="product-title">${escapeHtml(p.title)}</div><div class="price">${compare?.amount>price?.amount?`<span class="old">${money(compare)}</span>`:""}${money(price)}</div></div></a>
+    </article>`;
+  }).join("");
+}
+async function submitReview(e){
+  e.preventDefault();
+  const name=$("reviewName").value.trim(), rating=$("reviewRating").value, text=$("reviewText").value.trim();
+  const reviews=JSON.parse(localStorage.getItem("halas_feedback")||"[]");
+  reviews.push({name,rating,text,createdAt:new Date().toISOString()});
+  localStorage.setItem("halas_feedback",JSON.stringify(reviews));
+  $("reviewStatus").textContent="Thank you. Your feedback has been saved on this device. Connect a review backend to publish it publicly.";
+  e.target.reset();
+}
+
+document.addEventListener("keydown",e=>{
+  if(!$("lightbox").classList.contains("open")) return;
+  if(e.key==="Escape") closeLightbox();
+  if(e.key==="ArrowRight") lightboxNext();
+  if(e.key==="ArrowLeft") lightboxPrev();
+});
+init();
+</script>
+</body>
+</html>
