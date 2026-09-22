@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Hala.S Clothing — Premium Pakistani Women's Fashion</title>
+  <meta name="theme-color" content="#102c3b">
   <meta name="description" content="Discover Hala.S Clothing — premium Pakistani women's fashion, new arrivals, ready to wear, unstitched collections and more.">
   <link rel="canonical" href="/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -138,7 +139,269 @@
 
     @media(max-width:950px){.links{display:none}.grid{grid-template-columns:repeat(2,1fr)}.categories{grid-template-columns:repeat(2,1fr)}.editorial{grid-template-columns:1fr}.editorial-img{min-height:420px}.footer-grid{grid-template-columns:1fr 1fr}.hero-copy{margin-left:0}.section-head h2{font-size:34px}}
     @media(max-width:560px){section{padding:55px 16px}.nav{padding:0 15px}.grid{gap:10px}.categories{gap:10px}.cat{min-height:270px}.editorial-copy{padding:40px 25px}.editorial-copy h2,.story h2{font-size:42px}.newsletter form{display:block}.newsletter input,.newsletter button{width:100%;height:48px}.newsletter button{margin-top:8px}.footer-grid{grid-template-columns:1fr}.hero{min-height:68vh}.hero-copy{padding:80px 20px}.hero h1{font-size:53px}.hero-arrow{width:38px;height:38px;font-size:16px}.hero-arrow.prev{left:12px}.hero-arrow.next{right:12px}.hero-dots{left:20px;bottom:20px}.hero-dot{width:24px}.hero-dot.active{width:40px}}
-  </style>
+  
+/* =========================================================
+   HALA.S — SUFI ART / INDIGO / TURQUOISE / GOLD THEME
+   Inspired by the user's uploaded artwork palette.
+   ========================================================= */
+:root{
+  --ink:#17120f;
+  --muted:#75675d;
+  --paper:#f5ead7;
+  --line:#d8c29b;
+  --white:#fffaf0;
+  --accent:#a9472d;
+  --navy:#102c3b;
+  --teal:#0f5b61;
+  --gold:#c8943d;
+  --rust:#a9472d;
+  --burgundy:#651f25;
+  --cream:#f5ead7;
+  --deep:#0b202b;
+}
+
+html{background:var(--cream)}
+body{
+  background:
+    radial-gradient(circle at 10% 15%, rgba(200,148,61,.12), transparent 26%),
+    radial-gradient(circle at 88% 8%, rgba(15,91,97,.10), transparent 25%),
+    linear-gradient(135deg,#f7eddb 0%,#f3e4ca 48%,#efe0c4 100%);
+  color:var(--ink);
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  opacity:.10;
+  background-image:
+    radial-gradient(circle at 20% 30%, var(--gold) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 70% 70%, var(--teal) 0 1px, transparent 1.5px);
+  background-size:46px 46px,62px 62px;
+}
+
+.bar{
+  background:linear-gradient(90deg,var(--deep),#173d4b,var(--deep)) !important;
+  color:#fff8e8 !important;
+  border-bottom:1px solid rgba(200,148,61,.35);
+}
+.bar.secondary{
+  background:linear-gradient(90deg,#b56b35,#c8943d,#b56b35) !important;
+  color:#fffaf0 !important;
+}
+
+header{
+  background:rgba(245,234,215,.94) !important;
+  border-bottom:1px solid rgba(168,125,57,.35) !important;
+  box-shadow:0 4px 24px rgba(16,44,59,.08);
+}
+.logo{
+  color:var(--navy);
+  text-shadow:0 1px 0 rgba(200,148,61,.18);
+}
+.logo small{color:var(--rust)}
+.links a{color:#263d45}
+.links a:hover{color:var(--rust);text-decoration:none}
+
+.iconbtn{color:var(--navy)}
+.iconbtn:hover{color:var(--rust)}
+
+.hero{
+  background:var(--deep) !important;
+}
+.hero-slide{background:var(--deep) !important}
+.hero-slide::after{
+  background:
+    linear-gradient(90deg,rgba(7,28,38,.78),rgba(15,66,72,.28) 48%,rgba(101,31,37,.18)),
+    linear-gradient(0deg,rgba(10,22,29,.35),transparent 45%) !important;
+}
+.hero h1{
+  color:#fff8e8;
+  text-shadow:0 3px 24px rgba(0,0,0,.3);
+}
+.hero p{color:#f5ead7}
+.eyebrow{color:#e4bd72}
+.hero .btn{
+  background:var(--rust);
+  border-color:var(--rust);
+  box-shadow:0 10px 30px rgba(101,31,37,.25);
+}
+.hero .btn:hover{background:#7f2926;border-color:#7f2926}
+.hero .btn.light{
+  background:#f8ecd7;
+  color:var(--deep);
+  border-color:#f8ecd7;
+}
+
+.hero-dot{background:rgba(245,234,215,.45)}
+.hero-dot.active{background:#e4bd72}
+.hero-arrow{
+  border-color:rgba(228,189,114,.65);
+  background:rgba(10,32,43,.28);
+}
+.hero-arrow:hover{background:rgba(169,71,45,.8)}
+
+.section-head h2,
+.categories-intro h2,
+.about-final h2,
+.story h2,
+.search-hero h1{
+  color:var(--navy);
+}
+.section-head p,
+.categories-intro p,
+.about-final p,
+.story p{color:#75675d}
+
+.product-img{
+  background:#eadcc4;
+  border:1px solid rgba(168,125,57,.22);
+}
+.product-img::after{background:var(--gold)}
+.product:hover .product-img{
+  box-shadow:0 18px 40px rgba(16,44,59,.13);
+}
+.product-title{color:#172e38}
+.price{color:var(--rust)}
+.old{color:#8f8075}
+.badge{
+  background:var(--gold);
+  color:#fffaf0;
+  border-radius:0;
+}
+.wish{
+  background:rgba(255,250,240,.92);
+  color:var(--burgundy);
+  border:1px solid rgba(168,125,57,.28);
+}
+.wish:hover{background:var(--burgundy);color:#fff}
+
+.cat{
+  background:var(--teal);
+  border:1px solid rgba(200,148,61,.35);
+}
+.cat:after{
+  background:linear-gradient(180deg,rgba(8,29,37,.04) 20%,rgba(8,29,37,.78) 100%);
+}
+.cat h3{color:#fff8e8}
+.cat small,.cat .image-hint{color:#e4bd72}
+.category-gallery-card:hover{box-shadow:0 22px 55px rgba(16,44,59,.22)}
+
+.editorial{
+  background:linear-gradient(135deg,#123b48,#0b2835) !important;
+  color:#fff8e8;
+  border-top:1px solid rgba(200,148,61,.28);
+  border-bottom:1px solid rgba(200,148,61,.28);
+}
+.editorial-copy h2{color:#fff8e8}
+.editorial-copy p{color:#e7d9c4}
+.editorial-copy .btn{
+  background:var(--gold);
+  border-color:var(--gold);
+  color:var(--deep);
+}
+.editorial-copy .btn:hover{background:#e0ae58}
+
+.story-rule{background:var(--gold) !important}
+.about-final .story-rule{background:var(--gold)}
+.newsletter{
+  background:
+    radial-gradient(circle at 50% 0%,rgba(200,148,61,.18),transparent 45%),
+    linear-gradient(135deg,#e9d6b5,#f3e5cb) !important;
+}
+.newsletter input{
+  background:#fffaf0;
+  border-color:#cdb889;
+}
+.newsletter button{
+  background:var(--deep);
+  color:#fff8e8;
+}
+
+footer{
+  background:
+    radial-gradient(circle at 85% 0%,rgba(15,91,97,.35),transparent 28%),
+    linear-gradient(135deg,#071b24,#102c3b 55%,#3f1c22) !important;
+  border-top:2px solid rgba(200,148,61,.55);
+}
+.footer-grid a:hover{color:#e4bd72}
+.footer-brand{color:#fff8e8}
+.copyright{border-color:rgba(200,148,61,.25)}
+
+.drawer{
+  background:#fffaf0;
+  border-left:3px solid var(--gold);
+}
+.drawer-head{color:var(--navy)}
+.cart-item{border-color:#dfceb0}
+.cart-total{color:var(--navy)}
+
+.btn{
+  background:var(--deep);
+  border-color:var(--deep);
+}
+.btn:hover{background:var(--rust);border-color:var(--rust)}
+
+.ai{
+  background:linear-gradient(135deg,var(--deep),var(--teal));
+  border:1px solid rgba(228,189,114,.45);
+}
+.ai-panel{
+  background:#fffaf0;
+  border:1px solid rgba(200,148,61,.28);
+}
+.ai-head{background:var(--deep);color:#fff8e8;border-bottom-color:#2d4b55}
+.msg.user{background:var(--burgundy)}
+.msg.bot{background:#eadcc4}
+.ai-form{border-top-color:#d8c29b}
+.ai-form button{background:var(--rust)}
+
+.search-form{border-color:var(--navy);background:#fffaf0}
+.search-form button{background:var(--deep)}
+.search-controls{border-color:#d8c29b}
+.filter-chip{border-color:#d1bc94;color:var(--navy)}
+.filter-chip:hover,.filter-chip.active{
+  background:var(--teal);
+  border-color:var(--teal);
+  color:#fff;
+}
+.sort-select{background:#fffaf0 !important;border-color:#d1bc94 !important}
+
+.toast{
+  background:var(--deep);
+  border:1px solid rgba(228,189,114,.5);
+  color:#fff8e8;
+}
+
+.empty{
+  color:#75675d;
+  background:rgba(255,250,240,.45);
+  border:1px dashed #cdb889;
+}
+
+/* Gold ornamental separators, echoing the uploaded artwork */
+section:not(.newsletter):not(.about-final)::before{
+  content:"✦";
+  display:block;
+  text-align:center;
+  color:var(--gold);
+  font-size:12px;
+  margin:-38px auto 24px;
+  opacity:.8;
+}
+section:first-of-type::before{display:none}
+
+@media (max-width:700px){
+  .nav{padding:0 15px}
+  .logo{font-size:23px}
+  .links{gap:12px;font-size:10px}
+  .hero-copy{margin-left:0;padding:80px 22px 110px}
+  .hero h1{font-size:clamp(42px,13vw,66px)}
+  section{padding-left:17px;padding-right:17px}
+}
+
+</style>
 </head>
 <body>
   <div id="channelBar" class="bar" aria-label="Hala.S channel announcement"></div>
@@ -352,9 +615,20 @@
   <div id="toast" class="toast"></div>
 
 <script>
-const STATIC_PRODUCTS = [{"id": "demo-1", "handle": "ivory-embroidered-set", "title": "Ivory Embroidered Set", "description": "A refined statement look from the Hala.S demo collection.", "availableForSale": true, "featuredImage": {"url": "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=900&q=85", "altText": "Ivory fashion look"}, "images": {"nodes": [{"url": "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=900&q=85", "altText": "Ivory fashion look"}, {"url": "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=900&q=85", "altText": "Ivory fashion detail"}, {"url": "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=900&q=85", "altText": "Ivory fashion side"}]}, "priceRange": {"minVariantPrice": {"amount": "12900", "currencyCode": "PKR"}}, "compareAtPriceRange": {"minVariantPrice": {"amount": "14900", "currencyCode": "PKR"}}, "productType": "Ready To Wear", "tags": ["demo", "ready-to-wear"], "variants": {"nodes": [{"id": "demo-v1", "title": "Default", "availableForSale": true, "quantityAvailable": 10, "selectedOptions": [], "price": {"amount": "12900", "currencyCode": "PKR"}, "compareAtPrice": {"amount": "14900", "currencyCode": "PKR"}}]}}, {"id": "demo-2", "handle": "rose-elegance", "title": "Rose Elegance", "description": "A soft contemporary silhouette for the Hala.S demo collection.", "availableForSale": true, "featuredImage": {"url": "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=900&q=85", "altText": "Rose fashion look"}, "images": {"nodes": [{"url": "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=900&q=85", "altText": "Rose fashion look"}, {"url": "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=900&q=85", "altText": "Rose fashion detail"}, {"url": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=85", "altText": "Rose fashion side"}]}, "priceRange": {"minVariantPrice": {"amount": "14500", "currencyCode": "PKR"}}, "compareAtPriceRange": {"minVariantPrice": {"amount": "16500", "currencyCode": "PKR"}}, "productType": "Dresses", "tags": ["demo", "dresses"], "variants": {"nodes": [{"id": "demo-v2", "title": "Default", "availableForSale": true, "quantityAvailable": 10, "selectedOptions": [], "price": {"amount": "14500", "currencyCode": "PKR"}, "compareAtPrice": {"amount": "16500", "currencyCode": "PKR"}}]}}, {"id": "demo-3", "handle": "midnight-edit", "title": "Midnight Edit", "description": "A polished evening look for the Hala.S demo collection.", "availableForSale": true, "featuredImage": {"url": "https://images.unsplash.com/photo-1496217590455-aa63a8350eea?auto=format&fit=crop&w=900&q=85", "altText": "Black fashion look"}, "images": {"nodes": [{"url": "https://images.unsplash.com/photo-1496217590455-aa63a8350eea?auto=format&fit=crop&w=900&q=85", "altText": "Black fashion look"}, {"url": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85", "altText": "Black fashion detail"}, {"url": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=85", "altText": "Black fashion side"}]}, "priceRange": {"minVariantPrice": {"amount": "15900", "currencyCode": "PKR"}}, "compareAtPriceRange": {"minVariantPrice": {"amount": "17900", "currencyCode": "PKR"}}, "productType": "Ready To Wear", "tags": ["demo", "ready-to-wear", "sale"], "variants": {"nodes": [{"id": "demo-v3", "title": "Default", "availableForSale": true, "quantityAvailable": 10, "selectedOptions": [], "price": {"amount": "15900", "currencyCode": "PKR"}, "compareAtPrice": {"amount": "17900", "currencyCode": "PKR"}}]}}, {"id": "demo-4", "handle": "modern-coord", "title": "Modern Co-Ord", "description": "Clean coordinated dressing for the Hala.S demo collection.", "availableForSale": true, "featuredImage": {"url": "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=85", "altText": "Co-ord fashion look"}, "images": {"nodes": [{"url": "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=85", "altText": "Co-ord fashion look"}, {"url": "https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=900&q=85", "altText": "Co-ord fashion detail"}, {"url": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=85", "altText": "Co-ord fashion side"}]}, "priceRange": {"minVariantPrice": {"amount": "13900", "currencyCode": "PKR"}}, "compareAtPriceRange": {"minVariantPrice": {"amount": "15900", "currencyCode": "PKR"}}, "productType": "Co-Ord Sets", "tags": ["demo", "co-ord-sets"], "variants": {"nodes": [{"id": "demo-v4", "title": "Default", "availableForSale": true, "quantityAvailable": 10, "selectedOptions": [], "price": {"amount": "13900", "currencyCode": "PKR"}, "compareAtPrice": {"amount": "15900", "currencyCode": "PKR"}}]}}, {"id": "demo-5", "handle": "linen-sand-edit", "title": "Linen Sand Edit", "description": "A relaxed neutral look for the Hala.S demo collection.", "availableForSale": true, "featuredImage": {"url": "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=85", "altText": "Linen sand fashion look"}, "images": {"nodes": [{"url": "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=85", "altText": "Linen sand fashion look"}, {"url": "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85", "altText": "Linen sand detail"}, {"url": "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=900&q=85", "altText": "Linen sand alternate view"}]}, "priceRange": {"minVariantPrice": {"amount": "11900", "currencyCode": "PKR"}}, "compareAtPriceRange": {"minVariantPrice": {"amount": "13900", "currencyCode": "PKR"}}, "productType": "Unstitched", "tags": ["demo", "unstitched", "new-in"], "variants": {"nodes": [{"id": "demo-v5", "title": "Default", "availableForSale": true, "quantityAvailable": 10, "selectedOptions": [], "price": {"amount": "11900", "currencyCode": "PKR"}, "compareAtPrice": {"amount": "13900", "currencyCode": "PKR"}}]}}, {"id": "demo-6", "handle": "fuchsia-statement-dress", "title": "Fuchsia Statement Dress", "description": "A confident colour story for the Hala.S demo collection.", "availableForSale": true, "featuredImage": {"url": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=85", "altText": "Fuchsia statement dress"}, "images": {"nodes": [{"url": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=85", "altText": "Fuchsia statement dress"}, {"url": "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=900&q=85", "altText": "Fuchsia dress alternate view"}, {"url": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=85", "altText": "Fuchsia dress detail"}]}, "priceRange": {"minVariantPrice": {"amount": "16900", "currencyCode": "PKR"}}, "compareAtPriceRange": {"minVariantPrice": {"amount": "18900", "currencyCode": "PKR"}}, "productType": "Dresses", "tags": ["demo", "dresses", "new-in"], "variants": {"nodes": [{"id": "demo-v6", "title": "Default", "availableForSale": true, "quantityAvailable": 10, "selectedOptions": [], "price": {"amount": "16900", "currencyCode": "PKR"}, "compareAtPrice": {"amount": "18900", "currencyCode": "PKR"}}]}}, {"id": "demo-7", "handle": "soft-olive-coord", "title": "Soft Olive Co-Ord", "description": "A modern coordinated silhouette for the Hala.S demo collection.", "availableForSale": true, "featuredImage": {"url": "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=85", "altText": "Olive co-ord look"}, "images": {"nodes": [{"url": "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=85", "altText": "Olive co-ord look"}, {"url": "https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=900&q=85", "altText": "Olive co-ord alternate view"}, {"url": "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85", "altText": "Olive co-ord detail"}]}, "priceRange": {"minVariantPrice": {"amount": "14900", "currencyCode": "PKR"}}, "compareAtPriceRange": {"minVariantPrice": {"amount": "16900", "currencyCode": "PKR"}}, "productType": "Co-Ord Sets", "tags": ["demo", "co-ord-sets", "new-in"], "variants": {"nodes": [{"id": "demo-v7", "title": "Default", "availableForSale": true, "quantityAvailable": 10, "selectedOptions": [], "price": {"amount": "14900", "currencyCode": "PKR"}, "compareAtPrice": {"amount": "16900", "currencyCode": "PKR"}}]}}, {"id": "demo-8", "handle": "black-evening-drape", "title": "Black Evening Drape", "description": "A clean evening silhouette for the Hala.S demo collection.", "availableForSale": true, "featuredImage": {"url": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85", "altText": "Black evening fashion look"}, "images": {"nodes": [{"url": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85", "altText": "Black evening fashion look"}, {"url": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=85", "altText": "Black evening alternate view"}, {"url": "https://images.unsplash.com/photo-1496217590455-aa63a8350eea?auto=format&fit=crop&w=900&q=85", "altText": "Black evening detail"}]}, "priceRange": {"minVariantPrice": {"amount": "15500", "currencyCode": "PKR"}}, "compareAtPriceRange": {"minVariantPrice": {"amount": "17500", "currencyCode": "PKR"}}, "productType": "Ready To Wear", "tags": ["demo", "ready-to-wear", "sale"], "variants": {"nodes": [{"id": "demo-v8", "title": "Default", "availableForSale": true, "quantityAvailable": 10, "selectedOptions": [], "price": {"amount": "15500", "currencyCode": "PKR"}, "compareAtPrice": {"amount": "17500", "currencyCode": "PKR"}}]}}];
+const SHOPIFY_CONFIG = {
+  domain: "bpzv19-kf.myshopify.com",
+  token: "4f67117e544bb4d6e446c2c58715807f",
+  apiVersion: "2026-07"
+};
+
+// Shopify Storefront API is used from this GitHub Pages frontend.
+// The token above is the PUBLIC Storefront token. Never put a private token here.
+const SHOPIFY_ENDPOINT = `https://${SHOPIFY_CONFIG.domain}/api/${SHOPIFY_CONFIG.apiVersion}/graphql.json`;
+const STATIC_PRODUCTS = [];
+
 let CONFIG = {};
 let PRODUCTS = [];
+let CATALOG_PRODUCTS = [];
 let CART_ID = localStorage.getItem("halas_cart_id") || "";
 let WISHLIST = JSON.parse(localStorage.getItem("halas_wishlist") || "[]");
 let heroIndex = 0;
@@ -449,7 +723,6 @@ async function init(){
   let heroScrollTimer=null;
   window.addEventListener("scroll",()=>{const hero=document.querySelector(".hero");if(!hero)return;hero.classList.add("is-scrolling");clearTimeout(heroScrollTimer);heroScrollTimer=setTimeout(()=>hero.classList.remove("is-scrolling"),220)},{passive:true});
   await loadProducts();
-  if(CART_ID) renderCart();
   handleRoute();
   window.addEventListener("hashchange",handleRoute);
 }
@@ -500,7 +773,66 @@ function goHero(index){
 function heroNext(){goHero(heroIndex+1)}
 function heroPrev(){goHero(heroIndex-1)}
 
-async function loadProducts(){ PRODUCTS=STATIC_PRODUCTS.slice(); renderProducts(PRODUCTS); }
+async function shopifyRequest(query, variables={}){
+  const response = await fetch(SHOPIFY_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Shopify-Storefront-Access-Token": SHOPIFY_CONFIG.token
+    },
+    body: JSON.stringify({query, variables})
+  });
+  let data;
+  try { data = await response.json(); } catch(e) { throw new Error("Shopify returned an invalid response."); }
+  if(!response.ok) throw new Error(data?.errors?.[0]?.message || `Shopify request failed (${response.status}).`);
+  if(data?.errors?.length) throw new Error(data.errors.map(x=>x.message).join("; "));
+  return data.data;
+}
+
+const SHOPIFY_PRODUCT_QUERY = `
+query Products($first:Int!, $after:String) {
+  products(first:$first, after:$after) {
+    pageInfo { hasNextPage endCursor }
+    nodes {
+      id handle title description productType tags availableForSale
+      featuredImage { url altText }
+      images(first:20) { nodes { url altText } }
+      priceRange { minVariantPrice { amount currencyCode } maxVariantPrice { amount currencyCode } }
+      compareAtPriceRange { minVariantPrice { amount currencyCode } maxVariantPrice { amount currencyCode } }
+      variants(first:100) {
+        nodes {
+          id title availableForSale price { amount currencyCode }
+          compareAtPrice { amount currencyCode }
+          selectedOptions { name value }
+        }
+      }
+    }
+  }
+}`;
+
+async function loadProducts(){
+  try {
+    const all=[];
+    let after=null;
+    do {
+      const data=await shopifyRequest(SHOPIFY_PRODUCT_QUERY,{first:100,after});
+      const connection=data?.products;
+      if(!connection) throw new Error("Shopify products response was empty.");
+      all.push(...(connection.nodes||[]));
+      after=connection.pageInfo?.hasNextPage ? connection.pageInfo.endCursor : null;
+    } while(after);
+
+    CATALOG_PRODUCTS=all;
+    PRODUCTS=all;
+    renderProducts(PRODUCTS);
+    if(!PRODUCTS.length) toast("Your Shopify store has no published products yet.");
+  } catch(error) {
+    console.error("Shopify catalog error:",error);
+    PRODUCTS=[];
+    renderProducts(PRODUCTS);
+    toast("Shopify products could not be loaded. Check the Storefront API permissions.");
+  }
+}
 
 function renderProducts(list){
   if(!list.length){$("productGrid").innerHTML='<div class="empty">No products found.</div>';return}
@@ -601,7 +933,7 @@ async function runSearchPage(){
   SEARCH_QUERY=params.get("q")||SEARCH_QUERY||"";
   if($("searchInput"))$("searchInput").value=SEARCH_QUERY;
   $("searchQueryLabel").textContent=SEARCH_QUERY?`Results for “${SEARCH_QUERY}”`:"";
-  SEARCH_RESULTS=PRODUCTS.filter(p=>!SEARCH_QUERY || p.title.toLowerCase().includes(SEARCH_QUERY.toLowerCase()) || (p.productType||"").toLowerCase().includes(SEARCH_QUERY.toLowerCase()) || (p.tags||[]).some(t=>t.toLowerCase().includes(SEARCH_QUERY.toLowerCase())));
+  SEARCH_RESULTS=CATALOG_PRODUCTS.filter(p=>!SEARCH_QUERY || p.title.toLowerCase().includes(SEARCH_QUERY.toLowerCase()) || (p.productType||"").toLowerCase().includes(SEARCH_QUERY.toLowerCase()) || (p.tags||[]).some(t=>t.toLowerCase().includes(SEARCH_QUERY.toLowerCase())));
   applySearchFilters(); window.scrollTo({top:0,behavior:"smooth"});
 }
 function searchProducts(q){window.location.hash="search?q="+encodeURIComponent(q||"")}
@@ -630,22 +962,138 @@ async function addSelectedProductToCart(){
   closeProductModal();
 }
 
-function addToCart(variantId){
-  const p=PRODUCTS.find(x=>(x.variants?.nodes||[]).some(v=>v.id===variantId)); if(!p){toast("Unable to add this item");return}
-  const v=p.variants.nodes.find(x=>x.id===variantId); const cart=JSON.parse(localStorage.getItem("halas_cart")||"[]");
-  const existing=cart.find(x=>x.variantId===variantId); if(existing) existing.quantity++; else cart.push({variantId,pId:p.id,handle:p.handle,title:p.title,variantTitle:v.title,price:v.price,image:p.featuredImage?.url||p.images?.nodes?.[0]?.url,quantity:1});
-  localStorage.setItem("halas_cart",JSON.stringify(cart)); renderCart(); openCart(); toast("Added to bag");
+async function fetchCart(){
+  if(!CART_ID) return null;
+  const data=await shopifyRequest(`
+    query Cart($id:ID!) {
+      cart(id:$id) {
+        id checkoutUrl totalQuantity
+        cost { subtotalAmount { amount currencyCode } totalAmount { amount currencyCode } }
+        lines(first:100) {
+          nodes {
+            id quantity
+            merchandise {
+              ... on ProductVariant {
+                id title price { amount currencyCode }
+                product { id title handle featuredImage { url altText } }
+              }
+            }
+          }
+        }
+      }
+    }`,{id:CART_ID});
+  return data?.cart || null;
 }
-function renderCart(){
-  const cart=JSON.parse(localStorage.getItem("halas_cart")||"[]");
-  if(!cart.length){$("cartItems").innerHTML='<div class="empty">Your bag is empty.</div>';$("cartSummary").innerHTML="";return;}
-  $("cartItems").innerHTML=cart.map((l,i)=>`<div class="cart-item"><img src="${l.image||''}" alt=""><div><b>${escapeHtml(l.title)}</b><div>${escapeHtml(l.variantTitle||"")}</div><div>${money(l.price)}</div><div style="margin-top:8px">Qty: ${l.quantity}</div></div><button onclick="removeLine(${i})">×</button></div>`).join("");
-  const total=cart.reduce((sum,l)=>sum+Number(l.price.amount)*l.quantity,0); const cur=cart[0].price.currencyCode||"PKR";
-  $("cartSummary").innerHTML=`<div class="cart-total"><span>Total</span><span>${money({amount:total,currencyCode:cur})}</span></div><button class="btn" style="width:100%;text-align:center" onclick="toast('Shopify checkout will be connected after Shopify integration.')">CHECKOUT</button>`;
+
+function saveCartId(id){
+  CART_ID=id||"";
+  if(CART_ID) localStorage.setItem("halas_cart_id",CART_ID);
+  else localStorage.removeItem("halas_cart_id");
 }
-function openCart(){$("cartDrawer").classList.add("open");renderCart()}
+
+async function addToCart(variantId){
+  try {
+    let cart;
+    if(!CART_ID){
+      const data=await shopifyRequest(`
+        mutation CreateCart($lines:[CartLineInput!]) {
+          cartCreate(input:{lines:$lines}) {
+            cart { id checkoutUrl totalQuantity cost { subtotalAmount { amount currencyCode } totalAmount { amount currencyCode } } lines(first:100){nodes{id quantity merchandise{... on ProductVariant{id title price{amount currencyCode} product{id title handle featuredImage{url altText}}}}}} }
+            userErrors { field message }
+          }
+        }`,{lines:[{merchandiseId:variantId,quantity:1}]});
+      const result=data?.cartCreate;
+      if(result?.userErrors?.length) throw new Error(result.userErrors.map(x=>x.message).join("; "));
+      cart=result?.cart;
+      if(!cart?.id) throw new Error("Shopify did not return a cart.");
+      saveCartId(cart.id);
+    } else {
+      const data=await shopifyRequest(`
+        mutation AddLines($cartId:ID!,$lines:[CartLineInput!]!) {
+          cartLinesAdd(cartId:$cartId,lines:$lines) {
+            cart { id checkoutUrl totalQuantity cost { subtotalAmount { amount currencyCode } totalAmount { amount currencyCode } } lines(first:100){nodes{id quantity merchandise{... on ProductVariant{id title price{amount currencyCode} product{id title handle featuredImage{url altText}}}}}} }
+            userErrors { field message }
+          }
+        }`,{cartId:CART_ID,lines:[{merchandiseId:variantId,quantity:1}]});
+      const result=data?.cartLinesAdd;
+      if(result?.userErrors?.length) throw new Error(result.userErrors.map(x=>x.message).join("; "));
+      cart=result?.cart;
+      if(!cart) throw new Error("Shopify cart was not returned.");
+    }
+    renderCart(cart);
+    openCart();
+    toast("Added to bag");
+  } catch(error) {
+    console.error("Shopify cart error:",error);
+    // If an old/expired cart ID is stored, create a fresh cart on the next attempt.
+    saveCartId("");
+    toast(error.message || "Unable to add this item.");
+  }
+}
+
+function renderCart(cart){
+  if(!cart){
+    if(!CART_ID){
+      $("cartItems").innerHTML='<div class="empty">Your bag is empty.</div>';
+      $("cartSummary").innerHTML="";
+      return;
+    }
+    fetchCart().then(c=>renderCart(c)).catch(error=>{console.error(error);saveCartId("");renderCart(null);});
+    return;
+  }
+
+  const lines=cart.lines?.nodes||[];
+  if(!lines.length){
+    $("cartItems").innerHTML='<div class="empty">Your bag is empty.</div>';
+    $("cartSummary").innerHTML="";
+    return;
+  }
+
+  $("cartItems").innerHTML=lines.map(line=>{
+    const v=line.merchandise;
+    const p=v?.product;
+    return `<div class="cart-item"><img src="${p?.featuredImage?.url||''}" alt="${escapeHtml(p?.featuredImage?.altText||p?.title||'')}"><div><b>${escapeHtml(p?.title||'Product')}</b><div>${escapeHtml(v?.title||'')}</div><div>${money(v?.price)}</div><div style="margin-top:8px">Qty: ${line.quantity}</div></div><button onclick="removeLine('${escapeJs(line.id)}')">×</button></div>`;
+  }).join("");
+
+  const total=cart.cost?.totalAmount;
+  $("cartSummary").innerHTML=`<div class="cart-total"><span>Total</span><span>${money(total)}</span></div><button class="btn" style="width:100%;text-align:center" onclick="checkoutShopify()">CHECKOUT</button>`;
+}
+
+async function openCart(){
+  $("cartDrawer").classList.add("open");
+  try { renderCart(await fetchCart()); } catch(error) { console.error(error); toast("Unable to load your bag."); }
+}
 function closeCart(){$("cartDrawer").classList.remove("open")}
-function removeLine(i){const cart=JSON.parse(localStorage.getItem("halas_cart")||"[]");cart.splice(i,1);localStorage.setItem("halas_cart",JSON.stringify(cart));renderCart();}
+
+async function removeLine(lineId){
+  if(!CART_ID) return;
+  try {
+    const data=await shopifyRequest(`
+      mutation RemoveLines($cartId:ID!,$lineIds:[ID!]!) {
+        cartLinesRemove(cartId:$cartId,lineIds:$lineIds) {
+          cart { id checkoutUrl totalQuantity cost { subtotalAmount { amount currencyCode } totalAmount { amount currencyCode } } lines(first:100){nodes{id quantity merchandise{... on ProductVariant{id title price{amount currencyCode} product{id title handle featuredImage{url altText}}}}}} }
+          userErrors { field message }
+        }
+      }`,{cartId:CART_ID,lineIds:[lineId]});
+    const result=data?.cartLinesRemove;
+    if(result?.userErrors?.length) throw new Error(result.userErrors.map(x=>x.message).join("; "));
+    renderCart(result.cart);
+  } catch(error) {
+    console.error("Shopify remove-line error:",error);
+    toast(error.message || "Unable to remove item.");
+  }
+}
+
+async function checkoutShopify(){
+  try {
+    const cart=await fetchCart();
+    if(!cart?.checkoutUrl){toast("Your bag is empty.");return;}
+    window.location.href=cart.checkoutUrl;
+  } catch(error) {
+    console.error(error);
+    toast("Unable to open Shopify checkout.");
+  }
+}
 
 function toggleAI(){$("aiPanel").classList.toggle("open");$("aiInput").focus()}
 async function askAI(e){
@@ -708,7 +1156,7 @@ async function loadCollection(handle){
   setPageIntro(label,descriptions[handle]||"Explore the Hala.S collection.");
   const heading=$("new").querySelector("h2"),sub=$("new").querySelector(".section-head p"); if(heading)heading.textContent=label;if(sub)sub.textContent="Browse the Hala.S collection.";
   const mapping={dresses:p=>p.tags.includes("dresses"),"ready-to-wear":p=>p.tags.includes("ready-to-wear"),unstitched:p=>p.tags.includes("unstitched"),"co-ord-sets":p=>p.tags.includes("co-ord-sets"),sale:p=>p.tags.includes("sale"),"new-in":p=>p.tags.includes("new-in")};
-  PRODUCTS=(mapping[handle]?STATIC_PRODUCTS.filter(mapping[handle]):STATIC_PRODUCTS).slice();
+  PRODUCTS=(mapping[handle]?CATALOG_PRODUCTS.filter(mapping[handle]):CATALOG_PRODUCTS).slice();
   $("productGrid").innerHTML=PRODUCTS.length?renderProductMarkup(PRODUCTS):'<div class="empty">No products in this collection yet.</div>';
   attachProductHoverImages(); $("new").scrollIntoView({behavior:"smooth"});
 }
