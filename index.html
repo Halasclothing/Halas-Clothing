@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=2200&q=88" fetchpriority="high">
   <style>
     :root {
       --ink: #242321;
@@ -1198,156 +1199,6 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
 <style id="halas-mobile-menu-clear-fix">
 .site-header{z-index:1003!important;}.mobile-menu{z-index:1004!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:rgba(35,31,28,.995)!important;}body.menu-open::after{z-index:1000!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
 </style>
-
-<style id="halas-final-product-header-fix">
-/* Shopify-only catalogue */
-.collection-message{grid-column:1/-1;}
-
-/* Product dialog: keep close button permanently visible while only the content scrolls. */
-.product-dialog{
-  height:min(720px,calc(100vh - 48px));
-  max-height:min(720px,calc(100vh - 48px));
-  overflow:hidden!important;
-}
-.modal-gallery{height:100%;min-height:0!important;overflow:hidden;}
-.modal-info{height:100%;min-height:0!important;overflow-y:auto;overflow-x:hidden;justify-content:flex-start;padding-top:72px!important;padding-bottom:55px!important;scrollbar-width:thin;}
-.modal-description-list{gap:11px!important;}
-.modal-description-list li{font-size:13px!important;line-height:1.7!important;}
-.modal-close{position:absolute!important;top:14px!important;right:14px!important;z-index:9999!important;}
-
-/* Transparent editorial header with automatic light/dark contrast. */
-.site-header{background:transparent!important;box-shadow:none!important;}
-.nav-shell{background:transparent!important;border-color:transparent!important;}
-.brand,.menu-toggle,.nav-tools .tool-button{
-  color:#fff!important;
-  mix-blend-mode:difference;
-}
-.brand__descriptor{color:inherit!important;}
-.menu-toggle .icon,.nav-tools .icon{color:inherit!important;stroke:currentColor!important;}
-.tool-count{mix-blend-mode:normal!important;}
-
-/* Match the compact mobile control sizing on desktop too. */
-.nav-shell{min-height:64px!important;}
-.menu-toggle{width:42px!important;height:42px!important;}
-.menu-toggle .icon{width:23px!important;height:23px!important;}
-.brand{gap:6px!important;padding-left:10px!important;}
-.brand__name{font-size:26px!important;line-height:1!important;font-weight:900!important;letter-spacing:-.045em!important;}
-.brand__descriptor{margin-top:0!important;font-size:6px!important;letter-spacing:.23em!important;line-height:1!important;}
-.nav-tools .tool-button{width:36px!important;height:40px!important;min-width:36px!important;}
-.nav-tools .icon{width:19px!important;height:19px!important;}
-
-@media(max-width:700px){
-  .site-header{background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
-  .nav-shell{min-height:50px!important;background:transparent!important;border:0!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
-  .brand,.menu-toggle,.nav-tools .tool-button{mix-blend-mode:difference!important;}
-  .product-dialog{
-    width:calc(100vw - 18px)!important;
-    height:calc(100dvh - 18px)!important;
-    max-height:calc(100dvh - 18px)!important;
-    margin:9px!important;
-    display:flex!important;
-    flex-direction:column!important;
-    overflow:hidden!important;
-  }
-  .modal-gallery{
-    flex:0 0 52dvh!important;
-    height:52dvh!important;
-    min-height:300px!important;
-    grid-template-columns:58px 1fr!important;
-    padding:12px!important;
-  }
-  .modal-thumb{width:58px!important;}
-  .modal-info{
-    flex:1 1 auto!important;
-    width:100%!important;
-    height:auto!important;
-    min-height:0!important;
-    overflow-y:auto!important;
-    padding:28px 18px 28px!important;
-    justify-content:flex-start!important;
-  }
-  .modal-info h2{font-size:38px!important;}
-  .modal-description-list li{font-size:12px!important;line-height:1.65!important;}
-  .modal-close{top:10px!important;right:10px!important;width:42px!important;height:42px!important;font-size:24px!important;}
-}
-</style>
-
-
-<style id="halas-desktop-mobile-parity-final">
-/* Final header parity: the desktop header uses the same compact controls as mobile,
-   remains in the document flow, and becomes sticky instead of covering product/collection imagery. */
-.site-header{
-  position:sticky!important;
-  top:0!important;
-  left:auto!important;
-  right:auto!important;
-  width:100%!important;
-  height:auto!important;
-  min-height:0!important;
-  z-index:1000!important;
-  background:transparent!important;
-  border:0!important;
-  box-shadow:none!important;
-  pointer-events:none!important;
-}
-.site-header .nav-shell{pointer-events:auto!important;}
-.nav-shell{
-  min-height:58px!important;
-  height:58px!important;
-  padding:0 12px!important;
-  display:flex!important;
-  align-items:center!important;
-  gap:5px!important;
-  background:transparent!important;
-  border:0!important;
-  border-radius:0!important;
-  backdrop-filter:none!important;
-  -webkit-backdrop-filter:none!important;
-}
-.menu-toggle{
-  order:-1!important;
-  width:42px!important;height:42px!important;
-  min-width:42px!important;
-  margin:0!important;
-  border:0!important;
-  border-radius:0!important;
-  background:transparent!important;
-  color:currentColor!important;
-  filter:drop-shadow(0 2px 5px rgba(0,0,0,.35))!important;
-}
-.menu-toggle .icon{width:23px!important;height:23px!important;stroke:currentColor!important;}
-.brand{
-  gap:6px!important;
-  padding-left:10px!important;
-  margin-left:0!important;
-  color:currentColor!important;
-  filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))!important;
-}
-.brand__name{font-size:25px!important;font-weight:900!important;line-height:1!important;letter-spacing:-.04em!important;}
-.brand__descriptor{margin-top:0!important;font-size:5.5px!important;letter-spacing:.24em!important;line-height:1!important;}
-.nav-tools{margin-left:auto!important;position:relative!important;z-index:1003!important;display:flex!important;align-items:center!important;gap:2px!important;}
-.nav-tools .tool-button{
-  width:35px!important;height:40px!important;min-width:35px!important;
-  color:currentColor!important;
-  background:transparent!important;
-  border:0!important;
-  filter:drop-shadow(0 2px 5px rgba(0,0,0,.35))!important;
-}
-.nav-tools .icon{width:18px!important;height:18px!important;stroke:currentColor!important;}
-/* Automatic contrast over light/dark imagery without adding an opaque header. */
-.site-header,.site-header .nav-shell,.site-header .brand,.site-header .menu-toggle,.site-header .nav-tools .tool-button{mix-blend-mode:difference!important;color:#fff!important;}
-.site-header .menu-toggle .icon,.site-header .nav-tools .icon{stroke:#fff!important;}
-.site-header.is-scrolled{background:transparent!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
-.site-header.is-scrolled .nav-shell{background:transparent!important;}
-/* Never let a fixed/floating legacy rule cover collection images. */
-.catalog-main,.collection-page,main{scroll-margin-top:58px;}
-@media(max-width:700px){
-  .site-header{position:sticky!important;top:0!important;}
-  .nav-shell{min-height:58px!important;height:58px!important;padding:0 9px!important;}
-  .site-header.is-scrolled{background:transparent!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
-}
-</style>
-
 </head>
 <body>
   <div class="top-marquee-stack" aria-label="Hala.S announcements">
@@ -1604,13 +1455,13 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
   <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top"><svg class="icon icon--small" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg></button>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <button class="chat-launcher" id="chatLauncher" data-channel-open type="button" aria-label="Open Hala.S Chat" aria-expanded="false">
-    <span class="chat-launcher__mark" aria-hidden="true">&#10022;</span><span class="chat-launcher__label">Hala.S Chat</span>
+  <button class="chat-launcher" id="chatLauncher" type="button" aria-label="Open Hala.S concierge" aria-expanded="false">
+    <span class="chat-launcher__mark" aria-hidden="true">&#10022;</span><span class="chat-launcher__label">Hala.S concierge</span>
   </button>
 
   <aside class="chat-panel" id="chatPanel" role="dialog" aria-modal="false" aria-labelledby="chatTitle" aria-hidden="true">
     <div class="chat-panel__header">
-      <div class="chat-panel__brand"><span class="chat-avatar" aria-hidden="true">&#10022;</span><div><strong id="chatTitle">Hala.S Chat</strong><small>Private shopping assistance</small></div></div>
+      <div class="chat-panel__brand"><span class="chat-avatar" aria-hidden="true">&#10022;</span><div><strong id="chatTitle">Hala.S concierge</strong><small>Private shopping assistance</small></div></div>
       <button class="chat-panel__close" id="chatClose" type="button" aria-label="Minimize concierge">×</button>
     </div>
     <div class="chat-panel__body">
@@ -1645,8 +1496,48 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
 
       const image = (id, width = 1200) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=88`;
       // Zero-config preview catalog. Replace this array with a Shopify Storefront API response for live inventory.
-      // Shopify is the sole catalogue source. Products are populated after the live Shopify request succeeds.
-      const products = [];
+      const products = [
+        {
+                  id: "hala-zohra", category: "Unstitched", title: "Zohra embroidered kurta", price: 12900, oldPrice: 15900, badge: "New", color: "Saffron", colorHex: "#bd783c", colors: ["Saffron", "Midnight"], sizes: ["XS", "S", "M", "L", "XL"],
+                  description: "A flowing three-piece unstitched suit with a modern embroidered neckline, airy dupatta and just enough drama for every plan.",
+                  images: [image("photo-1610030469983-98e550d6193c", 1200), image("photo-1551488831-00ddcb6c6bd3", 1200), image("photo-1539109136881-3be0616acf4b", 1200)]
+                },
+        {
+                  id: "hala-noor", category: "Ready To Wear", title: "Noor silk co-ord", price: 11200, oldPrice: 13400, badge: "Bestseller", color: "Emerald", colorHex: "#557c6d", colors: ["Emerald", "Ivory"],
+                  description: "A softly structured co-ord in lustrous silk, cut for movement and finished with a clean, quietly confident line.",
+                  images: [image("photo-1595777457583-95e059d581b8", 1200), image("photo-1490481651871-ab68de25d43d", 1200), image("photo-1509631179647-0177331693ae", 1200)]
+                },
+        {
+                  id: "hala-zoya", category: "Dresses", title: "Zoya pleated dress", price: 14900, oldPrice: 17900, badge: "Limited", color: "Rosewood", colorHex: "#8a4a55", colors: ["Rosewood", "Midnight"],
+                  description: "An architectural pleated dress with a sculptural shoulder and a sweep of movement that feels effortless from every angle.",
+                  images: [image("photo-1566174053879-31528523f8ae", 1200), image("photo-1529139574466-a303027c1d8b", 1200), image("photo-1515886657613-9f3515b0c78f", 1200)]
+                },
+        {
+                  id: "hala-ayla", category: "Unstitched", title: "Ayla lawn three piece", price: 8950, oldPrice: 10900, badge: "20% off", color: "Azure", colorHex: "#7598a3", colors: ["Azure", "Rose", "Cream"],
+                  description: "A light, breathable lawn ensemble with a graceful print, considered finishing and the ease of a wardrobe essential.",
+                  images: [image("photo-1610652492500-ded49ceeb378", 1200), image("photo-1558769132-cb1aea458c5e", 1200), image("photo-1610030469983-98e550d6193c", 1200)]
+                },
+        {
+                  id: "hala-mina", category: "Ready To Wear", title: "Mina organza set", price: 10800, oldPrice: 12500, badge: "New", color: "Ochre", colorHex: "#bf8a3c", colors: ["Ochre", "Teal"],
+                  description: "A luminous organza set with a modern cropped kurta, a graceful dupatta and a palette that catches the light beautifully.",
+                  images: [image("photo-1496747611176-843222e1e57c", 1200), image("photo-1594633312681-425c7b97ccd1", 1200), image("photo-1485968579580-b6d095142e6e", 1200)]
+                },
+        {
+                  id: "hala-rumi", category: "Dresses", title: "Rumi velvet dress", price: 16500, oldPrice: 19000, badge: "Limited", color: "Midnight", colorHex: "#293746", colors: ["Midnight", "Plum"],
+                  description: "A rich velvet occasion dress with a precise neckline, a fluid skirt and a finish that rewards the light.",
+                  images: [image("photo-1539109136881-3be0616acf4b", 1200), image("photo-1525507119028-ed4c629a60a3", 1200), image("photo-1490481651871-ab68de25d43d", 1200)]
+                },
+        {
+                  id: "hala-tala", category: "Co-Ord Sets", title: "Tala everyday co-ord", price: 9900, oldPrice: null, badge: "New", color: "Cloud", colorHex: "#cfc8ba", colors: ["Cloud", "Ink", "Sage"],
+                  description: "A relaxed cotton co-ord designed for slow mornings and full plans, with clean lines and considered utility details.",
+                  images: [image("photo-1485968579580-b6d095142e6e", 1200), image("photo-1485230895905-ec40ba36b9bc", 1200), image("photo-1496217590455-aa63a8350eea", 1200)]
+                },
+        {
+                  id: "hala-sana", category: "Ready To Wear", title: "Sana signature shirt", price: 7400, oldPrice: 8500, badge: "20% off", color: "Ink", colorHex: "#344b52", colors: ["Ink", "Ivory", "Terracotta"],
+                  description: "The shirt you will reach for on repeat — softly tailored, quietly textured and made to look better with every wear.",
+                  images: [image("photo-1503342217505-b0a15ec3261c", 1200), image("photo-1496747611176-843222e1e57c", 1200), image("photo-1551488831-00ddcb6c6bd3", 1200)]
+                }
+      ];
 
 
       /* Hala.S Shopify Storefront integration — public Storefront token only.
@@ -1673,59 +1564,18 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
             }
           }
         }`;
-
-        // Primary source: Shopify Storefront API. If the token/API version is unavailable,
-        // use Shopify's public products.json feed so the live catalogue still appears.
-        try {
-          const response = await fetch(shopifyEndpoint(), {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "X-Shopify-Storefront-Access-Token": HALAS_SHOPIFY.storefrontToken
-            },
-            body: JSON.stringify({ query, variables: { first: 100 } })
-          });
-          if (!response.ok) throw new Error(`Shopify HTTP ${response.status}`);
-          const payload = await response.json();
-          if (payload.errors?.length) throw new Error(payload.errors.map(error => error.message).join("; "));
-          const nodes = payload.data?.products?.nodes || [];
-          if (nodes.length) return nodes;
-          throw new Error("Shopify returned no published products");
-        } catch (storefrontError) {
-          console.warn("Hala.S Storefront API unavailable; trying public Shopify catalogue feed.", storefrontError);
-          const fallbackResponse = await fetch(`https://${HALAS_SHOPIFY.domain}/products.json?limit=250`, {
-            method: "GET",
-            headers: { "Accept": "application/json" },
-            cache: "no-store"
-          });
-          if (!fallbackResponse.ok) throw new Error(`Shopify catalogue HTTP ${fallbackResponse.status}`);
-          const fallbackPayload = await fallbackResponse.json();
-          const fallbackProducts = Array.isArray(fallbackPayload.products) ? fallbackPayload.products : [];
-          return fallbackProducts.map(product => ({
-            id: `gid://shopify/Product/${product.id}`,
-            title: product.title,
-            handle: product.handle,
-            descriptionHtml: product.body_html || "",
-            productType: product.product_type || "",
-            tags: Array.isArray(product.tags) ? product.tags : String(product.tags || "").split(",").map(tag => tag.trim()).filter(Boolean),
-            createdAt: product.created_at,
-            images: {
-              nodes: (product.images || []).slice(0, 8).map(image => ({ url: image.src, altText: image.alt || product.title }))
-            },
-            variants: {
-              nodes: (product.variants || []).slice(0, 20).map(variant => ({
-                id: `gid://shopify/ProductVariant/${variant.id}`,
-                title: variant.title,
-                availableForSale: Boolean(variant.available),
-                price: { amount: variant.price, currencyCode: "PKR" },
-                compareAtPrice: variant.compare_at_price ? { amount: variant.compare_at_price, currencyCode: "PKR" } : null,
-                selectedOptions: [
-                  { name: "Size", value: variant.option1 || "One size" }
-                ]
-              }))
-            }
-          }));
-        }
+        const response = await fetch(shopifyEndpoint(), {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Shopify-Storefront-Access-Token": HALAS_SHOPIFY.storefrontToken
+          },
+          body: JSON.stringify({ query, variables: { first: 40 } })
+        });
+        if (!response.ok) throw new Error(`Shopify HTTP ${response.status}`);
+        const payload = await response.json();
+        if (payload.errors?.length) throw new Error(payload.errors.map(error => error.message).join("; "));
+        return payload.data?.products?.nodes || [];
       }
 
       function shopifyCategory(product) {
@@ -1777,7 +1627,6 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
           colors: ["Shopify"],
           sizes: sizes.length ? sizes : ["One size"],
           description: (product.descriptionHtml || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim() || "Available from the Hala.S Shopify collection.",
-          descriptionHtml: product.descriptionHtml || "",
           images: images.length ? images : ["https://placehold.co/800x1000/f3eee6/6c5b4c?text=Hala.S"],
           source: "shopify"
         };
@@ -1786,20 +1635,38 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
       async function initShopifyCatalog() {
         try {
           const liveProducts = await fetchShopifyProducts();
-          const mapped = liveProducts
-            .map(shopifyProductToLocal)
-            .filter(product => product.price > 0 && product.images.length && product.shopifyVariantId);
+          const mapped = liveProducts.map(shopifyProductToLocal).filter(product => product.price > 0 && product.images.length);
+          if (!mapped.length) return;
 
+          // Connect the remaining local product cards to matching Shopify products when titles match.
+          // Local images/details remain the visual fallback; Shopify supplies live price, availability and variants.
+          const existingLocal = products.filter(product => product.source !== "shopify");
+          const matchedIds = new Set();
+          existingLocal.forEach(local => {
+            const wanted = normalizeShopifyTitle(local.shopifyMatchTitle || local.title);
+            const match = mapped.find(item => normalizeShopifyTitle(item.title) === wanted);
+            if (match) {
+              Object.assign(local, {
+                shopifyId: match.shopifyId,
+                shopifyHandle: match.shopifyHandle,
+                shopifyVariantId: match.shopifyVariantId,
+                shopifyVariantMap: match.shopifyVariantMap,
+                price: match.price,
+                oldPrice: match.oldPrice,
+                sizes: match.sizes,
+                shopifyConnected: true
+              });
+              matchedIds.add(match.id);
+            }
+          });
+          const unmatchedShopify = mapped.filter(product => !matchedIds.has(product.id));
           products.length = 0;
-          products.push(...mapped);
+          products.push(...existingLocal, ...unmatchedShopify);
           renderRoute(currentRoute(), false);
-          if (mapped.length) {
-            showToast(`Shopify connected — ${mapped.length} live product${mapped.length === 1 ? "" : "s"} loaded`);
-          }
+          // Do not show a connection toast on page load.
         } catch (error) {
           console.warn("Hala.S Shopify connection unavailable:", error);
-          products.length = 0;
-          renderRoute(currentRoute(), false);
+          // The local Hala.S catalogue remains fully usable if Shopify is unavailable.
         }
       }
 
@@ -1855,7 +1722,7 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
       }
 
       const UPLOADED_CATALOGUE = (product) => product.source === "uploaded-catalogue";
-      const IS_CATALOG_PRODUCT = (product) => product?.source === "shopify" && Number(product?.price || 0) > 0 && Array.isArray(product?.images) && product.images.length > 0 && Boolean(product?.shopifyVariantId);
+      const IS_CATALOG_PRODUCT = (product) => Number(product?.price || 0) > 0 && Array.isArray(product?.images) && product.images.length > 0;
       const COLLECTION_META = {
   "new-in": {
     label: "New in",
@@ -1878,7 +1745,7 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
   "ready-to-wear": {
     label: "Ready to wear",
     description: "Polished everyday pieces designed for effortless, contemporary dressing.",
-    filter: product => IS_CATALOG_PRODUCT(product)
+    filter: product => IS_CATALOG_PRODUCT(product) && product.category === "Ready To Wear"
   },
 
   dresses: {
@@ -2182,25 +2049,12 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
       function openCart() { renderCart(); openDrawer(cartDrawer); }
       function openWishlist() { renderWishlist(); openDrawer(wishlistDrawer); }
 
-      function descriptionPoints(description, descriptionHtml = "") {
-        const source = String(descriptionHtml || "").trim();
-        let points = [];
-
-        if (source) {
-          const doc = new DOMParser().parseFromString(source, "text/html");
-          const listItems = [...doc.querySelectorAll("li")].map(node => node.textContent.trim()).filter(Boolean);
-          const blocks = [...doc.querySelectorAll("p, h1, h2, h3, h4, h5, h6")].map(node => node.textContent.trim()).filter(Boolean);
-          points = listItems.length ? listItems : blocks;
-        }
-
+      function descriptionPoints(description) {
         const raw = String(description || "").replace(/\s+/g, " ").trim();
-        if (!points.length && raw) {
-          points = raw.split(/(?<=[.!?])\s+|;\s+|\s+•\s+/).map(item => item.trim().replace(/^[•\-:]+\s*/, "")).filter(Boolean);
-        }
-
-        if (!points.length) points = ["Available from the Hala.S Shopify collection."];
-        points = [...new Set(points)].filter(Boolean);
-        return `<ul class="modal-description-list">${points.map(point => `<li>${point}</li>`).join("")}</ul>`;
+        if (!raw) return '<ul class="modal-description-list"><li>Available from the Hala.S collection.</li></ul>';
+        const points = raw.split(/(?<=[.!?])\s+|,\s+(?=[A-Z])/).map(item => item.trim().replace(/^[•\-]+\s*/, "")).filter(Boolean);
+        const unique = [...new Set(points)];
+        return `<ul class="modal-description-list">${unique.map(point => `<li>${point}</li>`).join("")}</ul>`;
       }
       let productGalleryTimer = null;
       let productGalleryIndex = 0;
@@ -2243,7 +2097,7 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
         $("#modalCategory").textContent = product.category;
         $("#modalName").textContent = product.title;
         $("#modalPrice").innerHTML = `${product.oldPrice ? `<del>${money(product.oldPrice)}</del>` : ""}${money(product.price)}`;
-        $("#modalDescription").innerHTML = descriptionPoints(product.description, product.descriptionHtml);
+        $("#modalDescription").innerHTML = descriptionPoints(product.description);
         setupProductGallery(product);
         $("#sizeOptions").innerHTML = (product.sizes || ["One size"]).map((size, index) => `<button class="size-option ${index === 0 ? "is-selected" : ""}" type="button" data-size="${size}">${size}</button>`).join("");
         $$('[data-size]', $("#sizeOptions")).forEach((button) => button.addEventListener("click", () => {
@@ -2264,16 +2118,7 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
         document.body.classList.add("is-locked");
         setTimeout(() => $("#productClose").focus(), 50);
       }
-      function closeProductModal() {
-        stopProductGallery();
-        const opener = document.querySelector(`[data-open-product="${CSS.escape(state.modalProduct?.id || "")}"]`);
-        const fallback = document.activeElement === $("#productClose") ? (opener || document.body) : null;
-        if (fallback && typeof fallback.focus === "function") fallback.focus({ preventScroll: true });
-        productModal.classList.remove("is-open");
-        productModal.setAttribute("aria-hidden", "true");
-        state.modalProduct = null;
-        if (!cartDrawer.classList.contains("is-open") && !wishlistDrawer.classList.contains("is-open")) document.body.classList.remove("is-locked");
-      }
+      function closeProductModal() { stopProductGallery(); productModal.classList.remove("is-open"); productModal.setAttribute("aria-hidden", "true"); if (!cartDrawer.classList.contains("is-open") && !wishlistDrawer.classList.contains("is-open")) document.body.classList.remove("is-locked"); }
 
       function openImageViewer(images, index, title) {
         state.viewerImages = images; state.viewerIndex = index;
@@ -2446,12 +2291,7 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
 
       function channelWasDismissed() { return false; }
 
-      function dismissChannelPopup() {
-        const opener = document.querySelector('[data-channel-open]') || $("#chatLauncher") || document.body;
-        if (document.activeElement && channelPopup.contains(document.activeElement)) opener.focus?.({ preventScroll: true });
-        channelPopup.classList.remove("is-open");
-        channelPopup.setAttribute("aria-hidden", "true");
-      }
+      function dismissChannelPopup() { channelPopup.classList.remove("is-open"); channelPopup.setAttribute("aria-hidden", "true"); }
 
       function openChannelPopup() {
         if (currentRoute() !== "/" || chatPanel.classList.contains("is-open")) return;
@@ -2701,8 +2541,7 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
         $("#wishlistOpen").addEventListener("click", openWishlist);
         $("#searchOpen").addEventListener("click", openSearch);
         $("#searchClose").addEventListener("click", closeSearch);
-        $("#productClose").addEventListener("pointerdown", (event) => { event.preventDefault(); event.stopPropagation(); closeProductModal(); }, true);
-        $("#productClose").addEventListener("click", (event) => { event.preventDefault(); event.stopPropagation(); closeProductModal(); }, true);
+        $("#productClose").addEventListener("click", closeProductModal);
         $("#imageClose").addEventListener("click", closeImageViewer);
         $("#imagePrev").addEventListener("click", () => updateImageViewer(-1));
         $("#imageNext").addEventListener("click", () => updateImageViewer(1));
@@ -2743,21 +2582,5 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
       initReveal();
     })();
   </script>
-
-<style id="halas-final-stability-fix">
-/* Final stability: transparent floating header, fast rendering, no layout flash. */
-.site-header{background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
-.site-header,.nav-shell,.menu-toggle,.brand,.nav-tools{will-change:auto!important;}
-.product-media img,.visual-panel__image,.visual-panel__video{content-visibility:auto;}
-</style>
-<script>
-(function(){
-  // Prevent an unnecessary favicon 404 when this single-file site is hosted without /favicon.ico.
-  if (!document.querySelector('link[rel="icon"]')) {
-    const icon=document.createElement('link'); icon.rel='icon'; icon.href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="%23302a25"/><text x="32" y="43" text-anchor="middle" font-size="34" fill="%23f7f3ec" font-family="Georgia">H</text></svg>'; document.head.appendChild(icon);
-  }
-})();
-</script>
-
 </body>
 </html>
