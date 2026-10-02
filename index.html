@@ -9,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=2200&q=88" fetchpriority="high">
   <style>
     :root {
       --ink: #242321;
@@ -1605,13 +1604,13 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
   <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top"><svg class="icon icon--small" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg></button>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <button class="chat-launcher" id="chatLauncher" type="button" aria-label="Open Hala.S concierge" aria-expanded="false">
-    <span class="chat-launcher__mark" aria-hidden="true">&#10022;</span><span class="chat-launcher__label">Hala.S concierge</span>
+  <button class="chat-launcher" id="chatLauncher" data-channel-open type="button" aria-label="Open Hala.S Chat" aria-expanded="false">
+    <span class="chat-launcher__mark" aria-hidden="true">&#10022;</span><span class="chat-launcher__label">Hala.S Chat</span>
   </button>
 
   <aside class="chat-panel" id="chatPanel" role="dialog" aria-modal="false" aria-labelledby="chatTitle" aria-hidden="true">
     <div class="chat-panel__header">
-      <div class="chat-panel__brand"><span class="chat-avatar" aria-hidden="true">&#10022;</span><div><strong id="chatTitle">Hala.S concierge</strong><small>Private shopping assistance</small></div></div>
+      <div class="chat-panel__brand"><span class="chat-avatar" aria-hidden="true">&#10022;</span><div><strong id="chatTitle">Hala.S Chat</strong><small>Private shopping assistance</small></div></div>
       <button class="chat-panel__close" id="chatClose" type="button" aria-label="Minimize concierge">×</button>
     </div>
     <div class="chat-panel__body">
@@ -1856,7 +1855,7 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
       }
 
       const UPLOADED_CATALOGUE = (product) => product.source === "uploaded-catalogue";
-      const IS_CATALOG_PRODUCT = (product) => Number(product?.price || 0) > 0 && Array.isArray(product?.images) && product.images.length > 0;
+      const IS_CATALOG_PRODUCT = (product) => product?.source === "shopify" && Number(product?.price || 0) > 0 && Array.isArray(product?.images) && product.images.length > 0 && Boolean(product?.shopifyVariantId);
       const COLLECTION_META = {
   "new-in": {
     label: "New in",
@@ -1879,7 +1878,7 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
   "ready-to-wear": {
     label: "Ready to wear",
     description: "Polished everyday pieces designed for effortless, contemporary dressing.",
-    filter: product => IS_CATALOG_PRODUCT(product) && product.category === "Ready To Wear"
+    filter: product => IS_CATALOG_PRODUCT(product)
   },
 
   dresses: {
@@ -2265,7 +2264,16 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
         document.body.classList.add("is-locked");
         setTimeout(() => $("#productClose").focus(), 50);
       }
-      function closeProductModal() { stopProductGallery(); productModal.classList.remove("is-open"); productModal.setAttribute("aria-hidden", "true"); if (!cartDrawer.classList.contains("is-open") && !wishlistDrawer.classList.contains("is-open")) document.body.classList.remove("is-locked"); }
+      function closeProductModal() {
+        stopProductGallery();
+        const opener = document.querySelector(`[data-open-product="${CSS.escape(state.modalProduct?.id || "")}"]`);
+        const fallback = document.activeElement === $("#productClose") ? (opener || document.body) : null;
+        if (fallback && typeof fallback.focus === "function") fallback.focus({ preventScroll: true });
+        productModal.classList.remove("is-open");
+        productModal.setAttribute("aria-hidden", "true");
+        state.modalProduct = null;
+        if (!cartDrawer.classList.contains("is-open") && !wishlistDrawer.classList.contains("is-open")) document.body.classList.remove("is-locked");
+      }
 
       function openImageViewer(images, index, title) {
         state.viewerImages = images; state.viewerIndex = index;
@@ -2438,7 +2446,12 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
 
       function channelWasDismissed() { return false; }
 
-      function dismissChannelPopup() { channelPopup.classList.remove("is-open"); channelPopup.setAttribute("aria-hidden", "true"); }
+      function dismissChannelPopup() {
+        const opener = document.querySelector('[data-channel-open]') || $("#chatLauncher") || document.body;
+        if (document.activeElement && channelPopup.contains(document.activeElement)) opener.focus?.({ preventScroll: true });
+        channelPopup.classList.remove("is-open");
+        channelPopup.setAttribute("aria-hidden", "true");
+      }
 
       function openChannelPopup() {
         if (currentRoute() !== "/" || chatPanel.classList.contains("is-open")) return;
@@ -2688,7 +2701,8 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
         $("#wishlistOpen").addEventListener("click", openWishlist);
         $("#searchOpen").addEventListener("click", openSearch);
         $("#searchClose").addEventListener("click", closeSearch);
-        $("#productClose").addEventListener("click", closeProductModal);
+        $("#productClose").addEventListener("pointerdown", (event) => { event.preventDefault(); event.stopPropagation(); closeProductModal(); }, true);
+        $("#productClose").addEventListener("click", (event) => { event.preventDefault(); event.stopPropagation(); closeProductModal(); }, true);
         $("#imageClose").addEventListener("click", closeImageViewer);
         $("#imagePrev").addEventListener("click", () => updateImageViewer(-1));
         $("#imageNext").addEventListener("click", () => updateImageViewer(1));
@@ -2729,5 +2743,21 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
       initReveal();
     })();
   </script>
+
+<style id="halas-final-stability-fix">
+/* Final stability: transparent floating header, fast rendering, no layout flash. */
+.site-header{background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
+.site-header,.nav-shell,.menu-toggle,.brand,.nav-tools{will-change:auto!important;}
+.product-media img,.visual-panel__image,.visual-panel__video{content-visibility:auto;}
+</style>
+<script>
+(function(){
+  // Prevent an unnecessary favicon 404 when this single-file site is hosted without /favicon.ico.
+  if (!document.querySelector('link[rel="icon"]')) {
+    const icon=document.createElement('link'); icon.rel='icon'; icon.href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="%23302a25"/><text x="32" y="43" text-anchor="middle" font-size="34" fill="%23f7f3ec" font-family="Georgia">H</text></svg>'; document.head.appendChild(icon);
+  }
+})();
+</script>
+
 </body>
 </html>
