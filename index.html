@@ -1271,6 +1271,19 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
   .modal-description-list li{font-size:12px!important;line-height:1.65!important;}
   .modal-close{top:10px!important;right:10px!important;width:42px!important;height:42px!important;font-size:24px!important;}
 }
+/* Final modal/header stability fixes */
+.product-dialog{overflow:visible!important;}
+.modal-gallery,.modal-info{min-height:0!important;}
+.modal-gallery{overflow:hidden!important;}
+.modal-info{overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain!important;}
+.modal-close{position:absolute!important;top:14px!important;right:14px!important;z-index:100000!important;display:grid!important;visibility:visible!important;opacity:1!important;}
+.modal-overlay{overflow:hidden!important;}
+@media(max-width:700px){
+  .product-dialog{overflow:visible!important;}
+  .modal-info{overflow-y:auto!important;-webkit-overflow-scrolling:touch!important;}
+  .modal-close{position:absolute!important;top:10px!important;right:10px!important;z-index:100000!important;}
+}
+
 </style>
 
 </head>
@@ -1780,7 +1793,7 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
       }
 
       const UPLOADED_CATALOGUE = (product) => product.source === "uploaded-catalogue";
-      const IS_CATALOG_PRODUCT = (product) => Number(product?.price || 0) > 0 && Array.isArray(product?.images) && product.images.length > 0;
+      const IS_CATALOG_PRODUCT = (product) => product?.source === "shopify" && Number(product?.price || 0) > 0 && Array.isArray(product?.images) && product.images.length > 0 && Boolean(product?.shopifyVariantId);
       const COLLECTION_META = {
   "new-in": {
     label: "New in",
@@ -2113,15 +2126,26 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
 
         if (source) {
           const doc = new DOMParser().parseFromString(source, "text/html");
-          const listItems = [...doc.querySelectorAll("li")].map(node => node.textContent.trim()).filter(Boolean);
-          const blocks = [...doc.querySelectorAll("p, h1, h2, h3, h4, h5, h6")].map(node => node.textContent.trim()).filter(Boolean);
+          const listItems = [...doc.querySelectorAll("li")]
+            .map(node => node.textContent.replace(/\s+/g, " ").trim())
+            .filter(Boolean);
+          const blocks = [...doc.querySelectorAll("p, h1, h2, h3, h4, h5, h6")]
+            .map(node => node.textContent.replace(/\s+/g, " ").trim())
+            .filter(Boolean);
           points = listItems.length ? listItems : blocks;
         }
 
         const raw = String(description || "").replace(/\s+/g, " ").trim();
-        if (!points.length && raw) {
-          points = raw.split(/(?<=[.!?])\s+|;\s+|\s+•\s+/).map(item => item.trim().replace(/^[•\-:]+\s*/, "")).filter(Boolean);
-        }
+        if (!points.length && raw) points = [raw];
+
+        // If Shopify supplied one very long paragraph, split it into readable professional bullets
+        // without dropping any of the original description text.
+        points = points.flatMap(point => {
+          const clean = point.replace(/^(product\s*details\s*:?)\s*/i, "").trim();
+          if (!clean) return [];
+          if (clean.length < 150) return [clean];
+          return clean.split(/(?<=[.!?])\s+(?=[A-Z0-9])|;\s+/).map(item => item.trim()).filter(Boolean);
+        });
 
         if (!points.length) points = ["Available from the Hala.S Shopify collection."];
         points = [...new Set(points)].filter(Boolean);
@@ -2170,6 +2194,8 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
         $("#modalPrice").innerHTML = `${product.oldPrice ? `<del>${money(product.oldPrice)}</del>` : ""}${money(product.price)}`;
         $("#modalDescription").innerHTML = descriptionPoints(product.description, product.descriptionHtml);
         setupProductGallery(product);
+        const modalInfo = $(".modal-info", productModal);
+        if (modalInfo) modalInfo.scrollTop = 0;
         $("#sizeOptions").innerHTML = (product.sizes || ["One size"]).map((size, index) => `<button class="size-option ${index === 0 ? "is-selected" : ""}" type="button" data-size="${size}">${size}</button>`).join("");
         $$('[data-size]', $("#sizeOptions")).forEach((button) => button.addEventListener("click", () => {
           $$('[data-size]', $("#sizeOptions")).forEach((item) => item.classList.toggle("is-selected", item === button));
