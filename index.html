@@ -1199,6 +1199,16 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
 <style id="halas-mobile-menu-clear-fix">
 .site-header{z-index:1003!important;}.mobile-menu{z-index:1004!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:rgba(35,31,28,.995)!important;}body.menu-open::after{z-index:1000!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
 </style>
+
+<style id="halas-final-product-modal-fix">
+.product-dialog{overflow:hidden!important;}
+.modal-info{min-height:620px!important;max-height:min(720px,calc(100vh - 48px))!important;overflow-y:auto!important;overflow-x:hidden!important;justify-content:flex-start!important;scrollbar-gutter:stable!important;}
+.modal-close{position:fixed!important;top:24px!important;right:24px!important;z-index:2147483647!important;pointer-events:auto!important;touch-action:manipulation!important;}
+.modal-description{max-width:100%!important;}
+.modal-description-list{padding-bottom:8px!important;}
+@media(max-width:700px){.product-dialog{max-height:calc(100dvh - 18px)!important;overflow:hidden!important;}.modal-info{max-height:calc(100dvh - 18px)!important;min-height:0!important;overflow-y:auto!important;padding-top:72px!important;padding-bottom:30px!important;}.modal-close{top:18px!important;right:18px!important;width:42px!important;height:42px!important;z-index:2147483647!important;}}
+</style>
+
 </head>
 <body>
   <div class="top-marquee-stack" aria-label="Hala.S announcements">
@@ -1455,13 +1465,13 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
   <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top"><svg class="icon icon--small" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg></button>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <button class="chat-launcher" id="chatLauncher" type="button" aria-label="Open Hala.S concierge" aria-expanded="false">
-    <span class="chat-launcher__mark" aria-hidden="true">&#10022;</span><span class="chat-launcher__label">Hala.S concierge</span>
+  <button class="chat-launcher" id="chatLauncher" type="button" aria-label="Open Hala.S Chat" aria-expanded="false">
+    <span class="chat-launcher__mark" aria-hidden="true">&#10022;</span><span class="chat-launcher__label">Hala.S Chat</span>
   </button>
 
   <aside class="chat-panel" id="chatPanel" role="dialog" aria-modal="false" aria-labelledby="chatTitle" aria-hidden="true">
     <div class="chat-panel__header">
-      <div class="chat-panel__brand"><span class="chat-avatar" aria-hidden="true">&#10022;</span><div><strong id="chatTitle">Hala.S concierge</strong><small>Private shopping assistance</small></div></div>
+      <div class="chat-panel__brand"><span class="chat-avatar" aria-hidden="true">&#10022;</span><div><strong id="chatTitle">Hala.S Chat</strong><small>Private shopping assistance</small></div></div>
       <button class="chat-panel__close" id="chatClose" type="button" aria-label="Minimize concierge">×</button>
     </div>
     <div class="chat-panel__body">
@@ -1564,18 +1574,59 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
             }
           }
         }`;
-        const response = await fetch(shopifyEndpoint(), {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Shopify-Storefront-Access-Token": HALAS_SHOPIFY.storefrontToken
-          },
-          body: JSON.stringify({ query, variables: { first: 40 } })
-        });
-        if (!response.ok) throw new Error(`Shopify HTTP ${response.status}`);
-        const payload = await response.json();
-        if (payload.errors?.length) throw new Error(payload.errors.map(error => error.message).join("; "));
-        return payload.data?.products?.nodes || [];
+
+        // Primary source: Shopify Storefront API. If the token/API version is unavailable,
+        // use Shopify's public products.json feed so the live catalogue still appears.
+        try {
+          const response = await fetch(shopifyEndpoint(), {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-Shopify-Storefront-Access-Token": HALAS_SHOPIFY.storefrontToken
+            },
+            body: JSON.stringify({ query, variables: { first: 100 } })
+          });
+          if (!response.ok) throw new Error(`Shopify HTTP ${response.status}`);
+          const payload = await response.json();
+          if (payload.errors?.length) throw new Error(payload.errors.map(error => error.message).join("; "));
+          const nodes = payload.data?.products?.nodes || [];
+          if (nodes.length) return nodes;
+          throw new Error("Shopify returned no published products");
+        } catch (storefrontError) {
+          console.warn("Hala.S Storefront API unavailable; trying public Shopify catalogue feed.", storefrontError);
+          const fallbackResponse = await fetch(`https://${HALAS_SHOPIFY.domain}/products.json?limit=250`, {
+            method: "GET",
+            headers: { "Accept": "application/json" },
+            cache: "no-store"
+          });
+          if (!fallbackResponse.ok) throw new Error(`Shopify catalogue HTTP ${fallbackResponse.status}`);
+          const fallbackPayload = await fallbackResponse.json();
+          const fallbackProducts = Array.isArray(fallbackPayload.products) ? fallbackPayload.products : [];
+          return fallbackProducts.map(product => ({
+            id: `gid://shopify/Product/${product.id}`,
+            title: product.title,
+            handle: product.handle,
+            descriptionHtml: product.body_html || "",
+            productType: product.product_type || "",
+            tags: Array.isArray(product.tags) ? product.tags : String(product.tags || "").split(",").map(tag => tag.trim()).filter(Boolean),
+            createdAt: product.created_at,
+            images: {
+              nodes: (product.images || []).slice(0, 8).map(image => ({ url: image.src, altText: image.alt || product.title }))
+            },
+            variants: {
+              nodes: (product.variants || []).slice(0, 20).map(variant => ({
+                id: `gid://shopify/ProductVariant/${variant.id}`,
+                title: variant.title,
+                availableForSale: Boolean(variant.available),
+                price: { amount: variant.price, currencyCode: "PKR" },
+                compareAtPrice: variant.compare_at_price ? { amount: variant.compare_at_price, currencyCode: "PKR" } : null,
+                selectedOptions: [
+                  { name: "Size", value: variant.option1 || "One size" }
+                ]
+              }))
+            }
+          }));
+        }
       }
 
       function shopifyCategory(product) {
@@ -1622,11 +1673,11 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
           price: amount,
           oldPrice: compare > amount ? compare : null,
           badge: compare > amount ? "Sale" : (isRecent ? "New" : ""),
-          color: "Shopify",
+          color: "",
           colorHex: "#8a765f",
-          colors: ["Shopify"],
+          colors: [],
           sizes: sizes.length ? sizes : ["One size"],
-          description: (product.descriptionHtml || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim() || "Available from the Hala.S Shopify collection.",
+          description: (product.descriptionHtml || "").trim() || "A refined Hala.S piece designed with considered details and an elevated finish.",
           images: images.length ? images : ["https://placehold.co/800x1000/f3eee6/6c5b4c?text=Hala.S"],
           source: "shopify"
         };
@@ -1638,32 +1689,10 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
           const mapped = liveProducts.map(shopifyProductToLocal).filter(product => product.price > 0 && product.images.length);
           if (!mapped.length) return;
 
-          // Connect the remaining local product cards to matching Shopify products when titles match.
-          // Local images/details remain the visual fallback; Shopify supplies live price, availability and variants.
-          const existingLocal = products.filter(product => product.source !== "shopify");
-          const matchedIds = new Set();
-          existingLocal.forEach(local => {
-            const wanted = normalizeShopifyTitle(local.shopifyMatchTitle || local.title);
-            const match = mapped.find(item => normalizeShopifyTitle(item.title) === wanted);
-            if (match) {
-              Object.assign(local, {
-                shopifyId: match.shopifyId,
-                shopifyHandle: match.shopifyHandle,
-                shopifyVariantId: match.shopifyVariantId,
-                shopifyVariantMap: match.shopifyVariantMap,
-                price: match.price,
-                oldPrice: match.oldPrice,
-                sizes: match.sizes,
-                shopifyConnected: true
-              });
-              matchedIds.add(match.id);
-            }
-          });
-          const unmatchedShopify = mapped.filter(product => !matchedIds.has(product.id));
+          // Shopify is the only catalogue source shown on the website.
           products.length = 0;
-          products.push(...existingLocal, ...unmatchedShopify);
+          products.push(...mapped);
           renderRoute(currentRoute(), false);
-          // Do not show a connection toast on page load.
         } catch (error) {
           console.warn("Hala.S Shopify connection unavailable:", error);
           // The local Hala.S catalogue remains fully usable if Shopify is unavailable.
@@ -1721,45 +1750,38 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
         }
       }
 
-      const UPLOADED_CATALOGUE = (product) => product.source === "uploaded-catalogue";
-      const IS_CATALOG_PRODUCT = (product) => Number(product?.price || 0) > 0 && Array.isArray(product?.images) && product.images.length > 0;
+      const IS_CATALOG_PRODUCT = (product) => product?.source === "shopify" && Number(product?.price || 0) > 0 && Array.isArray(product?.images) && product.images.length > 0 && Boolean(product?.shopifyVariantId);
       const COLLECTION_META = {
   "new-in": {
     label: "New in",
     description: "The latest Hala.S arrivals — fresh silhouettes and new season pieces.",
     filter: product => IS_CATALOG_PRODUCT(product)
   },
-
   unstitched: {
     label: "Unstitched",
     description: "Elevated fabrics and design details ready for your own expression.",
-    filter: product => IS_CATALOG_PRODUCT(product) && product.category === "Unstitched"
+    filter: product => false
   },
-
   sale: {
     label: "Sale",
     description: "Selected Hala.S pieces at special prices while stocks last.",
-    filter: product => IS_CATALOG_PRODUCT(product) && product.oldPrice
+    filter: product => IS_CATALOG_PRODUCT(product)
   },
-
   "ready-to-wear": {
     label: "Ready to wear",
     description: "Polished everyday pieces designed for effortless, contemporary dressing.",
-    filter: product => IS_CATALOG_PRODUCT(product) && product.category === "Ready To Wear"
+    filter: product => IS_CATALOG_PRODUCT(product)
   },
-
   dresses: {
     label: "Dresses",
     description: "Fluid silhouettes, refined details and statement dresses for every occasion.",
-    filter: product => IS_CATALOG_PRODUCT(product) && product.category === "Dresses"
+    filter: product => IS_CATALOG_PRODUCT(product)
   },
-
   "co-ord-sets": {
     label: "Co-ord sets",
     description: "Modern coordinated looks designed to make dressing effortless.",
-    filter: product => IS_CATALOG_PRODUCT(product) && product.category === "Co-Ord Sets"
+    filter: product => IS_CATALOG_PRODUCT(product)
   },
-
   all: {
     label: "All products",
     description: "Explore the complete Hala.S catalogue edits.",
@@ -2050,11 +2072,21 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
       function openWishlist() { renderWishlist(); openDrawer(wishlistDrawer); }
 
       function descriptionPoints(description) {
-        const raw = String(description || "").replace(/\s+/g, " ").trim();
-        if (!raw) return '<ul class="modal-description-list"><li>Available from the Hala.S collection.</li></ul>';
-        const points = raw.split(/(?<=[.!?])\s+|,\s+(?=[A-Z])/).map(item => item.trim().replace(/^[•\-]+\s*/, "")).filter(Boolean);
-        const unique = [...new Set(points)];
-        return `<ul class="modal-description-list">${unique.map(point => `<li>${point}</li>`).join("")}</ul>`;
+        const source = String(description || "").trim();
+        if (!source) return '<ul class="modal-description-list"><li>A refined Hala.S piece designed with considered details and an elevated finish.</li></ul>';
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(source, "text/html");
+        let points = [...doc.querySelectorAll("li")].map(el => el.textContent.trim()).filter(Boolean);
+        if (!points.length) {
+          points = [...doc.querySelectorAll("p, h1, h2, h3, h4, h5, h6")].map(el => el.textContent.trim()).filter(Boolean);
+        }
+        if (!points.length) {
+          const plain = doc.body.textContent.replace(/\s+/g, " ").trim();
+          points = plain.split(/(?<=[.!?])\s+/).map(item => item.trim()).filter(Boolean);
+        }
+        points = [...new Set(points.map(item => item.replace(/^[•\-–—]+\s*/, "").trim()).filter(Boolean))];
+        if (!points.length) points = ["A refined Hala.S piece designed with considered details and an elevated finish."];
+        return `<ul class="modal-description-list">${points.map(point => `<li>${point.replace(/</g,"&lt;").replace(/>/g,"&gt;")}</li>`).join("")}</ul>`;
       }
       let productGalleryTimer = null;
       let productGalleryIndex = 0;
@@ -2118,7 +2150,15 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
         document.body.classList.add("is-locked");
         setTimeout(() => $("#productClose").focus(), 50);
       }
-      function closeProductModal() { stopProductGallery(); productModal.classList.remove("is-open"); productModal.setAttribute("aria-hidden", "true"); if (!cartDrawer.classList.contains("is-open") && !wishlistDrawer.classList.contains("is-open")) document.body.classList.remove("is-locked"); }
+      function closeProductModal() {
+        stopProductGallery();
+        const opener = state.modalProduct ? document.querySelector(`[data-product-id="${CSS.escape(state.modalProduct.id)}"]`) : null;
+        if (document.activeElement && productModal.contains(document.activeElement)) (opener || document.body).focus?.({ preventScroll: true });
+        productModal.classList.remove("is-open");
+        productModal.setAttribute("aria-hidden", "true");
+        state.modalProduct = null;
+        if (!cartDrawer.classList.contains("is-open") && !wishlistDrawer.classList.contains("is-open")) document.body.classList.remove("is-locked");
+      }
 
       function openImageViewer(images, index, title) {
         state.viewerImages = images; state.viewerIndex = index;
@@ -2291,7 +2331,11 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
 
       function channelWasDismissed() { return false; }
 
-      function dismissChannelPopup() { channelPopup.classList.remove("is-open"); channelPopup.setAttribute("aria-hidden", "true"); }
+      function dismissChannelPopup() {
+        if (document.activeElement && channelPopup.contains(document.activeElement)) (chatLauncher || document.body).focus?.({ preventScroll: true });
+        channelPopup.classList.remove("is-open");
+        channelPopup.setAttribute("aria-hidden", "true");
+      }
 
       function openChannelPopup() {
         if (currentRoute() !== "/" || chatPanel.classList.contains("is-open")) return;
@@ -2541,7 +2585,8 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
         $("#wishlistOpen").addEventListener("click", openWishlist);
         $("#searchOpen").addEventListener("click", openSearch);
         $("#searchClose").addEventListener("click", closeSearch);
-        $("#productClose").addEventListener("click", closeProductModal);
+        $("#productClose").addEventListener("pointerdown", (event) => { event.preventDefault(); event.stopPropagation(); closeProductModal(); }, true);
+        $("#productClose").addEventListener("click", (event) => { event.preventDefault(); event.stopPropagation(); closeProductModal(); }, true);
         $("#imageClose").addEventListener("click", closeImageViewer);
         $("#imagePrev").addEventListener("click", () => updateImageViewer(-1));
         $("#imageNext").addEventListener("click", () => updateImageViewer(1));
