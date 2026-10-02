@@ -1271,26 +1271,82 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
   .modal-description-list li{font-size:12px!important;line-height:1.65!important;}
   .modal-close{top:10px!important;right:10px!important;width:42px!important;height:42px!important;font-size:24px!important;}
 }
-/* Final modal/header stability fixes */
-.product-dialog{overflow:visible!important;}
-.modal-gallery,.modal-info{min-height:0!important;}
-.modal-gallery{overflow:hidden!important;}
-.modal-info{overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain!important;}
-.modal-close{position:absolute!important;top:14px!important;right:14px!important;z-index:100000!important;display:grid!important;visibility:visible!important;opacity:1!important;}
-.modal-overlay{overflow:hidden!important;}
-@media(max-width:700px){
-  .product-dialog{overflow:visible!important;}
-  .modal-info{overflow-y:auto!important;-webkit-overflow-scrolling:touch!important;}
-  .modal-close{position:absolute!important;top:10px!important;right:10px!important;z-index:100000!important;}
-}
-
 </style>
 
 
-<style id="halas-modal-close-final-fix">
-.product-dialog{position:relative!important;isolation:isolate!important;}
-.product-dialog .modal-close{position:absolute!important;top:14px!important;right:14px!important;z-index:2147483647!important;pointer-events:auto!important;cursor:pointer!important;touch-action:manipulation!important;display:grid!important;visibility:visible!important;opacity:1!important;}
-@media(max-width:700px){.product-dialog .modal-close{top:10px!important;right:10px!important;width:42px!important;height:42px!important;z-index:2147483647!important;}}
+<style id="halas-desktop-mobile-parity-final">
+/* Final header parity: the desktop header uses the same compact controls as mobile,
+   remains in the document flow, and becomes sticky instead of covering product/collection imagery. */
+.site-header{
+  position:sticky!important;
+  top:0!important;
+  left:auto!important;
+  right:auto!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  z-index:1000!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  pointer-events:none!important;
+}
+.site-header .nav-shell{pointer-events:auto!important;}
+.nav-shell{
+  min-height:58px!important;
+  height:58px!important;
+  padding:0 12px!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:5px!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+.menu-toggle{
+  order:-1!important;
+  width:42px!important;height:42px!important;
+  min-width:42px!important;
+  margin:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:currentColor!important;
+  filter:drop-shadow(0 2px 5px rgba(0,0,0,.35))!important;
+}
+.menu-toggle .icon{width:23px!important;height:23px!important;stroke:currentColor!important;}
+.brand{
+  gap:6px!important;
+  padding-left:10px!important;
+  margin-left:0!important;
+  color:currentColor!important;
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))!important;
+}
+.brand__name{font-size:25px!important;font-weight:900!important;line-height:1!important;letter-spacing:-.04em!important;}
+.brand__descriptor{margin-top:0!important;font-size:5.5px!important;letter-spacing:.24em!important;line-height:1!important;}
+.nav-tools{margin-left:auto!important;position:relative!important;z-index:1003!important;display:flex!important;align-items:center!important;gap:2px!important;}
+.nav-tools .tool-button{
+  width:35px!important;height:40px!important;min-width:35px!important;
+  color:currentColor!important;
+  background:transparent!important;
+  border:0!important;
+  filter:drop-shadow(0 2px 5px rgba(0,0,0,.35))!important;
+}
+.nav-tools .icon{width:18px!important;height:18px!important;stroke:currentColor!important;}
+/* Automatic contrast over light/dark imagery without adding an opaque header. */
+.site-header,.site-header .nav-shell,.site-header .brand,.site-header .menu-toggle,.site-header .nav-tools .tool-button{mix-blend-mode:difference!important;color:#fff!important;}
+.site-header .menu-toggle .icon,.site-header .nav-tools .icon{stroke:#fff!important;}
+.site-header.is-scrolled{background:transparent!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
+.site-header.is-scrolled .nav-shell{background:transparent!important;}
+/* Never let a fixed/floating legacy rule cover collection images. */
+.catalog-main,.collection-page,main{scroll-margin-top:58px;}
+@media(max-width:700px){
+  .site-header{position:sticky!important;top:0!important;}
+  .nav-shell{min-height:58px!important;height:58px!important;padding:0 9px!important;}
+  .site-header.is-scrolled{background:transparent!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
+}
 </style>
 
 </head>
@@ -1717,11 +1773,11 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
           price: amount,
           oldPrice: compare > amount ? compare : null,
           badge: compare > amount ? "Sale" : (isRecent ? "New" : ""),
-          color: "",
+          color: "Shopify",
           colorHex: "#8a765f",
-          colors: [],
+          colors: ["Shopify"],
           sizes: sizes.length ? sizes : ["One size"],
-          description: (product.descriptionHtml || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim() || "A refined Hala.S piece designed with considered details and an elevated finish.",
+          description: (product.descriptionHtml || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim() || "Available from the Hala.S Shopify collection.",
           descriptionHtml: product.descriptionHtml || "",
           images: images.length ? images : ["https://placehold.co/800x1000/f3eee6/6c5b4c?text=Hala.S"],
           source: "shopify"
@@ -1739,7 +1795,7 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
           products.push(...mapped);
           renderRoute(currentRoute(), false);
           if (mapped.length) {
-            showToast(`${mapped.length} live product${mapped.length === 1 ? "" : "s"} loaded`);
+            showToast(`Shopify connected — ${mapped.length} live product${mapped.length === 1 ? "" : "s"} loaded`);
           }
         } catch (error) {
           console.warn("Hala.S Shopify connection unavailable:", error);
@@ -1757,7 +1813,7 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
 
         const unresolved = lines.filter(line => !line.product.shopifyVariantId && !line.product.shopifyVariantMap);
         if (unresolved.length) {
-          showToast("This piece is not available for checkout yet. Please try again.");
+          showToast("This piece is not connected to Shopify yet. Add the matching Shopify product first.");
           return;
         }
 
@@ -1795,12 +1851,12 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
           window.location.href = result.cart.checkoutUrl;
         } catch (error) {
           console.error("Hala.S Shopify checkout error:", error);
-          showToast("Checkout could not open. Please try again.");
+          showToast("Shopify checkout could not open. Please check the product/variant setup and try again.");
         }
       }
 
       const UPLOADED_CATALOGUE = (product) => product.source === "uploaded-catalogue";
-      const IS_CATALOG_PRODUCT = (product) => product?.source === "shopify" && Number(product?.price || 0) > 0 && Array.isArray(product?.images) && product.images.length > 0 && Boolean(product?.shopifyVariantId);
+      const IS_CATALOG_PRODUCT = (product) => Number(product?.price || 0) > 0 && Array.isArray(product?.images) && product.images.length > 0;
       const COLLECTION_META = {
   "new-in": {
     label: "New in",
@@ -1823,7 +1879,7 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
   "ready-to-wear": {
     label: "Ready to wear",
     description: "Polished everyday pieces designed for effortless, contemporary dressing.",
-    filter: product => IS_CATALOG_PRODUCT(product)
+    filter: product => IS_CATALOG_PRODUCT(product) && product.category === "Ready To Wear"
   },
 
   dresses: {
@@ -1955,7 +2011,7 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
             <div class="product-info">
               <div class="product-category">${product.category}</div>
               <h3 class="product-name">${product.title}</h3>
-              <div class="product-footer"><div class="product-price">${product.oldPrice ? `<del>${money(product.oldPrice)}</del>` : ""}${money(product.price)}</div>${product.color ? `<div class="product-color"><span class="color-dot" style="background:${product.colorHex}"></span>${product.color}</div>` : ""}</div>
+              <div class="product-footer"><div class="product-price">${product.oldPrice ? `<del>${money(product.oldPrice)}</del>` : ""}${money(product.price)}</div><div class="product-color"><span class="color-dot" style="background:${product.colorHex}"></span>${product.color}</div></div>
             </div>
           </article>`;
       }
@@ -2133,28 +2189,17 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
 
         if (source) {
           const doc = new DOMParser().parseFromString(source, "text/html");
-          const listItems = [...doc.querySelectorAll("li")]
-            .map(node => node.textContent.replace(/\s+/g, " ").trim())
-            .filter(Boolean);
-          const blocks = [...doc.querySelectorAll("p, h1, h2, h3, h4, h5, h6")]
-            .map(node => node.textContent.replace(/\s+/g, " ").trim())
-            .filter(Boolean);
+          const listItems = [...doc.querySelectorAll("li")].map(node => node.textContent.trim()).filter(Boolean);
+          const blocks = [...doc.querySelectorAll("p, h1, h2, h3, h4, h5, h6")].map(node => node.textContent.trim()).filter(Boolean);
           points = listItems.length ? listItems : blocks;
         }
 
         const raw = String(description || "").replace(/\s+/g, " ").trim();
-        if (!points.length && raw) points = [raw];
+        if (!points.length && raw) {
+          points = raw.split(/(?<=[.!?])\s+|;\s+|\s+•\s+/).map(item => item.trim().replace(/^[•\-:]+\s*/, "")).filter(Boolean);
+        }
 
-        // If Shopify supplied one very long paragraph, split it into readable professional bullets
-        // without dropping any of the original description text.
-        points = points.flatMap(point => {
-          const clean = point.replace(/^(product\s*details\s*:?)\s*/i, "").trim();
-          if (!clean) return [];
-          if (clean.length < 150) return [clean];
-          return clean.split(/(?<=[.!?])\s+(?=[A-Z0-9])|;\s+/).map(item => item.trim()).filter(Boolean);
-        });
-
-        if (!points.length) points = ["A refined Hala.S piece designed with considered details and an elevated finish."];
+        if (!points.length) points = ["Available from the Hala.S Shopify collection."];
         points = [...new Set(points)].filter(Boolean);
         return `<ul class="modal-description-list">${points.map(point => `<li>${point}</li>`).join("")}</ul>`;
       }
@@ -2186,10 +2231,10 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
       }
       function buyNowWithShopify(product, size) {
         const variantId = product.shopifyVariantMap?.[size || "One size"] || product.shopifyVariantId;
-        if (!variantId) { showToast("This product is not available for checkout yet."); return; }
+        if (!variantId) { showToast("This product is not connected to a purchasable Shopify variant yet."); return; }
         fetch(shopifyEndpoint(), { method:"POST", headers:{"Content-Type":"application/json","X-Shopify-Storefront-Access-Token":HALAS_SHOPIFY.storefrontToken}, body:JSON.stringify({query:`mutation CartCreate($input: CartInput!) { cartCreate(input: $input) { cart { checkoutUrl } userErrors { field message } } }`,variables:{input:{lines:[{merchandiseId:variantId,quantity:1}]}}}) })
           .then(r=>r.json()).then(payload=>{ const result=payload.data?.cartCreate; if(payload.errors?.length||result?.userErrors?.length||!result?.cart?.checkoutUrl) throw new Error(payload.errors?.[0]?.message||result?.userErrors?.[0]?.message||"Checkout unavailable"); window.location.href=result.cart.checkoutUrl; })
-          .catch(error=>{ console.error("Hala.S checkout error:",error); showToast("Checkout could not open. Please try again."); });
+          .catch(error=>{ console.error("Hala.S Shopify checkout error:",error); showToast("Shopify checkout could not open. Please try again."); });
       }
 
       function openProduct(id) {
@@ -2201,8 +2246,6 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
         $("#modalPrice").innerHTML = `${product.oldPrice ? `<del>${money(product.oldPrice)}</del>` : ""}${money(product.price)}`;
         $("#modalDescription").innerHTML = descriptionPoints(product.description, product.descriptionHtml);
         setupProductGallery(product);
-        const modalInfo = $(".modal-info", productModal);
-        if (modalInfo) modalInfo.scrollTop = 0;
         $("#sizeOptions").innerHTML = (product.sizes || ["One size"]).map((size, index) => `<button class="size-option ${index === 0 ? "is-selected" : ""}" type="button" data-size="${size}">${size}</button>`).join("");
         $$('[data-size]', $("#sizeOptions")).forEach((button) => button.addEventListener("click", () => {
           $$('[data-size]', $("#sizeOptions")).forEach((item) => item.classList.toggle("is-selected", item === button));
@@ -2222,15 +2265,7 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
         document.body.classList.add("is-locked");
         setTimeout(() => $("#productClose").focus(), 50);
       }
-      function closeProductModal() {
-        stopProductGallery();
-        productModal.classList.remove("is-open");
-        productModal.setAttribute("aria-hidden", "true");
-        state.modalProduct = null;
-        if (!cartDrawer.classList.contains("is-open") && !wishlistDrawer.classList.contains("is-open") && !imageViewer.classList.contains("is-open") && !searchOverlay.classList.contains("is-open")) {
-          document.body.classList.remove("is-locked");
-        }
-      }
+      function closeProductModal() { stopProductGallery(); productModal.classList.remove("is-open"); productModal.setAttribute("aria-hidden", "true"); if (!cartDrawer.classList.contains("is-open") && !wishlistDrawer.classList.contains("is-open")) document.body.classList.remove("is-locked"); }
 
       function openImageViewer(images, index, title) {
         state.viewerImages = images; state.viewerIndex = index;
@@ -2653,16 +2688,7 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
         $("#wishlistOpen").addEventListener("click", openWishlist);
         $("#searchOpen").addEventListener("click", openSearch);
         $("#searchClose").addEventListener("click", closeSearch);
-        $("#productClose").addEventListener("pointerdown", (event) => {
-          event.preventDefault();
-          event.stopPropagation();
-          closeProductModal();
-        }, true);
-        $("#productClose").addEventListener("click", (event) => {
-          event.preventDefault();
-          event.stopPropagation();
-          closeProductModal();
-        }, true);
+        $("#productClose").addEventListener("click", closeProductModal);
         $("#imageClose").addEventListener("click", closeImageViewer);
         $("#imagePrev").addEventListener("click", () => updateImageViewer(-1));
         $("#imageNext").addEventListener("click", () => updateImageViewer(1));
