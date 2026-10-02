@@ -363,12 +363,6 @@
     .collection-message h3 { margin: 0 0 8px; font-family: var(--serif); font-size: 36px; font-weight: 600; }
     .collection-message p { margin: 0; color: var(--muted); }
 
-
-      .product-card[data-open-product] { cursor: pointer; }
-      .product-card[data-open-product]:focus-visible { outline: 2px solid var(--olive); outline-offset: 5px; }
-      .modal-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; }
-      .modal-actions .button { width: 100%; }
-
     /* Collection mosaic */
     .collections-section { background: var(--paper-deep); }
     .collection-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; }
@@ -1196,23 +1190,14 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
 }
 </style>
 
-
-<style id="halas-requested-fixes">
-  .product-card[data-open-product]{cursor:pointer;}
-  .modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;}
-  .modal-actions .button{width:100%;}
-  @media(max-width:700px){
-    .site-header{z-index:1003!important;}
-    .mobile-menu{z-index:1004!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:rgba(35,31,28,.995)!important;}
-    body.menu-open::after{z-index:1000!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
-    .modal-actions{grid-template-columns:1fr;gap:9px;}
-    .product-dialog{width:100%;max-height:calc(100dvh - 20px);}
-    .modal-gallery{min-height:52vh;grid-template-columns:58px 1fr;padding:10px;gap:8px;}
-    .modal-thumbs{gap:7px;}
-    .modal-thumb{width:58px;}
-    .modal-info{min-height:auto;padding:48px 22px 24px;}
-    .modal-info h2{font-size:40px;}
-  }
+<style id="halas-product-modal-fixes">
+.modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;}.modal-actions .button{width:100%!important;}
+.modal-description-list{margin:0;padding:0;list-style:none;display:grid;gap:10px;}.modal-description-list li{position:relative;padding-left:17px;color:var(--muted);font-size:13px;line-height:1.65;}.modal-description-list li::before{content:"";position:absolute;left:0;top:.72em;width:5px;height:5px;border-radius:50%;background:var(--terracotta);transform:translateY(-50%);}
+.modal-close{z-index:50!important;pointer-events:auto!important;touch-action:manipulation!important;-webkit-tap-highlight-color:transparent;}.product-dialog{isolation:isolate;}
+@media(max-width:700px){.modal-overlay{padding:9px!important;z-index:1200!important;}.product-dialog{width:calc(100vw - 18px)!important;max-height:calc(100dvh - 18px)!important;overflow-y:auto!important;overflow-x:hidden!important;}.modal-close{position:absolute!important;top:10px!important;right:10px!important;width:42px!important;height:42px!important;font-size:24px!important;background:rgba(247,243,236,.98)!important;}.modal-actions{grid-template-columns:1fr!important;}.modal-description-list li{font-size:12px;line-height:1.6;}}
+</style>
+<style id="halas-mobile-menu-clear-fix">
+.site-header{z-index:1003!important;}.mobile-menu{z-index:1004!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:rgba(35,31,28,.995)!important;}body.menu-open::after{z-index:1000!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
 </style>
 </head>
 <body>
@@ -1455,7 +1440,7 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
     <div class="product-dialog">
       <button class="modal-close" id="productClose" type="button" aria-label="Close product quick view">×</button>
       <div class="modal-gallery"><div class="modal-thumbs" id="modalThumbs"></div><div class="modal-main-image" id="modalMainImage"><img id="modalImage" src="" alt=""></div></div>
-      <div class="modal-info"><span class="eyebrow" id="modalCategory">Hala.S Clothing</span><h2 id="modalName">Product</h2><div class="modal-price" id="modalPrice"></div><p class="modal-description" id="modalDescription"></p><span class="size-label">Select size</span><div class="size-options" id="sizeOptions"></div><div class="modal-actions"><button class="button" id="modalAdd" type="button">Add to bag <span aria-hidden="true">↗</span></button><button class="button button--outline" id="modalBuy" type="button">Buy now <span aria-hidden="true">↗</span></button></div><div class="modal-service"><div><svg class="icon icon--small" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5v-9Z"/></svg>Complimentary delivery</div><div><svg class="icon icon--small" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.3-5.7"/><path d="M4 5v5h5"/></svg>14-day exchanges</div></div></div>
+      <div class="modal-info"><span class="eyebrow" id="modalCategory">Hala.S Clothing</span><h2 id="modalName">Product</h2><div class="modal-price" id="modalPrice"></div><div class="modal-description" id="modalDescription" aria-label="Product details"></div><span class="size-label">Select size</span><div class="size-options" id="sizeOptions"></div><div class="modal-actions"><button class="button" id="modalAdd" type="button">Add to bag <span aria-hidden="true">↗</span></button><button class="button button--outline" id="modalBuy" type="button">Buy now <span aria-hidden="true">↗</span></button></div><div class="modal-service"><div><svg class="icon icon--small" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5v-9Z"/></svg>Complimentary delivery</div><div><svg class="icon icon--small" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.3-5.7"/><path d="M4 5v5h5"/></svg>14-day exchanges</div></div></div>
     </div>
   </div>
 
@@ -1513,45 +1498,45 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
       // Zero-config preview catalog. Replace this array with a Shopify Storefront API response for live inventory.
       const products = [
         {
-          id: "hala-zohra", category: "Unstitched", title: "Zohra embroidered kurta", price: 12900, oldPrice: 15900, badge: "New", color: "Saffron", colorHex: "#bd783c", colors: ["Saffron", "Midnight"], sizes: ["XS", "S", "M", "L", "XL"],
-          description: "A flowing three-piece unstitched suit with a modern embroidered neckline, airy dupatta and just enough drama for every plan.",
-          images: [image("photo-1610030469983-98e550d6193c", 1200), image("photo-1551488831-00ddcb6c6bd3", 1200), image("photo-1539109136881-3be0616acf4b", 1200)]
-        },
+                  id: "hala-zohra", category: "Unstitched", title: "Zohra embroidered kurta", price: 12900, oldPrice: 15900, badge: "New", color: "Saffron", colorHex: "#bd783c", colors: ["Saffron", "Midnight"], sizes: ["XS", "S", "M", "L", "XL"],
+                  description: "A flowing three-piece unstitched suit with a modern embroidered neckline, airy dupatta and just enough drama for every plan.",
+                  images: [image("photo-1610030469983-98e550d6193c", 1200), image("photo-1551488831-00ddcb6c6bd3", 1200), image("photo-1539109136881-3be0616acf4b", 1200)]
+                },
         {
-          id: "hala-noor", category: "Ready To Wear", title: "Noor silk co-ord", price: 11200, oldPrice: 13400, badge: "Bestseller", color: "Emerald", colorHex: "#557c6d", colors: ["Emerald", "Ivory"],
-          description: "A softly structured co-ord in lustrous silk, cut for movement and finished with a clean, quietly confident line.",
-          images: [image("photo-1595777457583-95e059d581b8", 1200), image("photo-1490481651871-ab68de25d43d", 1200), image("photo-1509631179647-0177331693ae", 1200)]
-        },
+                  id: "hala-noor", category: "Ready To Wear", title: "Noor silk co-ord", price: 11200, oldPrice: 13400, badge: "Bestseller", color: "Emerald", colorHex: "#557c6d", colors: ["Emerald", "Ivory"],
+                  description: "A softly structured co-ord in lustrous silk, cut for movement and finished with a clean, quietly confident line.",
+                  images: [image("photo-1595777457583-95e059d581b8", 1200), image("photo-1490481651871-ab68de25d43d", 1200), image("photo-1509631179647-0177331693ae", 1200)]
+                },
         {
-          id: "hala-zoya", category: "Dresses", title: "Zoya pleated dress", price: 14900, oldPrice: 17900, badge: "Limited", color: "Rosewood", colorHex: "#8a4a55", colors: ["Rosewood", "Midnight"],
-          description: "An architectural pleated dress with a sculptural shoulder and a sweep of movement that feels effortless from every angle.",
-          images: [image("photo-1566174053879-31528523f8ae", 1200), image("photo-1529139574466-a303027c1d8b", 1200), image("photo-1515886657613-9f3515b0c78f", 1200)]
-        },
+                  id: "hala-zoya", category: "Dresses", title: "Zoya pleated dress", price: 14900, oldPrice: 17900, badge: "Limited", color: "Rosewood", colorHex: "#8a4a55", colors: ["Rosewood", "Midnight"],
+                  description: "An architectural pleated dress with a sculptural shoulder and a sweep of movement that feels effortless from every angle.",
+                  images: [image("photo-1566174053879-31528523f8ae", 1200), image("photo-1529139574466-a303027c1d8b", 1200), image("photo-1515886657613-9f3515b0c78f", 1200)]
+                },
         {
-          id: "hala-ayla", category: "Unstitched", title: "Ayla lawn three piece", price: 8950, oldPrice: 10900, badge: "20% off", color: "Azure", colorHex: "#7598a3", colors: ["Azure", "Rose", "Cream"],
-          description: "A light, breathable lawn ensemble with a graceful print, considered finishing and the ease of a wardrobe essential.",
-          images: [image("photo-1610652492500-ded49ceeb378", 1200), image("photo-1558769132-cb1aea458c5e", 1200), image("photo-1610030469983-98e550d6193c", 1200)]
-        },
+                  id: "hala-ayla", category: "Unstitched", title: "Ayla lawn three piece", price: 8950, oldPrice: 10900, badge: "20% off", color: "Azure", colorHex: "#7598a3", colors: ["Azure", "Rose", "Cream"],
+                  description: "A light, breathable lawn ensemble with a graceful print, considered finishing and the ease of a wardrobe essential.",
+                  images: [image("photo-1610652492500-ded49ceeb378", 1200), image("photo-1558769132-cb1aea458c5e", 1200), image("photo-1610030469983-98e550d6193c", 1200)]
+                },
         {
-          id: "hala-mina", category: "Ready To Wear", title: "Mina organza set", price: 10800, oldPrice: 12500, badge: "New", color: "Ochre", colorHex: "#bf8a3c", colors: ["Ochre", "Teal"],
-          description: "A luminous organza set with a modern cropped kurta, a graceful dupatta and a palette that catches the light beautifully.",
-          images: [image("photo-1496747611176-843222e1e57c", 1200), image("photo-1594633312681-425c7b97ccd1", 1200), image("photo-1485968579580-b6d095142e6e", 1200)]
-        },
+                  id: "hala-mina", category: "Ready To Wear", title: "Mina organza set", price: 10800, oldPrice: 12500, badge: "New", color: "Ochre", colorHex: "#bf8a3c", colors: ["Ochre", "Teal"],
+                  description: "A luminous organza set with a modern cropped kurta, a graceful dupatta and a palette that catches the light beautifully.",
+                  images: [image("photo-1496747611176-843222e1e57c", 1200), image("photo-1594633312681-425c7b97ccd1", 1200), image("photo-1485968579580-b6d095142e6e", 1200)]
+                },
         {
-          id: "hala-rumi", category: "Dresses", title: "Rumi velvet dress", price: 16500, oldPrice: 19000, badge: "Limited", color: "Midnight", colorHex: "#293746", colors: ["Midnight", "Plum"],
-          description: "A rich velvet occasion dress with a precise neckline, a fluid skirt and a finish that rewards the light.",
-          images: [image("photo-1539109136881-3be0616acf4b", 1200), image("photo-1525507119028-ed4c629a60a3", 1200), image("photo-1490481651871-ab68de25d43d", 1200)]
-        },
+                  id: "hala-rumi", category: "Dresses", title: "Rumi velvet dress", price: 16500, oldPrice: 19000, badge: "Limited", color: "Midnight", colorHex: "#293746", colors: ["Midnight", "Plum"],
+                  description: "A rich velvet occasion dress with a precise neckline, a fluid skirt and a finish that rewards the light.",
+                  images: [image("photo-1539109136881-3be0616acf4b", 1200), image("photo-1525507119028-ed4c629a60a3", 1200), image("photo-1490481651871-ab68de25d43d", 1200)]
+                },
         {
-          id: "hala-tala", category: "Co-Ord Sets", title: "Tala everyday co-ord", price: 9900, oldPrice: null, badge: "New", color: "Cloud", colorHex: "#cfc8ba", colors: ["Cloud", "Ink", "Sage"],
-          description: "A relaxed cotton co-ord designed for slow mornings and full plans, with clean lines and considered utility details.",
-          images: [image("photo-1485968579580-b6d095142e6e", 1200), image("photo-1485230895905-ec40ba36b9bc", 1200), image("photo-1496217590455-aa63a8350eea", 1200)]
-        },
+                  id: "hala-tala", category: "Co-Ord Sets", title: "Tala everyday co-ord", price: 9900, oldPrice: null, badge: "New", color: "Cloud", colorHex: "#cfc8ba", colors: ["Cloud", "Ink", "Sage"],
+                  description: "A relaxed cotton co-ord designed for slow mornings and full plans, with clean lines and considered utility details.",
+                  images: [image("photo-1485968579580-b6d095142e6e", 1200), image("photo-1485230895905-ec40ba36b9bc", 1200), image("photo-1496217590455-aa63a8350eea", 1200)]
+                },
         {
-          id: "hala-sana", category: "Ready To Wear", title: "Sana signature shirt", price: 7400, oldPrice: 8500, badge: "20% off", color: "Ink", colorHex: "#344b52", colors: ["Ink", "Ivory", "Terracotta"],
-          description: "The shirt you will reach for on repeat — softly tailored, quietly textured and made to look better with every wear.",
-          images: [image("photo-1503342217505-b0a15ec3261c", 1200), image("photo-1496747611176-843222e1e57c", 1200), image("photo-1551488831-00ddcb6c6bd3", 1200)]
-        }
+                  id: "hala-sana", category: "Ready To Wear", title: "Sana signature shirt", price: 7400, oldPrice: 8500, badge: "20% off", color: "Ink", colorHex: "#344b52", colors: ["Ink", "Ivory", "Terracotta"],
+                  description: "The shirt you will reach for on repeat — softly tailored, quietly textured and made to look better with every wear.",
+                  images: [image("photo-1503342217505-b0a15ec3261c", 1200), image("photo-1496747611176-843222e1e57c", 1200), image("photo-1551488831-00ddcb6c6bd3", 1200)]
+                }
       ];
 
 
@@ -1653,11 +1638,11 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
           const mapped = liveProducts.map(shopifyProductToLocal).filter(product => product.price > 0 && product.images.length);
           if (!mapped.length) return;
 
-          // Connect uploaded New In catalogue cards to Shopify products when their titles match.
-          // The uploaded images stay as the visual source of truth; Shopify supplies price, availability and variant IDs.
-          const localEditorial = products.filter(product => product.source === "uploaded-catalogue");
+          // Connect the remaining local product cards to matching Shopify products when titles match.
+          // Local images/details remain the visual fallback; Shopify supplies live price, availability and variants.
+          const existingLocal = products.filter(product => product.source !== "shopify");
           const matchedIds = new Set();
-          localEditorial.forEach(local => {
+          existingLocal.forEach(local => {
             const wanted = normalizeShopifyTitle(local.shopifyMatchTitle || local.title);
             const match = mapped.find(item => normalizeShopifyTitle(item.title) === wanted);
             if (match) {
@@ -1674,8 +1659,6 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
               matchedIds.add(match.id);
             }
           });
-
-          const existingLocal = products.filter(product => product.source !== "uploaded-catalogue" && product.source !== "shopify");
           const unmatchedShopify = mapped.filter(product => !matchedIds.has(product.id));
           products.length = 0;
           products.push(...localEditorial, ...unmatchedShopify, ...existingLocal);
@@ -1684,44 +1667,6 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
         } catch (error) {
           console.warn("Hala.S Shopify connection unavailable:", error);
           // The local Hala.S catalogue remains fully usable if Shopify is unavailable.
-        }
-      }
-
-      async function buyNowWithShopify(product, size) {
-        if (!product?.shopifyVariantId && !product?.shopifyVariantMap) {
-          showToast("This piece is not connected to Shopify yet.");
-          return;
-        }
-        const variantId = product.shopifyVariantMap?.[size] || product.shopifyVariantId;
-        if (!variantId) {
-          showToast(`Size ${size || "selected"} is not available for ${product.title}.`);
-          return;
-        }
-        const mutation = `mutation HalaBuyNow($lines:[CartLineInput!]!) {
-          cartCreate(input:{lines:$lines}) {
-            cart { id checkoutUrl }
-            userErrors { field message }
-            warnings { code message }
-          }
-        }`;
-        try {
-          const response = await fetch(shopifyEndpoint(), {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "X-Shopify-Storefront-Access-Token": HALAS_SHOPIFY.storefrontToken
-            },
-            body: JSON.stringify({ query: mutation, variables: { lines: [{ merchandiseId: variantId, quantity: 1 }] } })
-          });
-          const payload = await response.json();
-          const result = payload.data?.cartCreate;
-          if (!response.ok || payload.errors?.length || result?.userErrors?.length || !result?.cart?.checkoutUrl) {
-            throw new Error(payload.errors?.[0]?.message || result?.userErrors?.[0]?.message || "Shopify checkout could not be created");
-          }
-          window.location.href = result.cart.checkoutUrl;
-        } catch (error) {
-          console.error("Hala.S Shopify buy-now error:", error);
-          showToast("Shopify checkout could not open. Please check the product/variant setup and try again.");
         }
       }
 
@@ -1959,21 +1904,12 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
       }
 
       function bindProductGrid(root = catalogGrid) {
+        $$('[data-quick-view]', root).forEach((button) => button.addEventListener("click", (event) => { event.stopPropagation(); openProduct(button.dataset.quickView); }));
+        $$('[data-wishlist]', root).forEach((button) => button.addEventListener("click", (event) => { event.stopPropagation(); toggleWishlist(button.dataset.wishlist); }));
         $$('[data-open-product]', root).forEach((card) => {
-          const open = (event) => {
-            if (event.target.closest("button, a, input, select, textarea")) return;
-            openProduct(card.dataset.openProduct);
-          };
-          card.addEventListener("click", open);
-          card.addEventListener("keydown", (event) => {
-            if ((event.key === "Enter" || event.key === " ") && !event.target.closest("button, a, input, select, textarea")) {
-              event.preventDefault();
-              openProduct(card.dataset.openProduct);
-            }
-          });
+          card.addEventListener("click", (event) => { if (event.target.closest("button, a, input, select, textarea")) return; openProduct(card.dataset.openProduct); });
+          card.addEventListener("keydown", (event) => { if ((event.key === "Enter" || event.key === " ") && event.target === card) { event.preventDefault(); openProduct(card.dataset.openProduct); } });
         });
-        $$('[data-quick-view]', root).forEach((button) => button.addEventListener("click", () => openProduct(button.dataset.quickView)));
-        $$('[data-wishlist]', root).forEach((button) => button.addEventListener("click", () => toggleWishlist(button.dataset.wishlist)));
       }
 
       function normalizeRoute(value) {
@@ -2112,6 +2048,47 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
       function openCart() { renderCart(); openDrawer(cartDrawer); }
       function openWishlist() { renderWishlist(); openDrawer(wishlistDrawer); }
 
+      function descriptionPoints(description) {
+        const raw = String(description || "").replace(/\s+/g, " ").trim();
+        if (!raw) return '<ul class="modal-description-list"><li>Available from the Hala.S collection.</li></ul>';
+        const points = raw.split(/(?<=[.!?])\s+|,\s+(?=[A-Z])/).map(item => item.trim().replace(/^[•\-]+\s*/, "")).filter(Boolean);
+        const unique = [...new Set(points)];
+        return `<ul class="modal-description-list">${unique.map(point => `<li>${point}</li>`).join("")}</ul>`;
+      }
+      let productGalleryTimer = null;
+      let productGalleryIndex = 0;
+      function setProductGalleryImage(product, index) {
+        if (!product?.images?.length) return;
+        productGalleryIndex = (index + product.images.length) % product.images.length;
+        $("#modalImage").src = product.images[productGalleryIndex];
+        $("#modalImage").alt = product.title;
+        $$('[data-modal-thumb]', $("#modalThumbs")).forEach((item, i) => item.classList.toggle("is-active", i === productGalleryIndex));
+      }
+      function stopProductGallery() { clearInterval(productGalleryTimer); productGalleryTimer = null; }
+      function startProductGallery(product) {
+        stopProductGallery();
+        if (!product?.images || product.images.length < 2) return;
+        productGalleryTimer = setInterval(() => {
+          if (productModal.classList.contains("is-open")) setProductGalleryImage(product, productGalleryIndex + 1);
+        }, 2800);
+      }
+      function setupProductGallery(product) {
+        stopProductGallery();
+        productGalleryIndex = 0;
+        $("#modalThumbs").innerHTML = product.images.map((src, index) => `<button class="modal-thumb ${index === 0 ? "is-active" : ""}" type="button" data-modal-thumb="${index}" aria-label="View image ${index + 1}"><img src="${src}" alt=""></button>`).join("");
+        setProductGalleryImage(product, 0);
+        $$('[data-modal-thumb]', $("#modalThumbs")).forEach((button) => button.addEventListener("click", () => { setProductGalleryImage(product, Number(button.dataset.modalThumb)); startProductGallery(product); }));
+        $("#modalMainImage").onclick = () => openImageViewer(product.images, productGalleryIndex, product.title);
+        startProductGallery(product);
+      }
+      function buyNowWithShopify(product, size) {
+        const variantId = product.shopifyVariantMap?.[size || "One size"] || product.shopifyVariantId;
+        if (!variantId) { showToast("This product is not connected to a purchasable Shopify variant yet."); return; }
+        fetch(shopifyEndpoint(), { method:"POST", headers:{"Content-Type":"application/json","X-Shopify-Storefront-Access-Token":HALAS_SHOPIFY.storefrontToken}, body:JSON.stringify({query:`mutation CartCreate($input: CartInput!) { cartCreate(input: $input) { cart { checkoutUrl } userErrors { field message } } }`,variables:{input:{lines:[{merchandiseId:variantId,quantity:1}]}}}) })
+          .then(r=>r.json()).then(payload=>{ const result=payload.data?.cartCreate; if(payload.errors?.length||result?.userErrors?.length||!result?.cart?.checkoutUrl) throw new Error(payload.errors?.[0]?.message||result?.userErrors?.[0]?.message||"Checkout unavailable"); window.location.href=result.cart.checkoutUrl; })
+          .catch(error=>{ console.error("Hala.S Shopify checkout error:",error); showToast("Shopify checkout could not open. Please try again."); });
+      }
+
       function openProduct(id) {
         const product = products.find((item) => item.id === id);
         if (!product) return;
@@ -2119,15 +2096,8 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
         $("#modalCategory").textContent = product.category;
         $("#modalName").textContent = product.title;
         $("#modalPrice").innerHTML = `${product.oldPrice ? `<del>${money(product.oldPrice)}</del>` : ""}${money(product.price)}`;
-        $("#modalDescription").textContent = product.description;
-        $("#modalImage").src = product.images[0];
-        $("#modalImage").alt = product.title;
-        $("#modalThumbs").innerHTML = product.images.map((src, index) => `<button class="modal-thumb ${index === 0 ? "is-active" : ""}" type="button" data-modal-thumb="${index}" aria-label="View image ${index + 1}"><img src="${src}" alt=""></button>`).join("");
-        $$('[data-modal-thumb]', $("#modalThumbs")).forEach((button) => button.addEventListener("click", () => {
-          const index = Number(button.dataset.modalThumb);
-          $("#modalImage").src = product.images[index];
-          $$('[data-modal-thumb]', $("#modalThumbs")).forEach((item) => item.classList.toggle("is-active", item === button));
-        }));
+        $("#modalDescription").innerHTML = descriptionPoints(product.description);
+        setupProductGallery(product);
         $("#sizeOptions").innerHTML = (product.sizes || ["One size"]).map((size, index) => `<button class="size-option ${index === 0 ? "is-selected" : ""}" type="button" data-size="${size}">${size}</button>`).join("");
         $$('[data-size]', $("#sizeOptions")).forEach((button) => button.addEventListener("click", () => {
           $$('[data-size]', $("#sizeOptions")).forEach((item) => item.classList.toggle("is-selected", item === button));
@@ -2138,17 +2108,16 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
           closeProductModal();
           openCart();
         };
-        $("#modalBuy").onclick = async () => {
+        $("#modalBuy").onclick = () => {
           const selected = $(".size-option.is-selected", $("#sizeOptions"));
-          await buyNowWithShopify(product, selected?.dataset.size || product.sizes?.[0] || "One size");
+          buyNowWithShopify(product, selected?.dataset.size);
         };
-        $("#modalMainImage").onclick = () => openImageViewer(product.images, 0, product.title);
         productModal.classList.add("is-open");
         productModal.setAttribute("aria-hidden", "false");
         document.body.classList.add("is-locked");
         setTimeout(() => $("#productClose").focus(), 50);
       }
-      function closeProductModal() { productModal.classList.remove("is-open"); productModal.setAttribute("aria-hidden", "true"); if (!cartDrawer.classList.contains("is-open") && !wishlistDrawer.classList.contains("is-open")) document.body.classList.remove("is-locked"); }
+      function closeProductModal() { stopProductGallery(); productModal.classList.remove("is-open"); productModal.setAttribute("aria-hidden", "true"); if (!cartDrawer.classList.contains("is-open") && !wishlistDrawer.classList.contains("is-open")) document.body.classList.remove("is-locked"); }
 
       function openImageViewer(images, index, title) {
         state.viewerImages = images; state.viewerIndex = index;
