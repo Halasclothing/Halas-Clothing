@@ -2773,5 +2773,47 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
 })();
 </script>
 
+
+<style id="halas-mobile-product-actions-final-only">
+/* ONLY mobile product actions: keep Add to bag + Buy now visible when a product is open. */
+@media (max-width:700px){
+  #productModal.is-open .modal-actions{
+    position:fixed!important;
+    left:12px!important;
+    right:12px!important;
+    bottom:12px!important;
+    width:auto!important;
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:8px!important;
+    margin:0!important;
+    padding:10px!important;
+    background:rgba(247,243,236,.98)!important;
+    border-top:1px solid var(--line)!important;
+    box-shadow:0 -6px 18px rgba(48,42,37,.10)!important;
+    z-index:2147483646!important;
+    visibility:visible!important;
+    opacity:1!important;
+    pointer-events:auto!important;
+    flex-shrink:0!important;
+  }
+  #productModal.is-open .modal-actions .button{
+    display:flex!important;
+    visibility:visible!important;
+    opacity:1!important;
+    width:100%!important;
+    min-width:0!important;
+    min-height:46px!important;
+    margin:0!important;
+    pointer-events:auto!important;
+    position:relative!important;
+    z-index:1!important;
+  }
+  #productModal.is-open .modal-info{
+    padding-bottom:105px!important;
+  }
+}
+</style>
+
 </body>
 </html>
