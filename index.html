@@ -1661,7 +1661,7 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
           });
           const unmatchedShopify = mapped.filter(product => !matchedIds.has(product.id));
           products.length = 0;
-          products.push(...localEditorial, ...unmatchedShopify, ...existingLocal);
+          products.push(...existingLocal, ...unmatchedShopify);
           renderRoute(currentRoute(), false);
           showToast(`Shopify connected — ${mapped.length} live product${mapped.length === 1 ? "" : "s"} loaded`);
         } catch (error) {
@@ -1722,47 +1722,48 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
       }
 
       const UPLOADED_CATALOGUE = (product) => product.source === "uploaded-catalogue";
+      const IS_CATALOG_PRODUCT = (product) => Number(product?.price || 0) > 0 && Array.isArray(product?.images) && product.images.length > 0;
       const COLLECTION_META = {
   "new-in": {
     label: "New in",
     description: "The latest Hala.S arrivals — fresh silhouettes and new season pieces.",
-    filter: product => UPLOADED_CATALOGUE(product) || product.source === "shopify"
+    filter: product => IS_CATALOG_PRODUCT(product)
   },
 
   unstitched: {
     label: "Unstitched",
     description: "Elevated fabrics and design details ready for your own expression.",
-    filter: product => UPLOADED_CATALOGUE(product) || (product.source === "shopify" && product.category === "Unstitched")
+    filter: product => IS_CATALOG_PRODUCT(product) && product.category === "Unstitched"
   },
 
   sale: {
     label: "Sale",
     description: "Selected Hala.S pieces at special prices while stocks last.",
-    filter: product => UPLOADED_CATALOGUE(product) || (product.source === "shopify" && product.oldPrice)
+    filter: product => IS_CATALOG_PRODUCT(product) && product.oldPrice
   },
 
   "ready-to-wear": {
     label: "Ready to wear",
     description: "Polished everyday pieces designed for effortless, contemporary dressing.",
-    filter: product => UPLOADED_CATALOGUE(product) || (product.source === "shopify" && product.category === "Ready To Wear")
+    filter: product => IS_CATALOG_PRODUCT(product) && product.category === "Ready To Wear"
   },
 
   dresses: {
     label: "Dresses",
     description: "Fluid silhouettes, refined details and statement dresses for every occasion.",
-    filter: product => UPLOADED_CATALOGUE(product) || (product.source === "shopify" && product.category === "Dresses")
+    filter: product => IS_CATALOG_PRODUCT(product) && product.category === "Dresses"
   },
 
   "co-ord-sets": {
     label: "Co-ord sets",
     description: "Modern coordinated looks designed to make dressing effortless.",
-    filter: product => UPLOADED_CATALOGUE(product) || (product.source === "shopify" && product.category === "Co-Ord Sets")
+    filter: product => IS_CATALOG_PRODUCT(product) && product.category === "Co-Ord Sets"
   },
 
   all: {
     label: "All products",
     description: "Explore the complete Hala.S catalogue edits.",
-    filter: product => UPLOADED_CATALOGUE(product) || product.source === "shopify"
+    filter: product => IS_CATALOG_PRODUCT(product)
   }
 };
 
