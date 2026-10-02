@@ -1286,6 +1286,13 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
 
 </style>
 
+
+<style id="halas-modal-close-final-fix">
+.product-dialog{position:relative!important;isolation:isolate!important;}
+.product-dialog .modal-close{position:absolute!important;top:14px!important;right:14px!important;z-index:2147483647!important;pointer-events:auto!important;cursor:pointer!important;touch-action:manipulation!important;display:grid!important;visibility:visible!important;opacity:1!important;}
+@media(max-width:700px){.product-dialog .modal-close{top:10px!important;right:10px!important;width:42px!important;height:42px!important;z-index:2147483647!important;}}
+</style>
+
 </head>
 <body>
   <div class="top-marquee-stack" aria-label="Hala.S announcements">
@@ -1710,11 +1717,11 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
           price: amount,
           oldPrice: compare > amount ? compare : null,
           badge: compare > amount ? "Sale" : (isRecent ? "New" : ""),
-          color: "Shopify",
+          color: "",
           colorHex: "#8a765f",
-          colors: ["Shopify"],
+          colors: [],
           sizes: sizes.length ? sizes : ["One size"],
-          description: (product.descriptionHtml || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim() || "Available from the Hala.S Shopify collection.",
+          description: (product.descriptionHtml || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim() || "A refined Hala.S piece designed with considered details and an elevated finish.",
           descriptionHtml: product.descriptionHtml || "",
           images: images.length ? images : ["https://placehold.co/800x1000/f3eee6/6c5b4c?text=Hala.S"],
           source: "shopify"
@@ -1732,7 +1739,7 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
           products.push(...mapped);
           renderRoute(currentRoute(), false);
           if (mapped.length) {
-            showToast(`Shopify connected — ${mapped.length} live product${mapped.length === 1 ? "" : "s"} loaded`);
+            showToast(`${mapped.length} live product${mapped.length === 1 ? "" : "s"} loaded`);
           }
         } catch (error) {
           console.warn("Hala.S Shopify connection unavailable:", error);
@@ -1750,7 +1757,7 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
 
         const unresolved = lines.filter(line => !line.product.shopifyVariantId && !line.product.shopifyVariantMap);
         if (unresolved.length) {
-          showToast("This piece is not connected to Shopify yet. Add the matching Shopify product first.");
+          showToast("This piece is not available for checkout yet. Please try again.");
           return;
         }
 
@@ -1788,7 +1795,7 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
           window.location.href = result.cart.checkoutUrl;
         } catch (error) {
           console.error("Hala.S Shopify checkout error:", error);
-          showToast("Shopify checkout could not open. Please check the product/variant setup and try again.");
+          showToast("Checkout could not open. Please try again.");
         }
       }
 
@@ -1816,7 +1823,7 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
   "ready-to-wear": {
     label: "Ready to wear",
     description: "Polished everyday pieces designed for effortless, contemporary dressing.",
-    filter: product => IS_CATALOG_PRODUCT(product) && product.category === "Ready To Wear"
+    filter: product => IS_CATALOG_PRODUCT(product)
   },
 
   dresses: {
@@ -1948,7 +1955,7 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
             <div class="product-info">
               <div class="product-category">${product.category}</div>
               <h3 class="product-name">${product.title}</h3>
-              <div class="product-footer"><div class="product-price">${product.oldPrice ? `<del>${money(product.oldPrice)}</del>` : ""}${money(product.price)}</div><div class="product-color"><span class="color-dot" style="background:${product.colorHex}"></span>${product.color}</div></div>
+              <div class="product-footer"><div class="product-price">${product.oldPrice ? `<del>${money(product.oldPrice)}</del>` : ""}${money(product.price)}</div>${product.color ? `<div class="product-color"><span class="color-dot" style="background:${product.colorHex}"></span>${product.color}</div>` : ""}</div>
             </div>
           </article>`;
       }
@@ -2147,7 +2154,7 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
           return clean.split(/(?<=[.!?])\s+(?=[A-Z0-9])|;\s+/).map(item => item.trim()).filter(Boolean);
         });
 
-        if (!points.length) points = ["Available from the Hala.S Shopify collection."];
+        if (!points.length) points = ["A refined Hala.S piece designed with considered details and an elevated finish."];
         points = [...new Set(points)].filter(Boolean);
         return `<ul class="modal-description-list">${points.map(point => `<li>${point}</li>`).join("")}</ul>`;
       }
@@ -2179,10 +2186,10 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
       }
       function buyNowWithShopify(product, size) {
         const variantId = product.shopifyVariantMap?.[size || "One size"] || product.shopifyVariantId;
-        if (!variantId) { showToast("This product is not connected to a purchasable Shopify variant yet."); return; }
+        if (!variantId) { showToast("This product is not available for checkout yet."); return; }
         fetch(shopifyEndpoint(), { method:"POST", headers:{"Content-Type":"application/json","X-Shopify-Storefront-Access-Token":HALAS_SHOPIFY.storefrontToken}, body:JSON.stringify({query:`mutation CartCreate($input: CartInput!) { cartCreate(input: $input) { cart { checkoutUrl } userErrors { field message } } }`,variables:{input:{lines:[{merchandiseId:variantId,quantity:1}]}}}) })
           .then(r=>r.json()).then(payload=>{ const result=payload.data?.cartCreate; if(payload.errors?.length||result?.userErrors?.length||!result?.cart?.checkoutUrl) throw new Error(payload.errors?.[0]?.message||result?.userErrors?.[0]?.message||"Checkout unavailable"); window.location.href=result.cart.checkoutUrl; })
-          .catch(error=>{ console.error("Hala.S Shopify checkout error:",error); showToast("Shopify checkout could not open. Please try again."); });
+          .catch(error=>{ console.error("Hala.S checkout error:",error); showToast("Checkout could not open. Please try again."); });
       }
 
       function openProduct(id) {
@@ -2215,7 +2222,15 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
         document.body.classList.add("is-locked");
         setTimeout(() => $("#productClose").focus(), 50);
       }
-      function closeProductModal() { stopProductGallery(); productModal.classList.remove("is-open"); productModal.setAttribute("aria-hidden", "true"); if (!cartDrawer.classList.contains("is-open") && !wishlistDrawer.classList.contains("is-open")) document.body.classList.remove("is-locked"); }
+      function closeProductModal() {
+        stopProductGallery();
+        productModal.classList.remove("is-open");
+        productModal.setAttribute("aria-hidden", "true");
+        state.modalProduct = null;
+        if (!cartDrawer.classList.contains("is-open") && !wishlistDrawer.classList.contains("is-open") && !imageViewer.classList.contains("is-open") && !searchOverlay.classList.contains("is-open")) {
+          document.body.classList.remove("is-locked");
+        }
+      }
 
       function openImageViewer(images, index, title) {
         state.viewerImages = images; state.viewerIndex = index;
@@ -2638,7 +2653,16 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
         $("#wishlistOpen").addEventListener("click", openWishlist);
         $("#searchOpen").addEventListener("click", openSearch);
         $("#searchClose").addEventListener("click", closeSearch);
-        $("#productClose").addEventListener("click", closeProductModal);
+        $("#productClose").addEventListener("pointerdown", (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          closeProductModal();
+        }, true);
+        $("#productClose").addEventListener("click", (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          closeProductModal();
+        }, true);
         $("#imageClose").addEventListener("click", closeImageViewer);
         $("#imagePrev").addEventListener("click", () => updateImageViewer(-1));
         $("#imageNext").addEventListener("click", () => updateImageViewer(1));
