@@ -2681,5 +2681,97 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
 })();
 </script>
 
+
+<style id="halas-final-x-and-mobile-actions-fix">
+/* FINAL targeted fix: product close hit-area + mobile product actions. */
+#productModal.is-open #productClose{
+  position:fixed!important;
+  top:18px!important;
+  right:18px!important;
+  width:46px!important;
+  height:46px!important;
+  display:grid!important;
+  place-items:center!important;
+  visibility:visible!important;
+  opacity:1!important;
+  pointer-events:auto!important;
+  z-index:2147483647!important;
+  cursor:pointer!important;
+  touch-action:manipulation!important;
+  -webkit-tap-highlight-color:transparent!important;
+}
+#productModal.is-open #productClose *{pointer-events:none!important;}
+
+@media(max-width:700px){
+  #productModal.is-open #productClose{
+    top:12px!important;
+    right:12px!important;
+    width:44px!important;
+    height:44px!important;
+  }
+  /* Keep the same two-button layout as desktop and keep the actions accessible while scrolling. */
+  #productModal.is-open .modal-actions{
+    grid-template-columns:1fr 1fr!important;
+    position:sticky!important;
+    bottom:0!important;
+    z-index:20!important;
+    width:100%!important;
+    padding:12px 0 4px!important;
+    margin-top:8px!important;
+    background:var(--paper)!important;
+  }
+  #productModal.is-open .modal-actions .button{
+    width:100%!important;
+    min-height:46px!important;
+  }
+}
+</style>
+<script id="halas-final-x-and-mobile-actions-handler">
+(function(){
+  function closeProductSafely(){
+    var modal=document.getElementById('productModal');
+    if(!modal || !modal.classList.contains('is-open')) return;
+    if(typeof window.closeProductModal==='function'){
+      window.closeProductModal();
+      return;
+    }
+    var button=document.getElementById('productClose');
+    if(button){ button.blur(); }
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('is-locked');
+  }
+
+  function pointIsInsideClose(event){
+    var modal=document.getElementById('productModal');
+    var button=document.getElementById('productClose');
+    if(!modal || !button || !modal.classList.contains('is-open')) return false;
+    var x=event.clientX, y=event.clientY;
+    if(typeof x!=='number' || typeof y!=='number') return false;
+    var r=button.getBoundingClientRect();
+    return x>=r.left && x<=r.right && y>=r.top && y<=r.bottom;
+  }
+
+  /* Capture the close area even if another modal layer/child is sitting above the button. */
+  document.addEventListener('pointerdown',function(event){
+    var target=event.target;
+    if(target && target.closest && target.closest('#productClose')) return;
+    if(!pointIsInsideClose(event)) return;
+    event.preventDefault();
+    event.stopPropagation();
+    closeProductSafely();
+  },true);
+
+  document.addEventListener('click',function(event){
+    var target=event.target;
+    if(target && target.closest && target.closest('#productClose')) return;
+    if(!pointIsInsideClose(event)) return;
+    event.preventDefault();
+    event.stopPropagation();
+    closeProductSafely();
+  },true);
+})();
+</script>
+
 </body>
 </html>
