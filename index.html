@@ -1737,14 +1737,48 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
 
       const UPLOADED_CATALOGUE = (product) => product.source === "uploaded-catalogue";
       const COLLECTION_META = {
-        "new-in": { label: "New in", description: "The latest Hala.S arrivals — fresh silhouettes and new season pieces.", filter: UPLOADED_CATALOGUE },
-        unstitched: { label: "Unstitched", description: "Elevated fabrics and design details ready for your own expression.", filter: UPLOADED_CATALOGUE },
-        sale: { label: "Sale", description: "Selected Hala.S pieces at special prices while stocks last.", filter: UPLOADED_CATALOGUE },
-        "ready-to-wear": { label: "Ready to wear", description: "Polished everyday pieces designed for effortless, contemporary dressing.", filter: UPLOADED_CATALOGUE },
-        dresses: { label: "Dresses", description: "Fluid silhouettes, refined details and statement dresses for every occasion.", filter: UPLOADED_CATALOGUE },
-        "co-ord-sets": { label: "Co-ord sets", description: "Modern coordinated looks designed to make dressing effortless.", filter: UPLOADED_CATALOGUE },
-        all: { label: "All products", description: "Explore the complete Hala.S catalogue edits.", filter: UPLOADED_CATALOGUE }
-      };
+  "new-in": {
+    label: "New in",
+    description: "The latest Hala.S arrivals — fresh silhouettes and new season pieces.",
+    filter: product => UPLOADED_CATALOGUE(product) || product.source === "shopify"
+  },
+
+  unstitched: {
+    label: "Unstitched",
+    description: "Elevated fabrics and design details ready for your own expression.",
+    filter: product => UPLOADED_CATALOGUE(product) || (product.source === "shopify" && product.category === "Unstitched")
+  },
+
+  sale: {
+    label: "Sale",
+    description: "Selected Hala.S pieces at special prices while stocks last.",
+    filter: product => UPLOADED_CATALOGUE(product) || (product.source === "shopify" && product.oldPrice)
+  },
+
+  "ready-to-wear": {
+    label: "Ready to wear",
+    description: "Polished everyday pieces designed for effortless, contemporary dressing.",
+    filter: product => UPLOADED_CATALOGUE(product) || (product.source === "shopify" && product.category === "Ready To Wear")
+  },
+
+  dresses: {
+    label: "Dresses",
+    description: "Fluid silhouettes, refined details and statement dresses for every occasion.",
+    filter: product => UPLOADED_CATALOGUE(product) || (product.source === "shopify" && product.category === "Dresses")
+  },
+
+  "co-ord-sets": {
+    label: "Co-ord sets",
+    description: "Modern coordinated looks designed to make dressing effortless.",
+    filter: product => UPLOADED_CATALOGUE(product) || (product.source === "shopify" && product.category === "Co-Ord Sets")
+  },
+
+  all: {
+    label: "All products",
+    description: "Explore the complete Hala.S catalogue edits.",
+    filter: product => UPLOADED_CATALOGUE(product) || product.source === "shopify"
+  }
+};
 
       // History API routes keep this static, single-file architecture intact. Configure the host to serve index.html for these paths on hard refresh.
       const ROUTES = {
