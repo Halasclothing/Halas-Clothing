@@ -1564,18 +1564,59 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;}
             }
           }
         }`;
-        const response = await fetch(shopifyEndpoint(), {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Shopify-Storefront-Access-Token": HALAS_SHOPIFY.storefrontToken
-          },
-          body: JSON.stringify({ query, variables: { first: 40 } })
-        });
-        if (!response.ok) throw new Error(`Shopify HTTP ${response.status}`);
-        const payload = await response.json();
-        if (payload.errors?.length) throw new Error(payload.errors.map(error => error.message).join("; "));
-        return payload.data?.products?.nodes || [];
+
+        // Primary source: Shopify Storefront API. If the token/API version is unavailable,
+        // use Shopify's public products.json feed so the live catalogue still appears.
+        try {
+          const response = await fetch(shopifyEndpoint(), {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-Shopify-Storefront-Access-Token": HALAS_SHOPIFY.storefrontToken
+            },
+            body: JSON.stringify({ query, variables: { first: 100 } })
+          });
+          if (!response.ok) throw new Error(`Shopify HTTP ${response.status}`);
+          const payload = await response.json();
+          if (payload.errors?.length) throw new Error(payload.errors.map(error => error.message).join("; "));
+          const nodes = payload.data?.products?.nodes || [];
+          if (nodes.length) return nodes;
+          throw new Error("Shopify returned no published products");
+        } catch (storefrontError) {
+          console.warn("Hala.S Storefront API unavailable; trying public Shopify catalogue feed.", storefrontError);
+          const fallbackResponse = await fetch(`https://${HALAS_SHOPIFY.domain}/products.json?limit=250`, {
+            method: "GET",
+            headers: { "Accept": "application/json" },
+            cache: "no-store"
+          });
+          if (!fallbackResponse.ok) throw new Error(`Shopify catalogue HTTP ${fallbackResponse.status}`);
+          const fallbackPayload = await fallbackResponse.json();
+          const fallbackProducts = Array.isArray(fallbackPayload.products) ? fallbackPayload.products : [];
+          return fallbackProducts.map(product => ({
+            id: `gid://shopify/Product/${product.id}`,
+            title: product.title,
+            handle: product.handle,
+            descriptionHtml: product.body_html || "",
+            productType: product.product_type || "",
+            tags: Array.isArray(product.tags) ? product.tags : String(product.tags || "").split(",").map(tag => tag.trim()).filter(Boolean),
+            createdAt: product.created_at,
+            images: {
+              nodes: (product.images || []).slice(0, 8).map(image => ({ url: image.src, altText: image.alt || product.title }))
+            },
+            variants: {
+              nodes: (product.variants || []).slice(0, 20).map(variant => ({
+                id: `gid://shopify/ProductVariant/${variant.id}`,
+                title: variant.title,
+                availableForSale: Boolean(variant.available),
+                price: { amount: variant.price, currencyCode: "PKR" },
+                compareAtPrice: variant.compare_at_price ? { amount: variant.compare_at_price, currencyCode: "PKR" } : null,
+                selectedOptions: [
+                  { name: "Size", value: variant.option1 || "One size" }
+                ]
+              }))
+            }
+          }));
+        }
       }
 
       function shopifyCategory(product) {
