@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "HALAS-updated.zip"
+      - "HALAS-part-*.zip"
   workflow_dispatch:
 
 permissions:
@@ -19,16 +19,20 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Extract updated website
+      - name: Extract updated website parts
         shell: bash
         run: |
           set -euo pipefail
-          test -f HALAS-updated.zip || { echo "Upload HALAS-updated.zip to the repository root first."; exit 1; }
+          for part in 1 2 3; do
+            test -f "HALAS-part-${part}.zip" || { echo "Missing HALAS-part-${part}.zip. Upload all three parts in one commit."; exit 1; }
+          done
           mkdir -p /tmp/halas-import
-          unzip -q HALAS-updated.zip -d /tmp/halas-import
-          test -f /tmp/halas-import/halas/package.json || { echo "Expected halas/package.json inside the ZIP."; exit 1; }
+          for part in 1 2 3; do
+            unzip -oq "HALAS-part-${part}.zip" -d /tmp/halas-import
+          done
+          test -f /tmp/halas-import/halas/package.json || { echo "Expected halas/package.json inside the extracted parts."; exit 1; }
           rsync -a --delete --exclude='.git/' --exclude='.github/' /tmp/halas-import/halas/ ./
-          rm -f HALAS-updated.zip
+          rm -f HALAS-part-1.zip HALAS-part-2.zip HALAS-part-3.zip
 
       - name: Install dependencies and build
         run: |
