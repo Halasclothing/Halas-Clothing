@@ -1,0 +1,50 @@
+name: Import HALAS updated website
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "HALAS-updated.zip"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract updated website
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f HALAS-updated.zip || { echo "Upload HALAS-updated.zip to the repository root first."; exit 1; }
+          mkdir -p /tmp/halas-import
+          unzip -q HALAS-updated.zip -d /tmp/halas-import
+          test -f /tmp/halas-import/halas/package.json || { echo "Expected halas/package.json inside the ZIP."; exit 1; }
+          rsync -a --delete --exclude='.git/' --exclude='.github/' /tmp/halas-import/halas/ ./
+          rm -f HALAS-updated.zip
+
+      - name: Install dependencies and build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Commit imported website
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Deploy updated HALAS Clothing website"
+          git push origin HEAD:main
