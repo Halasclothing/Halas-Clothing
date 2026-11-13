@@ -1,0 +1,441 @@
+/* ==========================================================================
+   HALA.S motion system
+   One vocabulary of entrance variants, one timing scale, one reduced-motion
+   contract. Components opt in with data-reveal / data-parallax attributes;
+   nothing here animates layout properties.
+   ========================================================================== */
+
+/* --- Effect 3: scroll-triggered reveals --------------------------------- */
+
+[data-reveal] {
+  transition:
+    opacity var(--motion-slow) var(--ease-out) var(--reveal-delay),
+    transform var(--motion-slow) var(--ease-editorial) var(--reveal-delay),
+    clip-path var(--motion-editorial) var(--ease-editorial) var(--reveal-delay);
+  will-change: opacity, transform;
+}
+
+[data-reveal='up'] {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-y), 0);
+}
+
+[data-reveal='fade'] {
+  opacity: 0;
+}
+
+[data-reveal='right'] {
+  opacity: 0;
+  transform: translate3d(calc(var(--reveal-y) * -1), 0, 0);
+}
+
+[data-reveal='left'] {
+  opacity: 0;
+  transform: translate3d(var(--reveal-y), 0, 0);
+}
+
+/* Mask opening — the content wipes open from its top edge. The clip is held by
+   the revealed content, not the observed box; see the rules further down. */
+
+/* Curtain reveal for full-bleed campaign frames. */
+[data-reveal='curtain'] {
+  clip-path: inset(6% 22%);
+  opacity: 0;
+  transform: scale(1.06);
+}
+
+[data-reveal='rise'] {
+  opacity: 0;
+  transform: translate3d(0, 12%, 0) rotate(1.2deg);
+}
+
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 0 0 0);
+}
+
+/* Staggered groups: children inherit an incrementing delay. */
+[data-stagger] > * {
+  --reveal-delay: calc(var(--stagger-step, 80ms) * var(--i, 0));
+}
+
+/* --- Effect 2: line-by-line typographic reveals ------------------------- */
+
+.line-mask {
+  display: block;
+  overflow: clip;
+  padding-block: 0.04em;
+}
+
+.line-mask > span {
+  display: inline-block;
+  transform: translate3d(0, 110%, 0);
+  transition: transform var(--motion-editorial) var(--ease-editorial);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.line-mask.is-in > span {
+  transform: none;
+}
+
+/* Deliberately cropped display type: the frame clips, the word keeps scale. */
+.type-crop {
+  overflow: clip;
+  line-height: 0.82;
+}
+
+.type-crop > * {
+  transform: translate3d(0, -0.06em, 0);
+}
+
+/* --- Effect 4: editorial image movement --------------------------------- */
+
+[data-parallax] {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Image settles from a slight overscale, so parallax never exposes an edge. */
+.frame {
+  position: relative;
+  overflow: clip;
+  background: var(--paper-dim);
+}
+
+.frame > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.06);
+  transition: transform var(--motion-chapter) var(--ease-editorial);
+}
+
+.frame.is-in > img,
+.frame[data-reveal]:not([data-reveal='none']) > img {
+  transform: scale(1);
+}
+
+.frame--portrait {
+  aspect-ratio: 4 / 5;
+}
+
+.frame--tall {
+  aspect-ratio: 2 / 3;
+}
+
+.frame--wide {
+  aspect-ratio: 3 / 2;
+}
+
+.frame--square {
+  aspect-ratio: 1 / 1;
+}
+
+.frame--hero {
+  aspect-ratio: 1792 / 1024;
+}
+
+/* --- Effect 1: layered and tilted compositions --------------------------- */
+
+.collage {
+  position: relative;
+  isolation: isolate;
+}
+
+.collage > .layer {
+  position: relative;
+  box-shadow: var(--shadow-soft);
+}
+
+.tilt-l {
+  transform: rotate(-2.2deg);
+}
+
+.tilt-l-soft {
+  transform: rotate(-1.1deg);
+}
+
+.tilt-r {
+  transform: rotate(2.4deg);
+}
+
+.tilt-r-soft {
+  transform: rotate(1.2deg);
+}
+
+/* --- Effect 5: sticky / pinned chapters ---------------------------------- */
+
+.chapter-media img {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.04);
+  transition:
+    opacity var(--motion-chapter) var(--ease-soft),
+    transform var(--motion-chapter) var(--ease-editorial);
+}
+
+.chapter-media img.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* --- Effect 6: chapter transitions --------------------------------------- */
+
+.transition-wipe {
+  position: relative;
+}
+
+.transition-wipe::before {
+  content: '';
+  position: absolute;
+  inset: -1px 0;
+  z-index: 2;
+  background: var(--ink);
+  transform: scaleY(1);
+  transform-origin: top;
+  transition: transform var(--motion-chapter) var(--ease-in-out);
+  pointer-events: none;
+}
+
+.transition-wipe.is-in::before {
+  transform: scaleY(0);
+}
+
+/* --- Effect 7: micro-interactions ---------------------------------------- */
+
+.hover-zoom > img {
+  transition: transform var(--motion-slow) var(--ease-editorial);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hover-zoom:hover > img,
+  .hover-zoom:focus-visible > img,
+  .hover-zoom:focus-within > img {
+    transform: scale(1.045);
+  }
+
+  .img-swap .swap-alt {
+    opacity: 0;
+  }
+
+  .img-swap:hover .swap-alt,
+  .img-swap:focus-within .swap-alt {
+    opacity: 1;
+  }
+
+  .img-swap:hover .swap-main,
+  .img-swap:focus-within .swap-main {
+    opacity: 0;
+  }
+}
+
+.swap-alt,
+.swap-main {
+  transition: opacity var(--motion-base) var(--ease-soft);
+}
+
+/* Effect 3, mask variants. A target whose own clip-path collapses to zero area
+   is reported as never intersecting, so the observer would strand the frame
+   invisible. The clip therefore sits on the content while the observed box stays
+   whole; the tag list lifts the selector past `.frame > img` and
+   `.hover-zoom > img` so the wipe keeps its transition. */
+[data-reveal='mask'] > :is(img, div, figure, figcaption),
+[data-reveal='mask-side'] > :is(img, div, figure, figcaption) {
+  clip-path: inset(0 0 100% 0);
+  transition:
+    clip-path var(--motion-editorial) var(--ease-editorial) var(--reveal-delay),
+    transform var(--motion-slow) var(--ease-editorial),
+    opacity var(--motion-slow) var(--ease-soft) var(--reveal-delay);
+}
+
+[data-reveal='mask-side'] > :is(img, div, figure, figcaption) {
+  clip-path: inset(0 100% 0 0);
+}
+
+[data-reveal='mask'].is-in > :is(img, div, figure, figcaption),
+[data-reveal='mask-side'].is-in > :is(img, div, figure, figcaption) {
+  clip-path: inset(0 0 0 0);
+}
+
+/* The frame plate would otherwise sit visible as an empty block before its
+   image wipes in. */
+.frame[data-reveal='mask'],
+.frame[data-reveal='mask-side'] {
+  background: transparent;
+}
+
+.frame[data-reveal='mask'].is-in,
+.frame[data-reveal='mask-side'].is-in {
+  background: var(--paper-dim);
+}
+
+.badge-pop {
+  animation: badge-pop var(--motion-base) var(--ease-pop);
+}
+
+@keyframes badge-pop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.pop {
+  animation: pop var(--motion-base) var(--ease-pop);
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.32);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Marquee — decorative, slow, never obstructs reading. */
+.marquee {
+  display: flex;
+  overflow: clip;
+  user-select: none;
+}
+
+.marquee > div {
+  display: flex;
+  flex: none;
+  gap: 3rem;
+  padding-right: 3rem;
+  min-width: 100%;
+  animation: marquee 42s linear infinite;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* --- Overlays, drawers, panels ------------------------------------------- */
+
+.overlay-panel {
+  transition:
+    transform var(--motion-base) var(--ease-editorial),
+    opacity var(--motion-slow) var(--ease-soft);
+}
+
+.overlay-panel[data-hidden='true'] {
+  pointer-events: none;
+}
+
+.stagger-in > * {
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
+  transition:
+    opacity var(--motion-base) var(--ease-out),
+    transform var(--motion-base) var(--ease-editorial);
+}
+
+.stagger-in[data-open='true'] > * {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(var(--motion-fast) + var(--i, 0) * 45ms);
+}
+
+/* --- Reduced motion: everything resolves to its final state immediately -- */
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  [data-reveal='up'],
+  [data-reveal='fade'],
+  [data-reveal='left'],
+  [data-reveal='right'],
+  [data-reveal='rise'],
+  [data-reveal='mask'],
+  [data-reveal='mask-side'],
+  [data-reveal='curtain'] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    transition: none !important;
+  }
+
+  .line-mask > span {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  [data-reveal='mask'] > *,
+  [data-reveal='mask-side'] > * {
+    clip-path: none !important;
+    transition: none !important;
+  }
+
+  .frame > img {
+    transform: none;
+    transition: none;
+  }
+
+  [data-parallax] {
+    transform: none !important;
+    will-change: auto;
+  }
+
+  .transition-wipe::before {
+    display: none;
+  }
+
+  .marquee > div {
+    animation: none;
+  }
+
+  .badge-pop,
+  .pop {
+    animation: none;
+  }
+
+  .stagger-in > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Test hook: ?motion=off mirrors the reduced-motion contract. */
+html[data-motion='off'] [data-reveal],
+html[data-motion='off'] .line-mask > span,
+html[data-motion='off'] [data-parallax] {
+  opacity: 1 !important;
+  transform: none !important;
+  clip-path: none !important;
+  transition: none !important;
+  will-change: auto;
+}
+
+html[data-motion='off'] .marquee > div,
+html[data-motion='off'] .transition-wipe::before {
+  animation: none;
+  display: none;
+}
+
+html[data-motion='off'] [data-reveal='mask'] > *,
+html[data-motion='off'] [data-reveal='mask-side'] > * {
+  clip-path: none !important;
+  transition: none !important;
+}
+
+/* Keep image frames transparent instead of painting a paper-colored surface. */
+.frame {
+  background: transparent !important;
+}

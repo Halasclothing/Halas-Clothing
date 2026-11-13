@@ -1,0 +1,12 @@
+HALA.S website update
+
+Changes made:
+- Added a consistent contrast layer for text over the dark scroll-frame background.
+- White/light UI surfaces use black text; dark editorial panels use white text.
+- Added a dedicated, always-visible Add to Bag button style with a clear focus state and no animation/transform effects.
+- Improved narrow-screen purchase-button sizing and basic cross-browser sizing/text rendering consistency.
+
+Project notes:
+- Existing product, cart, checkout, and backend source files were preserved.
+- node_modules and the private .env file are intentionally not included. Keep your own .env locally and use .env.example as the configuration reference.
+- TypeScript type-check completed successfully. A production Vite build could not be completed in this Linux validation environment because the supplied node_modules archive contains no Linux Rollup optional binary. On the target machine, run `npm install` followed by `npm run build`.
