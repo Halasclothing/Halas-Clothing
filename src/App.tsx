@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
@@ -18,9 +18,11 @@ import { BlogPage } from './pages/BlogPage'
 import { InfoPage } from './pages/InfoPage'
 import { ScrollFramesBackground } from './components/ScrollFramesBackground'
 import { SupportWidgets } from './components/SupportWidgets'
-import { AdminApp } from './admin/AdminApp'
 import { CheckoutPage } from './pages/CheckoutPage'
 import { CartPage } from './pages/CartPage'
+
+/* Keep the full admin workspace out of the initial storefront bundle. */
+const AdminApp = lazy(() => import('./admin/AdminApp').then((module) => ({ default: module.AdminApp })))
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -42,7 +44,13 @@ function LiveRegion() {
 export default function App() {
   const { pathname } = useLocation()
 
-  if (pathname === '/admin' || pathname.startsWith('/admin/')) return <AdminApp />
+  if (pathname === '/admin' || pathname.startsWith('/admin/')) {
+    return (
+      <Suspense fallback={<div className="admin-boot" role="status">Opening HALA.S Admin…</div>}>
+        <AdminApp />
+      </Suspense>
+    )
+  }
 
   return (
     <UiProvider>
