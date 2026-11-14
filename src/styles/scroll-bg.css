@@ -143,3 +143,31 @@ html.has-scroll-bg .admin-page :is(.admin-muted,.admin-eyebrow,.admin-page-head_
 html.has-scroll-bg .admin-table-wrap {
   background: rgba(244,240,230,.68);
 }
+
+/* Footer is the final dark editorial chapter: make every letter and digit white
+   so the HALA.S story, footer links, legal line and admin link remain readable. */
+html.has-scroll-bg .site-footer,
+html.has-scroll-bg .site-footer :is(h1,h2,h3,h4,p,span,a,small,strong,em,li,label,div) {
+  color: #fff !important;
+}
+html.has-scroll-bg .site-footer {
+  background: rgba(8,7,5,.22) !important;
+  --ink: #fff;
+  --ink-2: #fff;
+  --ink-soft: #f4f0e6;
+  --stone: #f4f0e6;
+  --stone-light: #fff;
+  --on-paper: #fff;
+  --on-ink: #fff;
+}
+html.has-scroll-bg .site-footer a,
+html.has-scroll-bg .site-footer .footer-admin-link,
+html.has-scroll-bg .site-footer .footer__legal,
+html.has-scroll-bg .site-footer .footer__legal *,
+html.has-scroll-bg .site-footer .footer__grid *,
+html.has-scroll-bg .site-footer .footer__marquee * {
+  color: #fff !important;
+}
+html.has-scroll-bg .site-footer .footer__brand span {
+  color: #fff !important;
+}
