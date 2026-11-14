@@ -5,7 +5,7 @@ import { usePrefersReducedMotion } from '../motion/reducedMotion'
 /** Frames live in /public/scroll-frames as frame_0001.webp … frame_0276.webp */
 const FRAME_COUNT = 276
 /** Dark veil painted over every frame so the page text stays readable (0 = none, 1 = black). */
-const VEIL = 0.5
+const VEIL = 0.36
 /** Cap the canvas pixel ratio — the frames are 1280×720, more resolution is wasted. */
 const MAX_DPR = 1.5
 /** How many frames download at once. */
