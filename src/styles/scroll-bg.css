@@ -13,13 +13,35 @@
   pointer-events: none;
 }
 
-/* Dark fallback colour while the first frames load. Only <html> is painted: the
-   body must stay transparent or it would sit on top of the z-index:-1 canvas. */
+/* Keep the canvas visible behind the app: the page itself must not paint an
+   opaque background over the fixed frame sequence. */
 html.has-scroll-bg {
   background-color: #0b0a08 !important;
 }
 
-/* The frames are dark (black + gold), so flip the "ink" side of the palette to light. */
+html.has-scroll-bg body,
+html.has-scroll-bg #root,
+html.has-scroll-bg .page {
+  background: transparent !important;
+}
+
+/* Let the frame sequence remain visible through the storefront. */
+html.has-scroll-bg .section,
+html.has-scroll-bg .section--warm,
+html.has-scroll-bg .section--dim,
+html.has-scroll-bg .hero,
+html.has-scroll-bg .collection-head,
+html.has-scroll-bg .pdp {
+  background-color: transparent !important;
+}
+
+/* Retain subtle contrast on the deliberately dark editorial chapter without
+   hiding the moving background. No backdrop-filter on large sections. */
+html.has-scroll-bg .section--ink {
+  background: rgba(8, 7, 5, 0.24) !important;
+}
+
+/* The frames are dark (black + gold), so flip the ink palette to light. */
 html.has-scroll-bg {
   --ink: #f4f0e6;
   --ink-2: #e8e2d2;
@@ -38,8 +60,10 @@ html.has-scroll-bg ::selection {
   color: #16140f;
 }
 
-/* Header floats over moving content: blur what passes underneath, no paint. */
+/* Header floats over moving content with a restrained translucent surface. */
 html.has-scroll-bg .site-header {
+  background: rgba(11, 10, 8, 0.34);
+  color: #f4f0e6;
   -webkit-backdrop-filter: blur(12px) saturate(120%);
   backdrop-filter: blur(12px) saturate(120%);
 }
