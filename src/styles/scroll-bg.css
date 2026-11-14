@@ -1,69 +1,123 @@
-/* ==========================================================================
-   Homepage scroll-frame background
-   ScrollFramesBackground adds html.has-scroll-bg only while the homepage is mounted.
-   ========================================================================== */
-
+/* Shared full-page scroll-frame background for storefront + admin. */
+html.has-scroll-bg,
+html.has-scroll-bg body,
+html.has-scroll-bg #root {
+  min-height: 100%;
+  background: transparent !important;
+}
+html.has-scroll-bg { background-color: #0b0a08 !important; }
 .scroll-bg {
   position: fixed;
   inset: 0;
+  z-index: -1;
   width: 100%;
   height: 100%;
-  z-index: -1;
   display: block;
   pointer-events: none;
 }
 
-/* Keep the canvas visible behind the app: the page itself must not paint an
-   opaque background over the fixed frame sequence. */
-html.has-scroll-bg {
-  background-color: #0b0a08 !important;
-}
-
-html.has-scroll-bg body,
-html.has-scroll-bg #root,
-html.has-scroll-bg .page {
-  background: transparent !important;
-}
-
-/* Let the frame sequence remain visible through the storefront. */
+/* Storefront surfaces are transparent so every section reveals the frames. */
+html.has-scroll-bg .page,
 html.has-scroll-bg .section,
 html.has-scroll-bg .section--warm,
 html.has-scroll-bg .section--dim,
 html.has-scroll-bg .hero,
 html.has-scroll-bg .collection-head,
-html.has-scroll-bg .pdp {
-  background-color: transparent !important;
+html.has-scroll-bg .pdp,
+html.has-scroll-bg .site-footer,
+html.has-scroll-bg footer {
+  background: transparent !important;
 }
 
-/* Retain subtle contrast on the deliberately dark editorial chapter without
-   hiding the moving background. No backdrop-filter on large sections. */
-html.has-scroll-bg .section--ink {
-  background: rgba(8, 7, 5, 0.24) !important;
-}
-
-/* The frames are dark (black + gold), so flip the ink palette to light. */
+/* The background frames are dark: default (light-theme) text is black only
+   on light translucent surfaces; dark/inverse chapters switch all text white. */
 html.has-scroll-bg {
-  --ink: #f4f0e6;
-  --ink-2: #e8e2d2;
-  --ink-soft: #cfc8b6;
-  --stone: #c3bcac;
-  --accent: #c9773f;
-  --line: rgba(244, 240, 230, 0.2);
-  --line-strong: rgba(244, 240, 230, 0.55);
-  --on-paper: #f4f0e6;
+  --ink: #16140f;
+  --ink-2: #2a2721;
+  --ink-soft: #4a453b;
+  --stone: #6f6759;
+  --on-paper: #16140f;
   --on-ink: #f4f0e6;
-  color: #f4f0e6;
-}
-
-html.has-scroll-bg ::selection {
-  background: #f4f0e6;
   color: #16140f;
 }
+html.has-scroll-bg .inverse,
+html.has-scroll-bg [data-theme='dark'],
+html.has-scroll-bg .section--ink {
+  color: #fff !important;
+  --ink: #fff;
+  --ink-2: #f4f0e6;
+  --ink-soft: #e4ddce;
+  --stone: #d2caba;
+  --on-paper: #fff;
+  --on-ink: #fff;
+  --line: rgba(255,255,255,.24);
+  --line-strong: rgba(255,255,255,.58);
+  background: rgba(8,7,5,.16) !important;
+}
+html.has-scroll-bg .inverse :is(h1,h2,h3,h4,p,span,a,small,strong,em,li,label,button),
+html.has-scroll-bg [data-theme='dark'] :is(h1,h2,h3,h4,p,span,a,small,strong,em,li,label,button),
+html.has-scroll-bg .section--ink :is(h1,h2,h3,h4,p,span,a,small,strong,em,li,label,button) {
+  color: #fff;
+}
+html.has-scroll-bg :is(.hero,.section,.collection-head,.pdp,.site-footer) :is(h1,h2,h3,h4,p,span,a,small,strong,em,li,label) {
+  color: inherit;
+}
 
-/* Header floats over moving content with a restrained translucent surface. */
+/* Light editorial cards retain black typography with a translucent paper tint. */
+html.has-scroll-bg :is(.product-card,.collection-card,.editorial-card,.newsletter-card) {
+  background: rgba(244,240,230,.78);
+  color: #16140f;
+}
+html.has-scroll-bg :is(.product-card,.collection-card,.editorial-card,.newsletter-card) :is(h1,h2,h3,h4,p,span,a,small,strong,em,li,label) {
+  color: #16140f;
+}
 html.has-scroll-bg .site-header {
-  background: rgba(11, 10, 8, 0.34);
-  color: #f4f0e6;
-  -webkit-backdrop-filter: blur(12px) saturate(120%);
-  backdrop-filter: blur(12px) saturate(120%);
+  background: rgba(11,10,8,.28) !important;
+  color: #fff;
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  backdrop-filter: blur(10px) saturate(120%);
+}
+html.has-scroll-bg .site-header :is(a,button,span,strong) { color: #fff; }
+
+/* Admin pages stay see-through too. Dark sidebar = white type; light panels = black type. */
+html.has-scroll-bg :is(.admin-shell,.admin-auth,.admin-setup,.admin-boot) {
+  background: transparent !important;
+}
+html.has-scroll-bg .admin-sidebar {
+  background: rgba(18,16,13,.58) !important;
+  color: #fff !important;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+html.has-scroll-bg .admin-sidebar :is(h1,h2,h3,p,a,span,small,strong,label,button) { color: #fff; }
+html.has-scroll-bg .admin-sidebar .admin-nav__link.is-active {
+  background: rgba(244,240,230,.9);
+  color: #16140f !important;
+}
+html.has-scroll-bg .admin-sidebar .admin-nav__link.is-active :is(span,svg) { color: #16140f !important; }
+html.has-scroll-bg .admin-main,
+html.has-scroll-bg .admin-content,
+html.has-scroll-bg .admin-topbar {
+  background: transparent !important;
+}
+html.has-scroll-bg :is(.admin-card,.admin-panel,.admin-stat,.admin-table-wrap,.admin-auth__card,.admin-form-card) {
+  background: rgba(244,240,230,.86) !important;
+  color: #16140f !important;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+html.has-scroll-bg :is(.admin-card,.admin-panel,.admin-stat,.admin-table-wrap,.admin-auth__card,.admin-form-card) :is(h1,h2,h3,h4,p,span,a,small,strong,label,th,td,button) {
+  color: #16140f;
+}
+html.has-scroll-bg .admin-shell input,
+html.has-scroll-bg .admin-shell textarea,
+html.has-scroll-bg .admin-shell select,
+html.has-scroll-bg .admin-auth input {
+  background: rgba(255,255,255,.94);
+  color: #16140f;
+}
+html.has-scroll-bg ::selection { background: #16140f; color: #fff; }
+
+@media (max-width: 768px) {
+  .scroll-bg { image-rendering: auto; }
 }
