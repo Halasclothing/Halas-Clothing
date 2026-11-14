@@ -121,3 +121,25 @@ html.has-scroll-bg ::selection { background: #16140f; color: #fff; }
 @media (max-width: 768px) {
   .scroll-bg { image-rendering: auto; }
 }
+
+/* Actual admin workspace surface names used by AdminLayout and admin pages. */
+html.has-scroll-bg .admin-page,
+html.has-scroll-bg .admin-main,
+html.has-scroll-bg .admin-topbar {
+  background: transparent !important;
+}
+html.has-scroll-bg :is(.admin-card,.admin-table-card,.admin-toolbar,.admin-page-head,.admin-notice,.admin-auth__card,.admin-setup__card) {
+  background: rgba(244,240,230,.86) !important;
+  color: #16140f !important;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+html.has-scroll-bg :is(.admin-card,.admin-table-card,.admin-toolbar,.admin-page-head,.admin-notice,.admin-auth__card,.admin-setup__card) :is(h1,h2,h3,h4,p,span,a,small,strong,label,th,td,button) {
+  color: #16140f;
+}
+html.has-scroll-bg .admin-page :is(.admin-muted,.admin-eyebrow,.admin-page-head__description,.admin-range-note) {
+  color: #4a453b;
+}
+html.has-scroll-bg .admin-table-wrap {
+  background: rgba(244,240,230,.68);
+}
