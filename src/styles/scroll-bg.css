@@ -171,3 +171,80 @@ html.has-scroll-bg .site-footer .footer__marquee * {
 html.has-scroll-bg .site-footer .footer__brand span {
   color: #fff !important;
 }
+
+/* UNIVERSAL DARK-SURFACE CONTRAST: every letter and digit on black/dark
+   sections, overlays, controls and admin dark panels must be white. */
+html.has-scroll-bg :is(
+  .section--ink,
+  .inverse,
+  [data-theme="dark"],
+  .site-footer,
+  .lightbox,
+  .drawer__panel,
+  .overlay-panel,
+  .support-panel,
+  .checkout-card,
+  .admin-sidebar,
+  .admin-auth__brand,
+  .admin-setup pre,
+  .admin-order-list article
+) {
+  color: #fff !important;
+  --ink: #fff;
+  --ink-2: #fff;
+  --ink-soft: #f4f0e6;
+  --stone: #f4f0e6;
+  --on-paper: #fff;
+  --on-ink: #fff;
+}
+html.has-scroll-bg :is(
+  .section--ink,
+  .inverse,
+  [data-theme="dark"],
+  .site-footer,
+  .lightbox,
+  .drawer__panel,
+  .overlay-panel,
+  .support-panel,
+  .checkout-card,
+  .admin-sidebar,
+  .admin-auth__brand,
+  .admin-setup pre,
+  .admin-order-list article
+) :is(*):not(img):not(svg):not(path):not(input):not(textarea):not(select):not(option) {
+  color: #fff !important;
+}
+/* Dark-filled buttons and selected controls also need white labels/numbers. */
+html.has-scroll-bg :is(
+  .btn--dark,
+  .btn--primary,
+  .admin-btn--primary,
+  .opt:has(input:checked),
+  .size-btn[aria-pressed="true"],
+  .admin-tabs button.is-active,
+  .admin-chip.is-active,
+  .support-message--you,
+  .support-form button
+) {
+  color: #fff !important;
+}
+html.has-scroll-bg :is(
+  .btn--dark,
+  .btn--primary,
+  .admin-btn--primary,
+  .opt:has(input:checked),
+  .size-btn[aria-pressed="true"],
+  .admin-tabs button.is-active,
+  .admin-chip.is-active,
+  .support-message--you,
+  .support-form button
+) :is(span,strong,small,em,b) {
+  color: #fff !important;
+}
+html.has-scroll-bg .admin-auth__brand :is(*):not(svg):not(path) {
+  color: #fff !important;
+}
+html.has-scroll-bg .admin-setup pre,
+html.has-scroll-bg .admin-setup pre :is(code,span,b,strong) {
+  color: #fff !important;
+}
