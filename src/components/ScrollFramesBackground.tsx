@@ -5,9 +5,9 @@ import { usePrefersReducedMotion } from '../motion/reducedMotion'
 /** Campaign sequence already in public/scroll-frames: frame_0001.webp … frame_0276.webp. */
 const FRAME_COUNT = 276
 const VEIL = 0.18
-const MAX_DPR = 1.5
+const MAX_DPR = 1.25
 const CONCURRENCY = 5
-const EASE = 0.2
+const EASE = 0.32
 const frameUrl = (n: number) => `/scroll-frames/frame_${String(n).padStart(4, '0')}.webp`
 
 /** Fixed full-page scroll animation shared by the storefront and admin portal. */
