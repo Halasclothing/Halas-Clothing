@@ -22,11 +22,12 @@ export function Home() {
     const track = reviewsTrackRef.current
     if (!track) return
     const timer = window.setInterval(() => {
+      if (document.hidden || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
       const firstCard = track.querySelector<HTMLElement>('.review-card')
       const step = firstCard ? firstCard.offsetWidth + 16 : track.clientWidth * 0.8
       const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 8
       track.scrollTo({ left: atEnd ? 0 : track.scrollLeft + step, behavior: 'smooth' })
-    }, 3600)
+    }, 4200)
     return () => window.clearInterval(timer)
   }, [])
   const [products, setProducts] = useState<Product[]>(PRODUCTS)
