@@ -18,6 +18,17 @@ export function Home() {
   useDocumentTitle('HALA.S CLOTHING — The Ivory Hour, Autumn Edit')
   const heroRef = useRef<HTMLDivElement>(null)
   const reviewsTrackRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const track = reviewsTrackRef.current
+    if (!track) return
+    const timer = window.setInterval(() => {
+      const firstCard = track.querySelector<HTMLElement>('.review-card')
+      const step = firstCard ? firstCard.offsetWidth + 16 : track.clientWidth * 0.8
+      const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 8
+      track.scrollTo({ left: atEnd ? 0 : track.scrollLeft + step, behavior: 'smooth' })
+    }, 3600)
+    return () => window.clearInterval(timer)
+  }, [])
   const [products, setProducts] = useState<Product[]>(PRODUCTS)
   const [collections, setCollections] = useState<CollectionMeta[]>(COLLECTIONS)
   useLineMasks(heroRef)
@@ -168,6 +179,39 @@ export function Home() {
         </h3>
       </section>
 
+      {/* CUSTOMER NOTES — swipeable preview carousel */}
+      <section className="reviews-section section container" aria-labelledby="reviews-title">
+        <div className="reviews-heading">
+          <div>
+            <p className="micro micro--stone">06 / Notes from the community</p>
+            <h2 id="reviews-title" className="display display--xl">Worn, loved, <em>remembered.</em></h2>
+          </div>
+          <p className="reviews-intro">A little love for the pieces that find a place in your everyday wardrobe.</p>
+        </div>
+        <div className="reviews-preview-note">PREVIEW SAMPLES · Replace with verified customer reviews before launch</div>
+        <div className="reviews-carousel-wrap">
+          <button className="reviews-arrow" type="button" aria-label="Previous reviews" onClick={() => { const el = reviewsTrackRef.current; if (el) el.scrollBy({ left: -el.clientWidth * 0.82, behavior: 'smooth' }) }}>←</button>
+          <div className="reviews-track" ref={reviewsTrackRef} role="region" aria-label="Customer review samples" tabIndex={0}>
+            {[
+              { name: 'Ayesha Malik', city: 'Lahore', text: 'The outfit looked even more beautiful in person. The finishing is neat and the fabric feels lovely.' },
+              { name: 'Hira Ahmed', city: 'Karachi', text: 'Loved the colour and the overall fit. It felt elegant without being over the top.' },
+              { name: 'Sana Khan', city: 'Islamabad', text: 'A graceful design with thoughtful details. Perfect for a family get-together.' },
+              { name: 'Mahnoor Ali', city: 'Faisalabad', text: 'The stitching and fall of the shirt were just what I wanted. Such a pretty look.' },
+              { name: 'Zoya Sheikh', city: 'Rawalpindi', text: 'Beautiful presentation and a lovely outfit. I would happily explore more pieces.' },
+              { name: 'Fatima Raza', city: 'Multan', text: 'The design feels modern while still being easy to wear. A lovely addition to my wardrobe.' },
+            ].map((review) => (
+              <article className="review-card" key={review.name}>
+                <div className="review-stars" aria-label="Five star sample rating">★★★★★</div>
+                <p className="review-quote">“{review.text}”</p>
+                <div className="review-person"><span className="review-avatar">{review.name.charAt(0)}</span><span><strong>{review.name}</strong><small>{review.city}, Pakistan</small></span></div>
+              </article>
+            ))}
+          </div>
+          <button className="reviews-arrow" type="button" aria-label="Next reviews" onClick={() => { const el = reviewsTrackRef.current; if (el) el.scrollBy({ left: el.clientWidth * 0.82, behavior: 'smooth' }) }}>→</button>
+        </div>
+        <div className="reviews-hint">Swipe to explore <span aria-hidden="true">⟶</span></div>
+      </section>
+
       {/* COLLECTION INDEX — oversized type, hover preview */}
       <section className="section container" aria-labelledby="collections-title">
         <h2 id="collections-title" className="visually-hidden">
@@ -297,39 +341,6 @@ export function Home() {
           </Reveal>
         </div>
       </Reveal>
-
-      {/* CUSTOMER NOTES — swipeable preview carousel */}
-      <section className="reviews-section section container" aria-labelledby="reviews-title">
-        <div className="reviews-heading">
-          <div>
-            <p className="micro micro--stone">06 / Notes from the community</p>
-            <h2 id="reviews-title" className="display display--xl">Worn, loved, <em>remembered.</em></h2>
-          </div>
-          <p className="reviews-intro">A little love for the pieces that find a place in your everyday wardrobe.</p>
-        </div>
-        <div className="reviews-preview-note">PREVIEW SAMPLES · Replace with verified customer reviews before launch</div>
-        <div className="reviews-carousel-wrap">
-          <button className="reviews-arrow" type="button" aria-label="Previous reviews" onClick={() => { const el = reviewsTrackRef.current; if (el) el.scrollBy({ left: -el.clientWidth * 0.82, behavior: 'smooth' }) }}>←</button>
-          <div className="reviews-track" ref={reviewsTrackRef} role="region" aria-label="Customer review samples" tabIndex={0}>
-            {[
-              { name: 'Ayesha Malik', city: 'Lahore', text: 'The outfit looked even more beautiful in person. The finishing is neat and the fabric feels lovely.' },
-              { name: 'Hira Ahmed', city: 'Karachi', text: 'Loved the colour and the overall fit. It felt elegant without being over the top.' },
-              { name: 'Sana Khan', city: 'Islamabad', text: 'A graceful design with thoughtful details. Perfect for a family get-together.' },
-              { name: 'Mahnoor Ali', city: 'Faisalabad', text: 'The stitching and fall of the shirt were just what I wanted. Such a pretty look.' },
-              { name: 'Zoya Sheikh', city: 'Rawalpindi', text: 'Beautiful presentation and a lovely outfit. I would happily explore more pieces.' },
-              { name: 'Fatima Raza', city: 'Multan', text: 'The design feels modern while still being easy to wear. A lovely addition to my wardrobe.' },
-            ].map((review) => (
-              <article className="review-card" key={review.name}>
-                <div className="review-stars" aria-label="Five star sample rating">★★★★★</div>
-                <p className="review-quote">“{review.text}”</p>
-                <div className="review-person"><span className="review-avatar">{review.name.charAt(0)}</span><span><strong>{review.name}</strong><small>{review.city}, Pakistan</small></span></div>
-              </article>
-            ))}
-          </div>
-          <button className="reviews-arrow" type="button" aria-label="Next reviews" onClick={() => { const el = reviewsTrackRef.current; if (el) el.scrollBy({ left: el.clientWidth * 0.82, behavior: 'smooth' }) }}>→</button>
-        </div>
-        <div className="reviews-hint">Swipe to explore <span aria-hidden="true">⟶</span></div>
-      </section>
 
       {/* CLOSING RULE */}
       <section className="section container" aria-label="Note">
