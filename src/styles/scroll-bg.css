@@ -248,3 +248,89 @@ html.has-scroll-bg .admin-setup pre,
 html.has-scroll-bg .admin-setup pre :is(code,span,b,strong) {
   color: #fff !important;
 }
+
+
+/* FINAL GLOBAL READABILITY + FRAME LAYER FIX (all storefront routes + admin). */
+/* Keep the animated canvas above the document background but below all app UI. */
+html.has-scroll-bg body {
+  background: transparent !important;
+  color: #fff !important;
+}
+html.has-scroll-bg #root {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  background: transparent !important;
+}
+html.has-scroll-bg .scroll-bg {
+  z-index: 0 !important;
+  position: fixed !important;
+  inset: 0 !important;
+}
+
+/* Remove opaque page/section wrappers so the same scroll animation remains
+   visible on home, collections, products, lookbook, journal, info, cart and admin. */
+html.has-scroll-bg :is(
+  #root, .page, main, .section, .section--warm, .section--dim, .section--ink,
+  .hero, .hero__copy, .hero__art, .collection-head, .pdp, .lookbook,
+  .journal, .info-page, .cart-page, .checkout-page, .wishlist-page,
+  .collage-band, .manifesto, .type-band, .admin-shell, .admin-page,
+  .admin-main, .admin-content, .admin-topbar, .admin-boot
+) {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* White typography over the dark campaign frames on every route.
+   This explicitly includes the HALA.S wordmark and all hero/marquee headings. */
+html.has-scroll-bg :is(
+  .site-header, .site-header *, .brand, .brand *,
+  .header__nav, .header__nav *, .header__actions, .header__actions *,
+  .hero, .hero *, .type-band, .type-band *,
+  .page, .page > *, .section, .section > *, .collection-head, .collection-head *,
+  .pdp, .pdp__aside, .pdp__aside *, .lookbook, .lookbook *,
+  .journal, .journal *, .info-page, .info-page *,
+  .cart-page, .cart-page *, .checkout-page, .checkout-page *,
+  .wishlist-page, .wishlist-page *, .site-footer, .site-footer *
+):not(img):not(svg):not(path):not(input):not(textarea):not(select):not(option):not(.card__wishlist) {
+  color: #fff !important;
+}
+
+/* Keep deliberate paper cards and form fields readable: dark type on light glass. */
+html.has-scroll-bg :is(
+  .product-card, .collection-card, .editorial-card, .newsletter-card,
+  .card, .admin-card, .admin-panel, .admin-stat, .admin-table-wrap,
+  .admin-table-card, .admin-toolbar, .admin-page-head, .admin-notice,
+  .admin-auth__card, .admin-setup__card, .checkout-card,
+  .search, .drawer__foot, .toolbar
+) {
+  background: rgba(248,245,238,.88) !important;
+  color: #16140f !important;
+  -webkit-backdrop-filter: blur(9px);
+  backdrop-filter: blur(9px);
+}
+html.has-scroll-bg :is(
+  .product-card, .collection-card, .editorial-card, .newsletter-card,
+  .card, .admin-card, .admin-panel, .admin-stat, .admin-table-wrap,
+  .admin-table-card, .admin-toolbar, .admin-page-head, .admin-notice,
+  .admin-auth__card, .admin-setup__card, .checkout-card,
+  .search, .drawer__foot, .toolbar
+) :is(h1,h2,h3,h4,p,span,a,small,strong,em,li,label,th,td,button,div) {
+  color: #16140f !important;
+}
+html.has-scroll-bg :is(input,textarea,select,option) {
+  background-color: rgba(255,255,255,.96) !important;
+  color: #16140f !important;
+}
+html.has-scroll-bg .site-header {
+  background: rgba(8,7,5,.56) !important;
+  border-bottom-color: rgba(255,255,255,.18) !important;
+}
+html.has-scroll-bg .brand .mark,
+html.has-scroll-bg .count {
+  color: #fff !important;
+}
+html.has-scroll-bg .site-footer,
+html.has-scroll-bg .section--ink {
+  background: rgba(5,5,4,.30) !important;
+}
