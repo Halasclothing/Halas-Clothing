@@ -334,3 +334,28 @@ html.has-scroll-bg .site-footer,
 html.has-scroll-bg .section--ink {
   background: rgba(5,5,4,.30) !important;
 }
+
+
+/* HALA.S community review carousel — transparent over the scroll-frame backdrop. */
+html.has-scroll-bg .reviews-section { background: transparent !important; color: #fff; }
+.reviews-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:2rem; margin-bottom:1.5rem; }
+.reviews-heading h2 { color:#fff !important; max-width:15ch; }
+.reviews-intro { color:rgba(255,255,255,.78); max-width:28ch; margin:0 0 .35rem; }
+.reviews-preview-note { display:inline-flex; padding:.48rem .7rem; border:1px solid rgba(255,255,255,.38); color:#fff; font-size:.62rem; letter-spacing:.13em; margin-bottom:1.1rem; background:rgba(10,9,7,.3); }
+.reviews-carousel-wrap { display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:.8rem; }
+.reviews-track { display:flex; gap:1rem; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; scrollbar-width:none; padding:.25rem .1rem 1rem; }
+.reviews-track::-webkit-scrollbar { display:none; }
+.review-card { flex:0 0 calc((100% - 2rem)/3); min-height:245px; display:flex; flex-direction:column; justify-content:space-between; scroll-snap-align:start; padding:1.5rem; background:rgba(245,240,230,.94); color:#191711; border:1px solid rgba(255,255,255,.5); box-shadow:0 16px 45px rgba(0,0,0,.13); }
+.review-stars { color:#9a7540; letter-spacing:.18em; font-size:.9rem; }
+.review-quote { color:#242018; font-family:Georgia,serif; font-size:clamp(1rem,1.3vw,1.22rem); line-height:1.55; margin:1.1rem 0 1.4rem; }
+.review-person { display:flex; align-items:center; gap:.75rem; color:#17150f; }
+.review-person strong,.review-person small { display:block; color:#17150f; }
+.review-person strong { font-size:.82rem; letter-spacing:.03em; }
+.review-person small { margin-top:.2rem; font-size:.7rem; opacity:.68; }
+.review-avatar { width:2.2rem; height:2.2rem; display:grid; place-items:center; border-radius:50%; background:#ded3bf; color:#242018; font-family:Georgia,serif; }
+.reviews-arrow { width:2.55rem; height:2.55rem; border:1px solid rgba(255,255,255,.6); border-radius:50%; background:rgba(10,9,7,.35); color:#fff; font-size:1.25rem; cursor:pointer; transition:background .2s ease, transform .2s ease; }
+.reviews-arrow:hover { background:rgba(255,255,255,.18); transform:scale(1.05); }
+.reviews-hint { color:rgba(255,255,255,.7); text-align:center; font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; margin-top:.4rem; }
+@media (max-width:800px) { .reviews-heading { display:block; } .reviews-intro { margin-top:.8rem; } .review-card { flex-basis:78%; min-height:230px; } .reviews-carousel-wrap { gap:.45rem; } .reviews-arrow { width:2.15rem; height:2.15rem; } }
+@media (max-width:480px) { .review-card { flex-basis:86%; padding:1.2rem; } .reviews-preview-note { font-size:.55rem; letter-spacing:.08em; } }
+@media (prefers-reduced-motion: reduce) { .reviews-track { scroll-behavior:auto; } .reviews-arrow { transition:none; } }
