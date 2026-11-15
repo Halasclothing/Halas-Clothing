@@ -12,24 +12,50 @@ import { getCatalogueCollections, getCatalogueProducts } from '../data/api'
 import type { CollectionMeta, Product } from '../data/types'
 import { craftImgs, heroImg, lookbookImgs } from '../data/images'
 import { formatPrice } from '../data/format'
+
+const reviewSamples = [
+              { name: 'Ayesha Malik', city: 'Lahore', text: 'The outfit looked even more beautiful in person. The finishing is neat and the fabric feels lovely.' },
+              { name: 'Hira Ahmed', city: 'Karachi', text: 'Loved the colour and the overall fit. It felt elegant without being over the top.' },
+              { name: 'Sana Khan', city: 'Islamabad', text: 'A graceful design with thoughtful details. Perfect for a family get-together.' },
+              { name: 'Mahnoor Ali', city: 'Faisalabad', text: 'The stitching and fall of the shirt were just what I wanted. Such a pretty look.' },
+              { name: 'Zoya Sheikh', city: 'Rawalpindi', text: 'Beautiful presentation and a lovely outfit. I would happily explore more pieces.' },
+              { name: 'Fatima Raza', city: 'Multan', text: 'The design feels modern while still being easy to wear. A lovely addition to my wardrobe.' },
+              { name: 'Maham Siddiqui', city: 'Lahore', text: 'The fabric has a lovely feel and the outfit looks graceful. The details make it special.' },
+              { name: 'Iqra Javed', city: 'Gujranwala', text: 'I liked the simple elegant look. It was easy to style for a small family event.' },
+              { name: 'Amna Tariq', city: 'Sialkot', text: 'The colour was lovely and the overall look felt very polished.' },
+              { name: 'Eman Butt', city: 'Islamabad', text: 'A beautiful outfit with neat finishing. I really liked the silhouette.' },
+              { name: 'Kiran Shah', city: 'Karachi', text: 'The design is tasteful and the fabric drapes beautifully.' },
+              { name: 'Noor Fatima', city: 'Bahawalpur', text: 'Loved the delicate details. It made a lovely outfit for a dinner.' },
+              { name: 'Laiba Aslam', city: 'Lahore', text: 'The outfit felt comfortable and looked elegant. A very pretty design.' },
+              { name: 'Mehwish Iqbal', city: 'Peshawar', text: 'The colour combination is beautiful and the stitching looks neat.' },
+              { name: 'Anaya Hussain', city: 'Multan', text: 'A lovely piece for the festive season. The detailing caught my eye.' },
+              { name: 'Sidra Nadeem', city: 'Rawalpindi', text: 'The fit and fall looked graceful. I liked how easy it was to accessorise.' },
+              { name: 'Minal Rauf', city: 'Karachi', text: 'The fabric feels soft and the design is understated in the best way.' },
+              { name: 'Rabia Khalid', city: 'Lahore', text: 'Really liked the finishing and the overall presentation of the outfit.' },
+              { name: 'Hafsa Noor', city: 'Hyderabad', text: 'The style is elegant and comfortable. It worked beautifully for my occasion.' },
+              { name: 'Dua Imran', city: 'Islamabad', text: 'Such a pretty colour and a thoughtful design. Very easy to dress up.' },
+              { name: 'Saira Younis', city: 'Sargodha', text: 'The outfit has a lovely fall and the details look carefully done.' },
+              { name: 'Areeba Saleem', city: 'Faisalabad', text: 'I liked the modern cut with a traditional touch. A graceful look.' },
+              { name: 'Nimra Asif', city: 'Lahore', text: 'The fabric and colour looked lovely together. The outfit felt special.' },
+              { name: 'Alina Qureshi', city: 'Karachi', text: 'Beautiful design and neat stitching. I would love to see more colours.' },
+              { name: 'Maryam Riaz', city: 'Gujrat', text: 'A very wearable design. It felt elegant without being too heavy.' },
+              { name: 'Hania Farooq', city: 'Islamabad', text: 'The details are subtle and pretty. A lovely addition to my wardrobe.' },
+              { name: 'Sobia Akhtar', city: 'Multan', text: 'I liked the quality of the finishing and the graceful overall look.' },
+              { name: 'Sehrish Ahmed', city: 'Lahore', text: 'The outfit was comfortable and the colour was just as I expected.' },
+              { name: 'Mishal Khan', city: 'Peshawar', text: 'A beautiful silhouette with lovely detailing. Easy to style for an event.' },
+              { name: 'Komal Abbas', city: 'Sialkot', text: 'The design feels timeless and the fabric has a nice drape.' },
+              { name: 'Aiman Khalid', city: 'Rawalpindi', text: 'Loved the clean finishing and the elegant look of the outfit.' },
+              { name: 'Nadia Bukhari', city: 'Karachi', text: 'A lovely outfit with a refined design. The little details stand out.' },
+              { name: 'Rimsha Waqar', city: 'Lahore', text: 'The colour and cut are beautiful. It made getting ready so easy.' },
+              { name: 'Bushra Saeed', city: 'Abbottabad', text: 'A graceful outfit and a lovely overall look. I liked the fabric feel.' },
+              { name: 'Sana Jamil', city: 'Gujranwala', text: 'The stitching looks neat and the design is both pretty and practical.' },
+              { name: 'Hoorain Shah', city: 'Islamabad', text: 'A lovely piece with a soft, elegant look. The details are beautiful.' },
+            ]
 import { useDocumentTitle } from '../useDocumentTitle'
 
 export function Home() {
   useDocumentTitle('HALA.S CLOTHING — The Ivory Hour, Autumn Edit')
   const heroRef = useRef<HTMLDivElement>(null)
-  const reviewsTrackRef = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    const track = reviewsTrackRef.current
-    if (!track) return
-    const timer = window.setInterval(() => {
-      if (document.hidden || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-      const firstCard = track.querySelector<HTMLElement>('.review-card')
-      const step = firstCard ? firstCard.offsetWidth + 16 : track.clientWidth * 0.8
-      const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 8
-      track.scrollTo({ left: atEnd ? 0 : track.scrollLeft + step, behavior: 'smooth' })
-    }, 4200)
-    return () => window.clearInterval(timer)
-  }, [])
   const [products, setProducts] = useState<Product[]>(PRODUCTS)
   const [collections, setCollections] = useState<CollectionMeta[]>(COLLECTIONS)
   useLineMasks(heroRef)
@@ -68,143 +94,7 @@ export function Home() {
             </span>
           </h2>
 
-          <Reveal as="p" variant="up" delay={380} className="lede" style={{ marginTop: '1.4rem' }}>
-            Contemporary Pakistani womenswear, cut and finished in Lahore. Presented as a publication — garments
-            first, noise never.
-          </Reveal>
-
-          <div className="hero__ctas">
-            <Reveal as="p" variant="fade" delay={460} style={{ display: 'inline-block' }}>
-              <Link className="btn btn--solid" to="/collections/new-in">
-                Shop New In <IconArrow />
-              </Link>
-            </Reveal>
-            <Reveal as="p" variant="fade" delay={540} style={{ display: 'inline-block' }}>
-              <Link className="btn" to="/lookbook">
-                Read the lookbook
-              </Link>
-            </Reveal>
-          </div>
-        </div>
-
-        <div className="hero__art collage">
-          <div className="layer layer--a">
-            <EditorialFrame
-              img={heroImg}
-              ratio="hero"
-              variant="curtain"
-              eager
-              hoverZoom
-              parallax={0.04}
-              sizes="(max-width: 900px) 86vw, 58vw"
-            />
-          </div>
-          <div className="layer layer--b">
-            <EditorialFrame
-              img={lookbookImgs.l5}
-              ratio="tall"
-              variant="mask"
-              delay={160}
-              parallax={-0.03}
-              sizes="(max-width: 900px) 44vw, 26vw"
-            />
-          </div>
-          <div className="layer layer--c">
-            <EditorialFrame
-              img={craftImgs.fabrics}
-              ratio="square"
-              variant="rise"
-              delay={280}
-              parallax={0.06}
-              sizes="24vw"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Deliberately cropped typographic band */}
-      <div className="type-band" aria-hidden="true">
-        <div className="marquee">
-          {[0, 1].map((copy) => (
-            <div key={copy}>
-              {['Ready to Wear', 'Dresses', 'Co-Ord Sets', 'New In', 'Sale'].map((word, i) => (
-                <span className="display" key={i} style={{ whiteSpace: 'nowrap' }}>
-                  {word} <span style={{ opacity: 0.35 }}>—</span>
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* MANIFESTO — calm interval, staggered line groups */}
-      <section className="section container">
-        <div className="manifesto">
-          <Reveal as="div" variant="up" className="manifesto__statement">
-            <p>
-              A garment should hold its <em>quiet</em> — even in a room built for noise.
-            </p>
-          </Reveal>
-          <div data-stagger>
-            {[
-              ['01', 'Cut in Lahore', 'Every piece is patterned and finished in our own atelier.'],
-              ['02', 'Small batches', 'Fabrics are dyed in short runs, so colour is never approximate.'],
-              ['03', 'Worn twice a year at minimum', 'Nothing here is designed for a single occasion.'],
-            ].map(([num, title, body], i) => (
-              <Reveal as="div" variant="up" key={num} style={stagger(i, 120) as CSSProperties}>
-                <p className="micro micro--stone">{num}</p>
-                <h3 className="display" style={{ fontSize: 'var(--text-md)', marginTop: '0.2rem' }}>
-                  {title}
-                </h3>
-                <p className="notice" style={{ color: 'var(--ink-soft)', marginTop: '0.35rem' }}>
-                  {body}
-                </p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* NEW IN — staggered rail of real catalogue data */}
-      <section className="section section--tight container" aria-labelledby="new-in">
-        <SectionHead index="01 / New In" title="Just arrived" action={{ to: '/collections/new-in', label: 'All new in' }} />
-        <div className="rail-wrap">
-          <div className="rail" role="region" tabIndex={0} aria-labelledby="new-in" data-stagger>
-            {newIn.map((product, i) => (
-              <ProductCard key={product.id} product={product} index={i} sizes="(max-width: 700px) 66vw, 30vw" />
-            ))}
-          </div>
-        </div>
-        <h3 id="new-in" className="visually-hidden">
-          New In products
-        </h3>
-      </section>
-
-      {/* CUSTOMER NOTES — swipeable preview carousel */}
-      <section className="reviews-section section container" aria-labelledby="reviews-title">
-        <div className="reviews-heading">
-          <div>
-            <p className="micro micro--stone">06 / Notes from the community</p>
-            <h2 id="reviews-title" className="display display--xl">Worn, loved, <em>remembered.</em></h2>
-          </div>
-          <p className="reviews-intro">A little love for the pieces that find a place in your everyday wardrobe.</p>
-        </div>
-        <div className="reviews-preview-note">PREVIEW SAMPLES · Replace with verified customer reviews before launch</div>
-        <div className="reviews-carousel-wrap">
-          <button className="reviews-arrow" type="button" aria-label="Previous reviews" onClick={() => { const el = reviewsTrackRef.current; if (el) el.scrollBy({ left: -el.clientWidth * 0.82, behavior: 'smooth' }) }}>←</button>
-          <div className="reviews-track" ref={reviewsTrackRef} role="region" aria-label="Customer review samples" tabIndex={0}>
-            {[
-              { name: 'Ayesha Malik', city: 'Lahore', text: 'The outfit looked even more beautiful in person. The finishing is neat and the fabric feels lovely.' },
-              { name: 'Hira Ahmed', city: 'Karachi', text: 'Loved the colour and the overall fit. It felt elegant without being over the top.' },
-              { name: 'Sana Khan', city: 'Islamabad', text: 'A graceful design with thoughtful details. Perfect for a family get-together.' },
-              { name: 'Mahnoor Ali', city: 'Faisalabad', text: 'The stitching and fall of the shirt were just what I wanted. Such a pretty look.' },
-              { name: 'Zoya Sheikh', city: 'Rawalpindi', text: 'Beautiful presentation and a lovely outfit. I would happily explore more pieces.' },
-              { name: 'Fatima Raza', city: 'Multan', text: 'The design feels modern while still being easy to wear. A lovely addition to my wardrobe.' },
-              { name: 'Maham Siddiqui', city: 'Lahore', text: 'The fabric has a lovely feel and the outfit looks graceful. The details make it special.' },
-              { name: 'Iqra Javed', city: 'Gujranwala', text: 'I liked the simple elegant look. It was easy to style for a small family event.' },
-              { name: 'Amna Tariq', city: 'Sialkot', text: 'The colour was lovely and the overall look felt very polished.' },
-              { name: 'Eman Butt', city: 'Islamabad', text: 'A beautiful outfit with neat finishing. I really liked the silhouette.' },
-              { name: 'Kiran Shah', city: 'Karachi', text: 'The design is tasteful and the fabric drapes beautifully.' },
+          <Reveal as="p" variant="uah', city: 'Karachi', text: 'The design is tasteful and the fabric drapes beautifully.' },
               { name: 'Noor Fatima', city: 'Bahawalpur', text: 'Loved the delicate details. It made a lovely outfit for a dinner.' },
               { name: 'Laiba Aslam', city: 'Lahore', text: 'The outfit felt comfortable and looked elegant. A very pretty design.' },
               { name: 'Mehwish Iqbal', city: 'Peshawar', text: 'The colour combination is beautiful and the stitching looks neat.' },
@@ -387,6 +277,35 @@ export function Home() {
             {products.length} pieces · {formatPrice(minPrice)}–{formatPrice(maxPrice)}
           </p>
         </Reveal>
+      </section>
+
+      {/* CUSTOMER NOTES — two moving rows at the very end of the page */}
+      <section className="reviews-section section container" aria-labelledby="reviews-title">
+        <div className="reviews-heading">
+          <div>
+            <p className="micro micro--stone">06 / Notes from the community</p>
+            <h2 id="reviews-title" className="display display--xl">Worn, loved, <em>remembered.</em></h2>
+          </div>
+          <p className="reviews-intro">A little love for the pieces that find a place in your everyday wardrobe.</p>
+        </div>
+        <div className="reviews-preview-note">PREVIEW SAMPLES · Replace with verified customer reviews before launch</div>
+        {[reviewSamples.slice(0, 18), reviewSamples.slice(18, 36)].map((lane, laneIndex) => (
+          <div className={`reviews-lane reviews-lane--${laneIndex === 0 ? 'left' : 'right'}`} key={laneIndex}>
+            <div className="reviews-track">
+              {[0, 1].map((copy) => (
+                <div className="reviews-track-inner" key={copy} aria-hidden={copy === 1}>
+                  {lane.map((review) => (
+                    <article className="review-card" key={`${copy}-${review.name}`}>
+                      <div className="review-stars" aria-label="Five star sample rating">★★★★★</div>
+                      <p className="review-quote">“{review.text}”</p>
+                      <div className="review-person"><span className="review-avatar">{review.name.charAt(0)}</span><span><strong>{review.name}</strong><small>{review.city}, Pakistan</small></span></div>
+                    </article>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
       </section>
     </>
   )
