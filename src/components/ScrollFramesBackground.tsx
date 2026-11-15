@@ -3,7 +3,7 @@ import { subscribeScroll } from '../motion/scrollBus'
 import { usePrefersReducedMotion } from '../motion/reducedMotion'
 
 /** Frames live in /public/scroll-frames as frame_0001.webp … frame_0276.webp */
-const FRAME_COUNT = 276
+const FRAME_COUNT = 238
 /** Dark veil painted over every frame so the page text stays readable (0 = none, 1 = black). */
 const VEIL = 0.5
 /** Cap the canvas pixel ratio — the frames are 1280×720, more resolution is wasted. */
@@ -37,7 +37,7 @@ export function ScrollFramesBackground() {
     ctx.imageSmoothingQuality = 'high'
 
     // Phones get every 2nd frame: half the download and far less decoded-image memory.
-    const step = window.matchMedia('(max-width: 768px)').matches ? 6 : 3
+    const step = window.matchMedia('(max-width: 768px)').matches ? 4 : 2
     const frames: number[] = []
     for (let n = 1; n <= FRAME_COUNT; n += step) frames.push(n)
     if (frames[frames.length - 1] !== FRAME_COUNT) frames.push(FRAME_COUNT)
