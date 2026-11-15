@@ -436,3 +436,26 @@ html.has-scroll-bg .reviews-arrow {
   html.has-scroll-bg .review-card { transition: none; }
   html.has-scroll-bg .review-card:hover { transform: none; }
 }
+
+
+/* Two-row review marquee: opposing motion, paused while pointer is over either row. */
+html.has-scroll-bg .reviews-section { overflow:hidden; }
+.reviews-lane { overflow:hidden; width:100%; margin:1rem 0; }
+.reviews-track { display:flex; width:max-content; overflow:visible; gap:0; padding:.25rem 0 1rem; }
+.reviews-track-inner { display:flex; flex:none; gap:1rem; padding-right:1rem; width:max-content; animation:reviews-marquee-left 105s linear infinite; }
+.reviews-lane--right .reviews-track-inner { animation-name:reviews-marquee-right; animation-duration:115s; }
+.reviews-lane:hover .reviews-track-inner,
+.reviews-lane:focus-within .reviews-track-inner { animation-play-state:paused; }
+.review-card { flex:0 0 clamp(250px, 28vw, 350px); min-height:220px; }
+.review-quote { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden; min-height:3.1em; }
+@keyframes reviews-marquee-left { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+@keyframes reviews-marquee-right { from { transform:translateX(-50%); } to { transform:translateX(0); } }
+@media (max-width:800px) {
+  .reviews-lane { margin:.65rem 0; }
+  .reviews-track-inner { gap:.7rem; padding-right:.7rem; }
+  .review-card { flex-basis:78vw; min-height:205px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .reviews-track-inner { animation:none !important; }
+  .reviews-track { overflow-x:auto; }
+}
