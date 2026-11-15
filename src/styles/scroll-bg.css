@@ -359,3 +359,80 @@ html.has-scroll-bg .reviews-section { background: transparent !important; color:
 @media (max-width:800px) { .reviews-heading { display:block; } .reviews-intro { margin-top:.8rem; } .review-card { flex-basis:78%; min-height:230px; } .reviews-carousel-wrap { gap:.45rem; } .reviews-arrow { width:2.15rem; height:2.15rem; } }
 @media (max-width:480px) { .review-card { flex-basis:86%; padding:1.2rem; } .reviews-preview-note { font-size:.55rem; letter-spacing:.08em; } }
 @media (prefers-reduced-motion: reduce) { .reviews-track { scroll-behavior:auto; } .reviews-arrow { transition:none; } }
+
+
+/* Crystal-glass review cards: luminous, light and readable over the campaign frames. */
+html.has-scroll-bg .reviews-section {
+  padding-top: clamp(2.5rem, 5vw, 4.5rem);
+  padding-bottom: clamp(2.5rem, 5vw, 4.5rem);
+}
+html.has-scroll-bg .reviews-heading h2,
+html.has-scroll-bg .reviews-heading .micro,
+html.has-scroll-bg .reviews-intro {
+  color: #fff !important;
+}
+html.has-scroll-bg .reviews-preview-note {
+  color: rgba(255,255,255,.88) !important;
+  border-color: rgba(255,255,255,.42);
+  background: rgba(255,255,255,.08);
+  border-radius: 999px;
+  padding: .55rem .9rem;
+}
+html.has-scroll-bg .review-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid rgba(255,255,255,.78);
+  border-radius: 20px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.82), rgba(255,255,255,.48) 52%, rgba(246,249,255,.62)) !important;
+  color: #201e1a !important;
+  -webkit-backdrop-filter: blur(16px) saturate(155%);
+  backdrop-filter: blur(16px) saturate(155%);
+  box-shadow:
+    0 18px 48px rgba(0,0,0,.16),
+    inset 0 1px 0 rgba(255,255,255,.95),
+    inset 0 -1px 0 rgba(255,255,255,.34);
+  transition: transform .28s ease, box-shadow .28s ease;
+}
+html.has-scroll-bg .review-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(120deg, rgba(255,255,255,.5), transparent 42%, rgba(255,255,255,.12));
+}
+html.has-scroll-bg .review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 54px rgba(0,0,0,.2), inset 0 1px 0 #fff;
+}
+html.has-scroll-bg .review-stars { color: #98713d !important; }
+html.has-scroll-bg .review-quote {
+  color: #24211c !important;
+  text-shadow: none;
+}
+html.has-scroll-bg .review-person,
+html.has-scroll-bg .review-person strong,
+html.has-scroll-bg .review-person small {
+  color: #211f1a !important;
+}
+html.has-scroll-bg .review-avatar {
+  color: #27231c !important;
+  background: rgba(255,255,255,.72);
+  border: 1px solid rgba(255,255,255,.9);
+  box-shadow: 0 2px 9px rgba(0,0,0,.08);
+}
+html.has-scroll-bg .reviews-arrow {
+  border-color: rgba(255,255,255,.72);
+  background: rgba(255,255,255,.15);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+@media (max-width: 800px) {
+  html.has-scroll-bg .review-card { min-height: 220px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html.has-scroll-bg .review-card { transition: none; }
+  html.has-scroll-bg .review-card:hover { transform: none; }
+}
