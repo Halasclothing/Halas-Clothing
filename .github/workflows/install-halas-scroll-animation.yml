@@ -1,0 +1,84 @@
+name: Install new HALAS scroll animation
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/install-halas-scroll-animation.yml
+permissions:
+  contents: write
+jobs:
+  replace-frames:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Download and verify supplied Google Drive archive
+        run: |
+          python3 - <<'PY'
+          import re, urllib.request, zipfile, io
+          file_id = "1GgF3UddQOJuCwvAiAP9kv8ugDoBG9xLm"
+          url = f"https://drive.google.com/uc?export=download&id={file_id}"
+          req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+          data = urllib.request.urlopen(req).read()
+          if not data.startswith(b"PK"):
+              html = data.decode("utf-8", "ignore")
+              match = re.search(r'name="uuid" value="([^"]+)"', html)
+              if not match:
+                  raise SystemExit("Google Drive did not return a downloadable ZIP. Check link access.")
+              download = f"https://drive.usercontent.google.com/download?id={file_id}&export=download&confirm=t&uuid={match.group(1)}"
+              req = urllib.request.Request(download, headers={"User-Agent": "Mozilla/5.0"})
+              data = urllib.request.urlopen(req).read()
+          if not data.startswith(b"PK"):
+              raise SystemExit("Downloaded content is not a ZIP archive.")
+          with zipfile.ZipFile(io.BytesIO(data)) as z:
+              names = [n for n in z.namelist() if re.fullmatch(r"HALAS_CLOTHING_FRAMES_30FPS/frame_\d{6}\.jpg", n)]
+              if len(names) != 238:
+                  raise SystemExit(f"Expected 238 frames, found {len(names)}.")
+              z.extractall("/tmp/halas-scroll")
+          print(f"Verified {len(names)} new animation frames.")
+          PY
+      - name: Convert frames to optimized WebP
+        run: |
+          npm install --no-save --no-package-lock sharp
+          node --input-type=module <<'JS'
+          import sharp from 'sharp';
+          import fs from 'node:fs/promises';
+          import path from 'node:path';
+          const src = '/tmp/halas-scroll/HALAS_CLOTHING_FRAMES_30FPS';
+          const out = 'public/scroll-frames';
+          await fs.rm(out, { recursive: true, force: true });
+          await fs.mkdir(out, { recursive: true });
+          const names = (await fs.readdir(src)).filter(n => n.endsWith('.jpg')).sort();
+          let cursor = 0;
+          async function worker() {
+            while (true) {
+              const i = cursor++;
+              if (i >= names.length) return;
+              await sharp(path.join(src, names[i]))
+                .webp({ quality: 78, effort: 4 })
+                .toFile(path.join(out, `frame_${String(i + 1).padStart(4, '0')}.webp`));
+            }
+          }
+          await Promise.all(Array.from({ length: 4 }, worker));
+          console.log(`Optimized ${names.length} frames into WebP.`);
+          JS
+      - name: Update scroll frame player and commit
+        run: |
+          python3 - <<'PY'
+          p = "src/components/ScrollFramesBackground.tsx"
+          s = open(p).read()
+          s = s.replace("const FRAME_COUNT = 276", "const FRAME_COUNT = 238")
+          s = s.replace("matches ? 6 : 3", "matches ? 4 : 2")
+          open(p, "w").write(s)
+          PY
+          rm -f .github/workflows/install-halas-scroll-animation.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A public/scroll-frames src/components/ScrollFramesBackground.tsx .github/workflows/install-halas-scroll-animation.yml
+          git commit -m "Replace homepage scroll animation with new optimized 238-frame sequence"
+          git push origin main
