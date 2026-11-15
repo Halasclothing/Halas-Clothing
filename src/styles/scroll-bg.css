@@ -459,3 +459,45 @@ html.has-scroll-bg .reviews-section { overflow:hidden; }
   .reviews-track-inner { animation:none !important; }
   .reviews-track { overflow-x:auto; }
 }
+
+
+/* ADMIN WHITE EDITION: keep the complete admin workspace bright and legible. */
+html.has-scroll-bg .admin-shell,
+html.has-scroll-bg .admin-auth,
+html.has-scroll-bg .admin-setup {
+  background: rgba(255,255,255,.97) !important;
+  color: #17140f !important;
+}
+html.has-scroll-bg .admin-main,
+html.has-scroll-bg .admin-page,
+html.has-scroll-bg .admin-topbar {
+  background: rgba(255,255,255,.96) !important;
+  color: #17140f !important;
+}
+html.has-scroll-bg .admin-topbar {
+  border-bottom: 1px solid rgba(23,20,15,.10) !important;
+}
+html.has-scroll-bg :is(.admin-card,.admin-table-card,.admin-toolbar,.admin-page-head,.admin-notice,.admin-auth__card,.admin-setup__card,.kpi,.admin-modal__panel) {
+  background: rgba(255,255,255,.98) !important;
+  color: #17140f !important;
+  border-color: rgba(23,20,15,.12) !important;
+  box-shadow: 0 10px 32px rgba(23,20,15,.055), inset 0 1px 0 rgba(255,255,255,.95) !important;
+}
+html.has-scroll-bg :is(.admin-card,.admin-table-card,.admin-toolbar,.admin-page-head,.admin-notice,.admin-auth__card,.admin-setup__card,.kpi,.admin-modal__panel) :is(h1,h2,h3,h4,p,span,a,small,strong,label,th,td,button,div) {
+  color: #17140f !important;
+}
+html.has-scroll-bg .admin-auth__brand {
+  background: #fff !important;
+  color: #17140f !important;
+  border-right: 1px solid rgba(23,20,15,.08);
+}
+html.has-scroll-bg .admin-auth__brand :is(*):not(svg):not(path) { color: #17140f !important; }
+html.has-scroll-bg .admin-auth__brand .admin-eyebrow,
+html.has-scroll-bg .admin-auth__brand .admin-auth__tagline,
+html.has-scroll-bg .admin-auth__brand .admin-auth__quote { color: #625b50 !important; }
+html.has-scroll-bg .admin-sidebar { background: rgba(23,20,15,.94) !important; }
+html.has-scroll-bg .admin-sidebar .admin-nav__link.is-active { background: #fff !important; color: #17140f !important; }
+html.has-scroll-bg .admin-sidebar .admin-nav__link.is-active span { color: #17140f !important; }
+html.has-scroll-bg .admin-brand strong { font-size: 15px !important; letter-spacing: .11em; }
+html.has-scroll-bg .admin-brand__mark { width: 33px; height: 33px; font-size: 17px; }
+html.has-scroll-bg .site-header .brand { font-size: clamp(1.05rem, 1.55vw, 1.38rem) !important; }
